@@ -1,0 +1,872 @@
+﻿[
+    {
+        "Empresa":  null,
+        "Month":  "Dic2025",
+        "Neto":  33613.445378151264,
+        "Concepto":  "reel 2026",
+        "Cliente":  "Daniela Riveros",
+        "MetodoPago":  null,
+        "Total":  40000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Punto Zero",
+        "Month":  "Dic2025",
+        "Neto":  64705.882352941175,
+        "Concepto":  "RINCON",
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  77000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Dic2025",
+        "Neto":  500420.1680672269,
+        "Concepto":  "297, 120, 178.5 (celulares, crew y flores)",
+        "Cliente":  "Nimrod",
+        "MetodoPago":  null,
+        "Total":  595500,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Makrim",
+        "Month":  "Dic2025",
+        "Neto":  80924.36974789915,
+        "Concepto":  "casa",
+        "Cliente":  "Maccarena",
+        "MetodoPago":  null,
+        "Total":  96300,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Miura",
+        "Month":  "Dic2025",
+        "Neto":  25210.08403361345,
+        "Concepto":  "video agus",
+        "Cliente":  "Vale Marion",
+        "MetodoPago":  null,
+        "Total":  30000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Dic2025",
+        "Neto":  210084.03361344538,
+        "Concepto":  "Boda (330 yo +170 JP) Neto: 220, prox: 165.000",
+        "Cliente":  "Luis Bravo",
+        "MetodoPago":  null,
+        "Total":  250000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Miura",
+        "Month":  "Dic2025",
+        "Neto":  176470.58823529413,
+        "Concepto":  "fotos:\nVideo banner: 40000\nVideo Concurso: ",
+        "Cliente":  "Vale Marion",
+        "MetodoPago":  null,
+        "Total":  210000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Miura",
+        "Month":  "Dic2025",
+        "Neto":  67226.89075630253,
+        "Concepto":  "miura 3 y agus",
+        "Cliente":  "Vale Marion",
+        "MetodoPago":  null,
+        "Total":  80000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Dic2025",
+        "Neto":  252100.84033613445,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  300000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Dic2025",
+        "Neto":  8403.361344537816,
+        "Concepto":  "Lili",
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  10000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Dic2025",
+        "Neto":  10924.36974789916,
+        "Concepto":  "Mary",
+        "Cliente":  "x",
+        "MetodoPago":  null,
+        "Total":  13000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Punto Zero",
+        "Month":  "Dic2025",
+        "Neto":  63025.21008403361,
+        "Concepto":  "MESON PERUANO",
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  75000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Punto Zero",
+        "Month":  "Dic2025",
+        "Neto":  96638.65546218488,
+        "Concepto":  "AYC LUDIANO",
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  115000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Dic2025",
+        "Neto":  100840.33613445378,
+        "Concepto":  null,
+        "Cliente":  "Nicole Rmos",
+        "MetodoPago":  null,
+        "Total":  120000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Makrim",
+        "Month":  "Dic2025",
+        "Neto":  57142.857142857145,
+        "Concepto":  "depa",
+        "Cliente":  "Maccarena",
+        "MetodoPago":  null,
+        "Total":  68000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Nov2025",
+        "Neto":  25000,
+        "Concepto":  null,
+        "Cliente":  "Yarenka",
+        "MetodoPago":  null,
+        "Total":  21008.40336134454,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Punto Zero",
+        "Month":  "Nov2025",
+        "Neto":  300400,
+        "Concepto":  null,
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  252436.97478991596,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Punto Zero",
+        "Month":  "Nov2025",
+        "Neto":  28000,
+        "Concepto":  null,
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  23529.41176470588,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Nov2025",
+        "Neto":  49000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  41176.4705882353,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Miura",
+        "Month":  "Nov2025",
+        "Neto":  30000,
+        "Concepto":  null,
+        "Cliente":  "Vale Marion",
+        "MetodoPago":  null,
+        "Total":  25210.08403361345,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Nov2025",
+        "Neto":  50000,
+        "Concepto":  null,
+        "Cliente":  "Dj Milo",
+        "MetodoPago":  null,
+        "Total":  42016.80672268908,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "TuYogaCoach",
+        "Month":  "Nov2025",
+        "Neto":  60000,
+        "Concepto":  null,
+        "Cliente":  "Tere Laguna",
+        "MetodoPago":  null,
+        "Total":  50420.16806722689,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Daniel Verdessi",
+        "Month":  "Nov2025",
+        "Neto":  263000,
+        "Concepto":  null,
+        "Cliente":  "Manuel Vargas",
+        "MetodoPago":  null,
+        "Total":  221008.40336134454,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  40000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  33613.445378151264,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  8000,
+        "Concepto":  null,
+        "Cliente":  "Vaiti",
+        "MetodoPago":  null,
+        "Total":  6722.689075630252,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  86800,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  72941.17647058824,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  80000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  67226.89075630253,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  722000,
+        "Concepto":  null,
+        "Cliente":  "Manuel Vargas",
+        "MetodoPago":  null,
+        "Total":  606722.6890756303,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  113000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  94957.98319327731,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  20000,
+        "Concepto":  null,
+        "Cliente":  "Tito Biermoritz",
+        "MetodoPago":  null,
+        "Total":  16806.722689075632,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  18000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  15126.050420168069,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  45000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  37815.12605042017,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  16000,
+        "Concepto":  null,
+        "Cliente":  "Tito Navarro",
+        "MetodoPago":  null,
+        "Total":  13445.378151260504,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Punto Zero",
+        "Month":  "Oct2025",
+        "Neto":  125000,
+        "Concepto":  null,
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  105042.01680672269,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  115000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  96638.65546218488,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Gym Wellness",
+        "Month":  "Oct2025",
+        "Neto":  40000,
+        "Concepto":  null,
+        "Cliente":  "Agustina Schumman",
+        "MetodoPago":  null,
+        "Total":  33613.445378151264,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  75000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  63025.21008403361,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Oct2025",
+        "Neto":  36000,
+        "Concepto":  null,
+        "Cliente":  "Daniela Pilar Riquelme",
+        "MetodoPago":  null,
+        "Total":  30252.100840336137,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "SERCAR",
+        "Month":  "Sep2025",
+        "Neto":  120000,
+        "Concepto":  null,
+        "Cliente":  "Sergui",
+        "MetodoPago":  null,
+        "Total":  100840.33613445378,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Sep2025",
+        "Neto":  28000,
+        "Concepto":  null,
+        "Cliente":  "Vale Yoga",
+        "MetodoPago":  null,
+        "Total":  23529.41176470588,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Sep2025",
+        "Neto":  25000,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  21008.40336134454,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Nutricionista",
+        "Month":  "Sep2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Daniela Riveros",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Faro Digital",
+        "Month":  "Sep2025",
+        "Neto":  25000,
+        "Concepto":  null,
+        "Cliente":  "Leo",
+        "MetodoPago":  null,
+        "Total":  21008.40336134454,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Sep2025",
+        "Neto":  28000,
+        "Concepto":  null,
+        "Cliente":  "Filosofia",
+        "MetodoPago":  null,
+        "Total":  23529.41176470588,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Sep2025",
+        "Neto":  535000,
+        "Concepto":  null,
+        "Cliente":  "Nimrod",
+        "MetodoPago":  null,
+        "Total":  449579.8319327731,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Dueños del Perreo",
+        "Month":  "Sep2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Dj Milo",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Punto Zero",
+        "Month":  "Sep2025",
+        "Neto":  145000,
+        "Concepto":  null,
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  121848.73949579832,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Sep2025",
+        "Neto":  70000,
+        "Concepto":  null,
+        "Cliente":  "Nancy Ponce",
+        "MetodoPago":  null,
+        "Total":  58823.5294117647,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Clinica Limache",
+        "Month":  "Sep2025",
+        "Neto":  25000,
+        "Concepto":  null,
+        "Cliente":  "Alvaro Veas",
+        "MetodoPago":  null,
+        "Total":  21008.40336134454,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Sep2025",
+        "Neto":  40000,
+        "Concepto":  null,
+        "Cliente":  "Alex",
+        "MetodoPago":  null,
+        "Total":  33613.445378151264,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Ago2025",
+        "Neto":  300000,
+        "Concepto":  null,
+        "Cliente":  "Nimrod",
+        "MetodoPago":  null,
+        "Total":  252100.84033613445,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Ago2025",
+        "Neto":  5000,
+        "Concepto":  null,
+        "Cliente":  "Miguel Cerda",
+        "MetodoPago":  null,
+        "Total":  4201.680672268908,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Ago2025",
+        "Neto":  200000,
+        "Concepto":  null,
+        "Cliente":  "Nimrod",
+        "MetodoPago":  null,
+        "Total":  168067.2268907563,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Dueños del Perreo",
+        "Month":  "Ago2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Dj Dexter",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Ago2025",
+        "Neto":  57000,
+        "Concepto":  null,
+        "Cliente":  "Mary",
+        "MetodoPago":  null,
+        "Total":  47899.15966386555,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Full Inyeccion Viña",
+        "Month":  "Ago2025",
+        "Neto":  15000,
+        "Concepto":  null,
+        "Cliente":  "Tito Biermoritz",
+        "MetodoPago":  null,
+        "Total":  12605.042016806725,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Ago2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Gets Barber",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Ago2025",
+        "Neto":  119000,
+        "Concepto":  null,
+        "Cliente":  "Nimrod",
+        "MetodoPago":  null,
+        "Total":  100000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Agencia Zero",
+        "Month":  "Jul2025",
+        "Neto":  80000,
+        "Concepto":  null,
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  67226.89075630253,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Jul2025",
+        "Neto":  281500,
+        "Concepto":  null,
+        "Cliente":  null,
+        "MetodoPago":  null,
+        "Total":  236554.6218487395,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Full Inyeccion Viña",
+        "Month":  "Jul2025",
+        "Neto":  30000,
+        "Concepto":  null,
+        "Cliente":  "Tito Biermoritz",
+        "MetodoPago":  null,
+        "Total":  25210.08403361345,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Jul2025",
+        "Neto":  40000,
+        "Concepto":  null,
+        "Cliente":  "Coni del Mar",
+        "MetodoPago":  null,
+        "Total":  33613.445378151264,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Jul2025",
+        "Neto":  280000,
+        "Concepto":  null,
+        "Cliente":  "Alejandro Gimon",
+        "MetodoPago":  null,
+        "Total":  235294.1176470588,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Sky",
+        "Month":  "Jul2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Miguel Cerda",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Agencia Zero",
+        "Month":  "Jul2025",
+        "Neto":  59500,
+        "Concepto":  null,
+        "Cliente":  "Camila Mili",
+        "MetodoPago":  null,
+        "Total":  50000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Faro Digital",
+        "Month":  "Jul2025",
+        "Neto":  70000,
+        "Concepto":  null,
+        "Cliente":  "Leo",
+        "MetodoPago":  null,
+        "Total":  58823.5294117647,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Tic ToK Burger",
+        "Month":  "Jul2025",
+        "Neto":  70000,
+        "Concepto":  null,
+        "Cliente":  "Rashel Luque",
+        "MetodoPago":  null,
+        "Total":  58823.5294117647,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Centro Fitness",
+        "Month":  "Jul2025",
+        "Neto":  60000,
+        "Concepto":  null,
+        "Cliente":  "Elias Thorfit",
+        "MetodoPago":  null,
+        "Total":  50420.16806722689,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Centro Fitness",
+        "Month":  "Jul2025",
+        "Neto":  60000,
+        "Concepto":  null,
+        "Cliente":  "Elias Thorfit",
+        "MetodoPago":  null,
+        "Total":  50420.16806722689,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "ChocoGlam",
+        "Month":  "Jul2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Cesar Aguero",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Dueños del Perreo",
+        "Month":  "Jun2025",
+        "Neto":  30000,
+        "Concepto":  null,
+        "Cliente":  "Dj Milo",
+        "MetodoPago":  null,
+        "Total":  25210.08403361345,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Huisack",
+        "Month":  "Jun2025",
+        "Neto":  44000,
+        "Concepto":  null,
+        "Cliente":  "Dominic Sarmiento",
+        "MetodoPago":  null,
+        "Total":  36974.78991596639,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Jun2025",
+        "Neto":  119000,
+        "Concepto":  null,
+        "Cliente":  "Nimrod",
+        "MetodoPago":  null,
+        "Total":  100000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "CYC",
+        "Month":  "Jun2025",
+        "Neto":  56860,
+        "Concepto":  null,
+        "Cliente":  "Esteban Contador",
+        "MetodoPago":  null,
+        "Total":  47781.51260504202,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Propalta",
+        "Month":  "Jun2025",
+        "Neto":  238000,
+        "Concepto":  null,
+        "Cliente":  "Nimrod",
+        "MetodoPago":  null,
+        "Total":  200000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "Jun2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Javiera Fulla",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Tu Yoga Couch",
+        "Month":  "Jun2025",
+        "Neto":  65000,
+        "Concepto":  null,
+        "Cliente":  "Tere Laguna",
+        "MetodoPago":  null,
+        "Total":  54621.8487394958,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  25000,
+        "Concepto":  null,
+        "Cliente":  "Javi Caceres",
+        "MetodoPago":  null,
+        "Total":  21008.40336134454,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Clinica Limache",
+        "Month":  "May2025",
+        "Neto":  45000,
+        "Concepto":  null,
+        "Cliente":  "Alvaro Veas",
+        "MetodoPago":  null,
+        "Total":  37815.12605042017,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  35000,
+        "Concepto":  null,
+        "Cliente":  "Cesar Aguero",
+        "MetodoPago":  null,
+        "Total":  29411.76470588235,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  45000,
+        "Concepto":  null,
+        "Cliente":  "Danilo Sandoval",
+        "MetodoPago":  null,
+        "Total":  37815.12605042017,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  65450,
+        "Concepto":  null,
+        "Cliente":  "MariLore",
+        "MetodoPago":  null,
+        "Total":  55000,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  40000,
+        "Concepto":  null,
+        "Cliente":  "Dominic Sarmiento",
+        "MetodoPago":  null,
+        "Total":  33613.445378151264,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  10000,
+        "Concepto":  null,
+        "Cliente":  "Mc Cañete",
+        "MetodoPago":  null,
+        "Total":  8403.361344537816,
+        "Estado":  null
+    },
+    {
+        "Empresa":  "Dueños del Perreo",
+        "Month":  "May2025",
+        "Neto":  50000,
+        "Concepto":  null,
+        "Cliente":  "Dj Dexter|Dj Milo",
+        "MetodoPago":  null,
+        "Total":  42016.80672268908,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  150000,
+        "Concepto":  null,
+        "Cliente":  "Javiera Fulla",
+        "MetodoPago":  null,
+        "Total":  126050.42016806723,
+        "Estado":  null
+    },
+    {
+        "Empresa":  null,
+        "Month":  "May2025",
+        "Neto":  130000,
+        "Concepto":  null,
+        "Cliente":  "Joaquin Varas",
+        "MetodoPago":  null,
+        "Total":  109243.6974789916,
+        "Estado":  null
+    }
+]

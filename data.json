@@ -1,0 +1,3218 @@
+{
+  "sync_date": "2026-06-01 19:28",
+  "entries": [
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "EDICION RENDER",
+      "total": 50000,
+      "neto": 42016.81,
+      "iva": 7983.19,
+      "source": "Agencia",
+      "service": "EDICION",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "08",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "Latam Fin de año",
+      "total": 250000,
+      "neto": 210084.03,
+      "iva": 39915.97,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "22",
+      "cliente": "Tere Laguna",
+      "empresa": "",
+      "concepto": "21 ganchos en viña",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "No",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "21",
+      "cliente": "Cami Sotomayor",
+      "empresa": "",
+      "concepto": "50/50 boda marzo",
+      "total": 75000,
+      "neto": 63025.21,
+      "iva": 11974.79,
+      "source": "2Matute",
+      "service": "BODA",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "FOTOS Y VIDEO 14 FEB",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "Agencia",
+      "service": "VIDEO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "15",
+      "cliente": "ISADORA OLIVARES",
+      "empresa": "",
+      "concepto": "SESION NO EDITADA 13X1000",
+      "total": 13000,
+      "neto": 10924.37,
+      "iva": 2075.63,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "No",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "29",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "LATAM CARGO FLORES",
+      "total": 190400,
+      "neto": 160000,
+      "iva": 30400,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "27",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "PAGO LUIS",
+      "total": 250000,
+      "neto": 210084.03,
+      "iva": 39915.97,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "16",
+      "cliente": "Marcela Fernandez",
+      "empresa": "",
+      "concepto": "BODAS DE ORO (PRIMER ABONO)",
+      "total": 60000,
+      "neto": 50420.17,
+      "iva": 9579.83,
+      "source": "2Matute",
+      "service": "BODA",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "06",
+      "cliente": "YANET",
+      "empresa": "",
+      "concepto": "fotos sesion 19 fotos a 3500",
+      "total": 66500,
+      "neto": 55882.35,
+      "iva": 10617.65,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "No",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "31",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "ECONOMIA CIRCULAR",
+      "total": 300000,
+      "neto": 252100.84,
+      "iva": 47899.16,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "07",
+      "cliente": "Maccarena",
+      "empresa": "Makrim",
+      "concepto": "depa",
+      "total": 68000,
+      "neto": 57142.86,
+      "iva": 10857.14,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "No",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "30",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "compromiso minero 2025-60",
+      "total": 250000,
+      "neto": 210084.03,
+      "iva": 39915.97,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "31",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "OMEDITERRANEO",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Feb2026"
+    },
+    {
+      "fecha_dia": "17",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "DANIELO",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Feb2026"
+    },
+    {
+      "fecha_dia": "10",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "fotos ddp 8",
+      "total": 50000,
+      "neto": 42016.81,
+      "iva": 7983.19,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Feb2026"
+    },
+    {
+      "fecha_dia": "18",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "matri luis teresa",
+      "total": 100000,
+      "neto": 84033.61,
+      "iva": 15966.39,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Feb2026"
+    },
+    {
+      "fecha_dia": "09",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "FOTOS CASA AMARILLA URMENETA",
+      "total": 120000,
+      "neto": 100840.34,
+      "iva": 19159.66,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Feb2026"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "LATAM",
+      "total": 1190000,
+      "neto": 1000000,
+      "iva": 190000,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Feb2026"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "MIURA 54 FOTOS",
+      "total": 257040,
+      "neto": 216000,
+      "iva": 41040,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Video y Fotos DDP",
+      "total": 50000,
+      "neto": 42016.81,
+      "iva": 7983.19,
+      "source": "2Matute",
+      "service": "VIDEO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Sesion Skye",
+      "total": 20000,
+      "neto": 16806.72,
+      "iva": 3193.28,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "06",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Video Fulla extensiones",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "2Matute",
+      "service": "VIDEO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "26",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Foto visa",
+      "total": 20000,
+      "neto": 16806.72,
+      "iva": 3193.28,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "No",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "21",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "junta abuelos farenheim",
+      "total": 50000,
+      "neto": 42016.81,
+      "iva": 7983.19,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "30",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "LATAM NIÑOS",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "11",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Brenda 24 fotos",
+      "total": 60000,
+      "neto": 50420.17,
+      "iva": 9579.83,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "13",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "sesion dia mujer",
+      "total": 50000,
+      "neto": 42016.81,
+      "iva": 7983.19,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "31",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "LATAM MOTORES",
+      "total": 650001,
+      "neto": 546219.33,
+      "iva": 103781.67,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "28",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "matri cami",
+      "total": 100000,
+      "neto": 84033.61,
+      "iva": 15966.39,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "No",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "25",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Daniel",
+      "total": 10000,
+      "neto": 8403.36,
+      "iva": 1596.64,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "12",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Makrim (podria decir que gane 160 =",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "Mar2026"
+    },
+    {
+      "fecha_dia": "27",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "video domi",
+      "total": 25000,
+      "neto": 21008.4,
+      "iva": 3991.6,
+      "source": "2Matute",
+      "service": "VIDEO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "May2026"
+    },
+    {
+      "fecha_dia": "06",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "amsa dia del trabajdor",
+      "total": 357000,
+      "neto": 300000,
+      "iva": 57000,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "May2026"
+    },
+    {
+      "fecha_dia": "09",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "PARTE 2 batizo",
+      "total": 25000,
+      "neto": 21008.4,
+      "iva": 3991.6,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "May2026"
+    },
+    {
+      "fecha_dia": "22",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "punto zero milady inmobiliaria omediterraneo",
+      "total": 258200,
+      "neto": 216974.79,
+      "iva": 41225.21,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "May2026"
+    },
+    {
+      "fecha_dia": "28",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "sesion nahomi",
+      "total": 10000,
+      "neto": 8403.36,
+      "iva": 1596.64,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "May2026"
+    },
+    {
+      "fecha_dia": "05",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "ddp dia 1",
+      "total": 50000,
+      "neto": 42016.81,
+      "iva": 7983.19,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "May2026"
+    },
+    {
+      "fecha_dia": "29",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "CRINIMO 3 DIAS",
+      "total": 285600,
+      "neto": 240000,
+      "iva": 45600,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "Si",
+      "fecha_pago": "",
+      "month": "May2026"
+    },
+    {
+      "concepto": "DRONE FOTOS TERRENO",
+      "cliente": "Nimrod",
+      "total": 70000,
+      "source": "Agencia",
+      "service": "DRONE",
+      "neto": 58823.53,
+      "iva": 11176.47,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "miura fotos",
+      "cliente": "Vale Marion",
+      "total": 113050,
+      "source": "Agencia",
+      "service": "FOTO",
+      "neto": 95000.0,
+      "iva": 18050.0,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "VIDEOS TERE",
+      "cliente": "Tere Laguna",
+      "total": 60000,
+      "source": "2Matute",
+      "service": "VIDEO",
+      "neto": 50420.17,
+      "iva": 9579.83,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "rincon peruano",
+      "cliente": "Camila Mili",
+      "total": 25000,
+      "source": "Agencia",
+      "service": "AGENCIA",
+      "neto": 21008.4,
+      "iva": 3991.6,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "DDP",
+      "cliente": "DDP",
+      "total": 70000,
+      "source": "2Matute",
+      "service": "VIDEO",
+      "neto": 58823.53,
+      "iva": 11176.47,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "video drone ayc",
+      "cliente": "AyC",
+      "total": 70000,
+      "source": "Siderales",
+      "service": "DRONE",
+      "neto": 58823.53,
+      "iva": 11176.47,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "agenda sesion bautizo",
+      "cliente": "Bautizo",
+      "total": 25000,
+      "source": "2Matute",
+      "service": "REUNION",
+      "neto": 21008.4,
+      "iva": 3991.6,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "DIA MUJER",
+      "cliente": "Dia Mujer",
+      "total": 98000,
+      "source": "2Matute",
+      "service": "FOTO",
+      "neto": 82352.94,
+      "iva": 15647.06,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "meson peruano",
+      "cliente": "Camila Mili",
+      "total": 64500,
+      "source": "Agencia",
+      "service": "AGENCIA",
+      "neto": 54201.68,
+      "iva": 10298.32,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "foto visa",
+      "cliente": "Foto Visa",
+      "total": 10000,
+      "source": "2Matute",
+      "service": "FOTO",
+      "neto": 8403.36,
+      "iva": 1596.64,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Abr2026"
+    },
+    {
+      "concepto": "SAMSUNG 2026-15 2 VIDEOS",
+      "cliente": "Samsung",
+      "total": 178500,
+      "source": "Siderales",
+      "service": "CORPORATIVO",
+      "neto": 150000.0,
+      "iva": 28500.0,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Jun2026"
+    },
+    {
+      "concepto": "makrim valpo",
+      "cliente": "Macca Makrim",
+      "total": 80000,
+      "source": "Agencia",
+      "service": "FOTO",
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "empresa": "",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "fecha_dia": "",
+      "month": "Jun2026"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Daniela Riveros",
+      "empresa": "",
+      "concepto": "reel 2026",
+      "total": 40000,
+      "neto": 33613.45,
+      "iva": 6386.55,
+      "source": "2Matute",
+      "service": "FOTO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "RINCON",
+      "total": 77000,
+      "neto": 64705.88,
+      "iva": 12294.12,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "297, 120, 178.5 (celulares, crew y flores)",
+      "total": 595500,
+      "neto": 500420.17,
+      "iva": 95079.83,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Maccarena",
+      "empresa": "Makrim",
+      "concepto": "casa",
+      "total": 96300,
+      "neto": 80924.37,
+      "iva": 15375.63,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Vale Marion",
+      "empresa": "Miura",
+      "concepto": "video agus",
+      "total": 30000,
+      "neto": 25210.08,
+      "iva": 4789.92,
+      "source": "Agencia",
+      "service": "VIDEO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Luis Bravo",
+      "empresa": "",
+      "concepto": "Boda (330 yo +170 JP) Neto: 220, prox: 165.000",
+      "total": 250000,
+      "neto": 210084.03,
+      "iva": 39915.97,
+      "source": "Siderales",
+      "service": "BODA",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Vale Marion",
+      "empresa": "Miura",
+      "concepto": "fotos:\nVideo banner: 40000\nVideo Concurso: ",
+      "total": 210000,
+      "neto": 176470.59,
+      "iva": 33529.41,
+      "source": "Agencia",
+      "service": "VIDEO",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Vale Marion",
+      "empresa": "Miura",
+      "concepto": "miura 3 y agus",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 300000,
+      "neto": 252100.84,
+      "iva": 47899.16,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "Lili",
+      "total": 10000,
+      "neto": 8403.36,
+      "iva": 1596.64,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "x",
+      "empresa": "",
+      "concepto": "Mary",
+      "total": 13000,
+      "neto": 10924.37,
+      "iva": 2075.63,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "MESON PERUANO",
+      "total": 75000,
+      "neto": 63025.21,
+      "iva": 11974.79,
+      "source": "Agencia",
+      "service": "AGENCIA",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "AYC LUDIANO",
+      "total": 115000,
+      "neto": 96638.66,
+      "iva": 18361.34,
+      "source": "Agencia",
+      "service": "AGENCIA",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nicole Rmos",
+      "empresa": "",
+      "concepto": "",
+      "total": 120000,
+      "neto": 100840.34,
+      "iva": 19159.66,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Maccarena",
+      "empresa": "Makrim",
+      "concepto": "depa",
+      "total": 68000,
+      "neto": 57142.86,
+      "iva": 10857.14,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Dic2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Yarenka",
+      "empresa": "",
+      "concepto": "",
+      "total": 21008.40336134454,
+      "neto": 25000,
+      "iva": -3991.6,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "",
+      "total": 252436.97478991596,
+      "neto": 300400,
+      "iva": -47963.03,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "",
+      "total": 23529.41176470588,
+      "neto": 28000,
+      "iva": -4470.59,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 41176.4705882353,
+      "neto": 49000,
+      "iva": -7823.53,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Vale Marion",
+      "empresa": "Miura",
+      "concepto": "",
+      "total": 25210.08403361345,
+      "neto": 30000,
+      "iva": -4789.92,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Dj Milo",
+      "empresa": "",
+      "concepto": "",
+      "total": 42016.80672268908,
+      "neto": 50000,
+      "iva": -7983.19,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Tere Laguna",
+      "empresa": "TuYogaCoach",
+      "concepto": "",
+      "total": 50420.16806722689,
+      "neto": 60000,
+      "iva": -9579.83,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Manuel Vargas",
+      "empresa": "Daniel Verdessi",
+      "concepto": "",
+      "total": 221008.40336134454,
+      "neto": 263000,
+      "iva": -41991.6,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Nov2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Vaiti",
+      "empresa": "",
+      "concepto": "",
+      "total": 6722.689075630252,
+      "neto": 8000,
+      "iva": -1277.31,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 72941.17647058824,
+      "neto": 86800,
+      "iva": -13858.82,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 67226.89075630253,
+      "neto": 80000,
+      "iva": -12773.11,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Manuel Vargas",
+      "empresa": "",
+      "concepto": "",
+      "total": 606722.6890756303,
+      "neto": 722000,
+      "iva": -115277.31,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 94957.98319327731,
+      "neto": 113000,
+      "iva": -18042.02,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Tito Biermoritz",
+      "empresa": "",
+      "concepto": "",
+      "total": 16806.722689075632,
+      "neto": 20000,
+      "iva": -3193.28,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 15126.050420168069,
+      "neto": 18000,
+      "iva": -2873.95,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 37815.12605042017,
+      "neto": 45000,
+      "iva": -7184.87,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Tito Navarro",
+      "empresa": "",
+      "concepto": "",
+      "total": 13445.378151260504,
+      "neto": 16000,
+      "iva": -2554.62,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "",
+      "total": 105042.01680672269,
+      "neto": 125000,
+      "iva": -19957.98,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 96638.65546218488,
+      "neto": 115000,
+      "iva": -18361.34,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Agustina Schumman",
+      "empresa": "Gym Wellness",
+      "concepto": "",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 63025.21008403361,
+      "neto": 75000,
+      "iva": -11974.79,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Daniela Pilar Riquelme",
+      "empresa": "",
+      "concepto": "",
+      "total": 30252.100840336137,
+      "neto": 36000,
+      "iva": -5747.9,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Oct2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Sergui",
+      "empresa": "SERCAR",
+      "concepto": "",
+      "total": 100840.33613445378,
+      "neto": 120000,
+      "iva": -19159.66,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Vale Yoga",
+      "empresa": "",
+      "concepto": "",
+      "total": 23529.41176470588,
+      "neto": 28000,
+      "iva": -4470.59,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 21008.40336134454,
+      "neto": 25000,
+      "iva": -3991.6,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Daniela Riveros",
+      "empresa": "Nutricionista",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Leo",
+      "empresa": "Faro Digital",
+      "concepto": "",
+      "total": 21008.40336134454,
+      "neto": 25000,
+      "iva": -3991.6,
+      "source": "Siderales",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Filosofia",
+      "empresa": "",
+      "concepto": "",
+      "total": 23529.41176470588,
+      "neto": 28000,
+      "iva": -4470.59,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "",
+      "total": 449579.8319327731,
+      "neto": 535000,
+      "iva": -85420.17,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Dj Milo",
+      "empresa": "Dueños del Perreo",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Punto Zero",
+      "concepto": "",
+      "total": 121848.73949579832,
+      "neto": 145000,
+      "iva": -23151.26,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nancy Ponce",
+      "empresa": "",
+      "concepto": "",
+      "total": 58823.5294117647,
+      "neto": 70000,
+      "iva": -11176.47,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Alvaro Veas",
+      "empresa": "Clinica Limache",
+      "concepto": "",
+      "total": 21008.40336134454,
+      "neto": 25000,
+      "iva": -3991.6,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Alex",
+      "empresa": "",
+      "concepto": "",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Sep2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "",
+      "total": 252100.84033613445,
+      "neto": 300000,
+      "iva": -47899.16,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Miguel Cerda",
+      "empresa": "",
+      "concepto": "",
+      "total": 4201.680672268908,
+      "neto": 5000,
+      "iva": -798.32,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "",
+      "total": 168067.2268907563,
+      "neto": 200000,
+      "iva": -31932.77,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Dj Dexter",
+      "empresa": "Dueños del Perreo",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Mary",
+      "empresa": "",
+      "concepto": "",
+      "total": 47899.15966386555,
+      "neto": 57000,
+      "iva": -9100.84,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Tito Biermoritz",
+      "empresa": "Full Inyeccion Viña",
+      "concepto": "",
+      "total": 12605.042016806725,
+      "neto": 15000,
+      "iva": -2394.96,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Gets Barber",
+      "empresa": "",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "",
+      "total": 100000,
+      "neto": 119000,
+      "iva": -19000,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Ago2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Agencia Zero",
+      "concepto": "",
+      "total": 67226.89075630253,
+      "neto": 80000,
+      "iva": -12773.11,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "",
+      "empresa": "",
+      "concepto": "",
+      "total": 236554.6218487395,
+      "neto": 281500,
+      "iva": -44945.38,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Tito Biermoritz",
+      "empresa": "Full Inyeccion Viña",
+      "concepto": "",
+      "total": 25210.08403361345,
+      "neto": 30000,
+      "iva": -4789.92,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Coni del Mar",
+      "empresa": "",
+      "concepto": "",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Alejandro Gimon",
+      "empresa": "Propalta",
+      "concepto": "",
+      "total": 235294.1176470588,
+      "neto": 280000,
+      "iva": -44705.88,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Miguel Cerda",
+      "empresa": "Sky",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Camila Mili",
+      "empresa": "Agencia Zero",
+      "concepto": "",
+      "total": 50000,
+      "neto": 59500,
+      "iva": -9500,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Leo",
+      "empresa": "Faro Digital",
+      "concepto": "",
+      "total": 58823.5294117647,
+      "neto": 70000,
+      "iva": -11176.47,
+      "source": "Siderales",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Rashel Luque",
+      "empresa": "Tic ToK Burger",
+      "concepto": "",
+      "total": 58823.5294117647,
+      "neto": 70000,
+      "iva": -11176.47,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Elias Thorfit",
+      "empresa": "Centro Fitness",
+      "concepto": "",
+      "total": 50420.16806722689,
+      "neto": 60000,
+      "iva": -9579.83,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Elias Thorfit",
+      "empresa": "Centro Fitness",
+      "concepto": "",
+      "total": 50420.16806722689,
+      "neto": 60000,
+      "iva": -9579.83,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Cesar Aguero",
+      "empresa": "ChocoGlam",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jul2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Dj Milo",
+      "empresa": "Dueños del Perreo",
+      "concepto": "",
+      "total": 25210.08403361345,
+      "neto": 30000,
+      "iva": -4789.92,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Dominic Sarmiento",
+      "empresa": "Huisack",
+      "concepto": "",
+      "total": 36974.78991596639,
+      "neto": 44000,
+      "iva": -7025.21,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "",
+      "total": 100000,
+      "neto": 119000,
+      "iva": -19000,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Esteban Contador",
+      "empresa": "CYC",
+      "concepto": "",
+      "total": 47781.51260504202,
+      "neto": 56860,
+      "iva": -9078.49,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Nimrod",
+      "empresa": "Propalta",
+      "concepto": "",
+      "total": 200000,
+      "neto": 238000,
+      "iva": -38000,
+      "source": "Agencia",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Javiera Fulla",
+      "empresa": "",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Tere Laguna",
+      "empresa": "Tu Yoga Couch",
+      "concepto": "",
+      "total": 54621.8487394958,
+      "neto": 65000,
+      "iva": -10378.15,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "Jun2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Javi Caceres",
+      "empresa": "",
+      "concepto": "",
+      "total": 21008.40336134454,
+      "neto": 25000,
+      "iva": -3991.6,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Alvaro Veas",
+      "empresa": "Clinica Limache",
+      "concepto": "",
+      "total": 37815.12605042017,
+      "neto": 45000,
+      "iva": -7184.87,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Cesar Aguero",
+      "empresa": "",
+      "concepto": "",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Danilo Sandoval",
+      "empresa": "",
+      "concepto": "",
+      "total": 37815.12605042017,
+      "neto": 45000,
+      "iva": -7184.87,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "MariLore",
+      "empresa": "",
+      "concepto": "",
+      "total": 55000,
+      "neto": 65450,
+      "iva": -10450,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Dominic Sarmiento",
+      "empresa": "",
+      "concepto": "",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Mc Cañete",
+      "empresa": "",
+      "concepto": "",
+      "total": 8403.361344537816,
+      "neto": 10000,
+      "iva": -1596.64,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Dj Dexter|Dj Milo",
+      "empresa": "Dueños del Perreo",
+      "concepto": "",
+      "total": 42016.80672268908,
+      "neto": 50000,
+      "iva": -7983.19,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Javiera Fulla",
+      "empresa": "",
+      "concepto": "",
+      "total": 126050.42016806723,
+      "neto": 150000,
+      "iva": -23949.58,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    },
+    {
+      "fecha_dia": "",
+      "cliente": "Joaquin Varas",
+      "empresa": "",
+      "concepto": "",
+      "total": 109243.6974789916,
+      "neto": 130000,
+      "iva": -20756.3,
+      "source": "2Matute",
+      "service": "Otro",
+      "metodo_pago": "",
+      "estado": "",
+      "iva_declarado": "",
+      "fecha_pago": "",
+      "month": "May2025"
+    }
+  ],
+  "clients": [
+    {
+      "name": "Sin nombre",
+      "total": 5477925.033613445,
+      "neto": 4876065.539999999,
+      "iva": 601859.5,
+      "count": 40,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Dic",
+        "Feb",
+        "Jul",
+        "Jun",
+        "Mar",
+        "May",
+        "Nov",
+        "Oct",
+        "Sep"
+      ],
+      "services": [
+        "FOTO",
+        "Otro",
+        "VIDEO"
+      ]
+    },
+    {
+      "name": "Nimrod",
+      "total": 2925647.899159664,
+      "neto": 2902512.6,
+      "iva": 23135.300000000032,
+      "count": 12,
+      "source": "Agencia",
+      "phone": "+56 9 9874 8782",
+      "months": [
+        "Abr",
+        "Ago",
+        "Dic",
+        "Jun",
+        "Sep"
+      ],
+      "services": [
+        "DRONE",
+        "Otro"
+      ]
+    },
+    {
+      "name": "Camila Mili",
+      "total": 1106584.0336134455,
+      "neto": 1146723.53,
+      "iva": -40139.5,
+      "count": 13,
+      "source": "Agencia",
+      "phone": "",
+      "months": [
+        "Abr",
+        "Dic",
+        "Jul",
+        "Jun",
+        "Nov",
+        "Oct",
+        "Sep"
+      ],
+      "services": [
+        "AGENCIA",
+        "EDICION",
+        "Otro",
+        "VIDEO"
+      ]
+    },
+    {
+      "name": "Manuel Vargas",
+      "total": 827731.0924369749,
+      "neto": 985000,
+      "iva": -157268.91,
+      "count": 2,
+      "source": "Agencia",
+      "phone": "+56 9 8902 0811",
+      "months": [
+        "Nov",
+        "Oct"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Vale Marion",
+      "total": 458260.08403361344,
+      "neto": 393907.56,
+      "iva": 64352.520000000004,
+      "count": 5,
+      "source": "Agencia",
+      "phone": "",
+      "months": [
+        "Abr",
+        "Dic",
+        "Nov"
+      ],
+      "services": [
+        "FOTO",
+        "Otro",
+        "VIDEO"
+      ]
+    },
+    {
+      "name": "Luis Bravo",
+      "total": 250000,
+      "neto": 210084.03,
+      "iva": 39915.97,
+      "count": 1,
+      "source": "Siderales",
+      "phone": "+56 9 8312 8163",
+      "months": [
+        "Dic"
+      ],
+      "services": [
+        "BODA"
+      ]
+    },
+    {
+      "name": "Tere Laguna",
+      "total": 245042.01680672268,
+      "neto": 242647.06,
+      "iva": 2394.9600000000028,
+      "count": 4,
+      "source": "2Matute",
+      "phone": "+56 9 8989 3336",
+      "months": [
+        "Abr",
+        "Jun",
+        "Nov"
+      ],
+      "services": [
+        "Otro",
+        "VIDEO"
+      ]
+    },
+    {
+      "name": "Alejandro Gimon",
+      "total": 235294.1176470588,
+      "neto": 280000,
+      "iva": -44705.88,
+      "count": 1,
+      "source": "Agencia",
+      "phone": "",
+      "months": [
+        "Jul"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Maccarena",
+      "total": 232300,
+      "neto": 195210.08999999997,
+      "iva": 37089.909999999996,
+      "count": 3,
+      "source": "Agencia",
+      "phone": "",
+      "months": [
+        "Dic",
+        "Jun"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Samsung",
+      "total": 178500,
+      "neto": 150000.0,
+      "iva": 28500.0,
+      "count": 1,
+      "source": "Siderales",
+      "phone": "",
+      "months": [
+        "Jun"
+      ],
+      "services": [
+        "CORPORATIVO"
+      ]
+    },
+    {
+      "name": "Javiera Fulla",
+      "total": 155462.18487394956,
+      "neto": 185000,
+      "iva": -29537.82,
+      "count": 2,
+      "source": "2Matute",
+      "phone": "+56 9 7787 7010",
+      "months": [
+        "Jun",
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Nicole Rmos",
+      "total": 120000,
+      "neto": 100840.34,
+      "iva": 19159.66,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Dic"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Joaquin Varas",
+      "total": 109243.6974789916,
+      "neto": 130000,
+      "iva": -20756.3,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Sergui",
+      "total": 100840.33613445378,
+      "neto": 120000,
+      "iva": -19159.66,
+      "count": 1,
+      "source": "Agencia",
+      "phone": "",
+      "months": [
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Elias Thorfit",
+      "total": 100840.33613445378,
+      "neto": 120000,
+      "iva": -19159.66,
+      "count": 2,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jul"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Dia Mujer",
+      "total": 98000,
+      "neto": 82352.94,
+      "iva": 15647.06,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Abr"
+      ],
+      "services": [
+        "FOTO"
+      ]
+    },
+    {
+      "name": "Dj Milo",
+      "total": 96638.65546218486,
+      "neto": 115000,
+      "iva": -18361.35,
+      "count": 3,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jun",
+        "Nov",
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Macca Makrim",
+      "total": 80000,
+      "neto": 67226.89,
+      "iva": 12773.11,
+      "count": 1,
+      "source": "Agencia",
+      "phone": "+56 9 3105 2886",
+      "months": [
+        "Jun"
+      ],
+      "services": [
+        "FOTO"
+      ]
+    },
+    {
+      "name": "Leo",
+      "total": 79831.93277310923,
+      "neto": 95000,
+      "iva": -15168.07,
+      "count": 2,
+      "source": "Siderales",
+      "phone": "",
+      "months": [
+        "Jul",
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Cami Sotomayor",
+      "total": 75000,
+      "neto": 63025.21,
+      "iva": 11974.79,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jun"
+      ],
+      "services": [
+        "BODA"
+      ]
+    },
+    {
+      "name": "Dominic Sarmiento",
+      "total": 70588.23529411765,
+      "neto": 84000,
+      "iva": -13411.76,
+      "count": 2,
+      "source": "2Matute",
+      "phone": "+56 9 5391 0108",
+      "months": [
+        "Jun",
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "DDP",
+      "total": 70000,
+      "neto": 58823.53,
+      "iva": 11176.47,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Abr"
+      ],
+      "services": [
+        "VIDEO"
+      ]
+    },
+    {
+      "name": "AyC",
+      "total": 70000,
+      "neto": 58823.53,
+      "iva": 11176.47,
+      "count": 1,
+      "source": "Siderales",
+      "phone": "",
+      "months": [
+        "Abr"
+      ],
+      "services": [
+        "DRONE"
+      ]
+    },
+    {
+      "name": "Daniela Riveros",
+      "total": 69411.76470588235,
+      "neto": 68613.45,
+      "iva": 798.3100000000004,
+      "count": 2,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Dic",
+        "Sep"
+      ],
+      "services": [
+        "FOTO",
+        "Otro"
+      ]
+    },
+    {
+      "name": "YANET",
+      "total": 66500,
+      "neto": 55882.35,
+      "iva": 10617.65,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jun"
+      ],
+      "services": [
+        "FOTO"
+      ]
+    },
+    {
+      "name": "Marcela Fernandez",
+      "total": 60000,
+      "neto": 50420.17,
+      "iva": 9579.83,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jun"
+      ],
+      "services": [
+        "BODA"
+      ]
+    },
+    {
+      "name": "Alvaro Veas",
+      "total": 58823.52941176471,
+      "neto": 70000,
+      "iva": -11176.47,
+      "count": 2,
+      "source": "2Matute",
+      "phone": "+56 9 6317 7921",
+      "months": [
+        "May",
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Nancy Ponce",
+      "total": 58823.5294117647,
+      "neto": 70000,
+      "iva": -11176.47,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Rashel Luque",
+      "total": 58823.5294117647,
+      "neto": 70000,
+      "iva": -11176.47,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jul"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Cesar Aguero",
+      "total": 58823.5294117647,
+      "neto": 70000,
+      "iva": -11176.48,
+      "count": 2,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jul",
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "MariLore",
+      "total": 55000,
+      "neto": 65450,
+      "iva": -10450,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "+56 9 9133 1815",
+      "months": [
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Tito Biermoritz",
+      "total": 54621.84873949581,
+      "neto": 65000,
+      "iva": -10378.16,
+      "count": 3,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Ago",
+        "Jul",
+        "Oct"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Mary",
+      "total": 47899.15966386555,
+      "neto": 57000,
+      "iva": -9100.84,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Ago"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Esteban Contador",
+      "total": 47781.51260504202,
+      "neto": 56860,
+      "iva": -9078.49,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "+56 9 5634 1881",
+      "months": [
+        "Jun"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Dj Dexter|Dj Milo",
+      "total": 42016.80672268908,
+      "neto": 50000,
+      "iva": -7983.19,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Danilo Sandoval",
+      "total": 37815.12605042017,
+      "neto": 45000,
+      "iva": -7184.87,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "+56 9 8537 3171",
+      "months": [
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Agustina Schumman",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "count": 1,
+      "source": "Agencia",
+      "phone": "",
+      "months": [
+        "Oct"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Alex",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Coni del Mar",
+      "total": 33613.445378151264,
+      "neto": 40000,
+      "iva": -6386.55,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jul"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Miguel Cerda",
+      "total": 33613.44537815126,
+      "neto": 40000,
+      "iva": -6386.5599999999995,
+      "count": 2,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Ago",
+        "Jul"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Daniela Pilar Riquelme",
+      "total": 30252.100840336137,
+      "neto": 36000,
+      "iva": -5747.9,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Oct"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Dj Dexter",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Ago"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Gets Barber",
+      "total": 29411.76470588235,
+      "neto": 35000,
+      "iva": -5588.24,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Ago"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Bautizo",
+      "total": 25000,
+      "neto": 21008.4,
+      "iva": 3991.6,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Abr"
+      ],
+      "services": [
+        "REUNION"
+      ]
+    },
+    {
+      "name": "Vale Yoga",
+      "total": 23529.41176470588,
+      "neto": 28000,
+      "iva": -4470.59,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Filosofia",
+      "total": 23529.41176470588,
+      "neto": 28000,
+      "iva": -4470.59,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "+56 9 9232 0199",
+      "months": [
+        "Sep"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Yarenka",
+      "total": 21008.40336134454,
+      "neto": 25000,
+      "iva": -3991.6,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Nov"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Javi Caceres",
+      "total": 21008.40336134454,
+      "neto": 25000,
+      "iva": -3991.6,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Tito Navarro",
+      "total": 13445.378151260504,
+      "neto": 16000,
+      "iva": -2554.62,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Oct"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "ISADORA OLIVARES",
+      "total": 13000,
+      "neto": 10924.37,
+      "iva": 2075.63,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Jun"
+      ],
+      "services": [
+        "FOTO"
+      ]
+    },
+    {
+      "name": "x",
+      "total": 13000,
+      "neto": 10924.37,
+      "iva": 2075.63,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Dic"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Foto Visa",
+      "total": 10000,
+      "neto": 8403.36,
+      "iva": 1596.64,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Abr"
+      ],
+      "services": [
+        "FOTO"
+      ]
+    },
+    {
+      "name": "Mc Cañete",
+      "total": 8403.361344537816,
+      "neto": 10000,
+      "iva": -1596.64,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "May"
+      ],
+      "services": [
+        "Otro"
+      ]
+    },
+    {
+      "name": "Vaiti",
+      "total": 6722.689075630252,
+      "neto": 8000,
+      "iva": -1277.31,
+      "count": 1,
+      "source": "2Matute",
+      "phone": "",
+      "months": [
+        "Oct"
+      ],
+      "services": [
+        "Otro"
+      ]
+    }
+  ],
+  "services": [
+    [
+      "Otro",
+      {
+        "total": 11611656.462184865,
+        "neto": 11669536.04,
+        "count": 103
+      }
+    ],
+    [
+      "FOTO",
+      {
+        "total": 1007590,
+        "neto": 846714.2899999998,
+        "count": 15
+      }
+    ],
+    [
+      "VIDEO",
+      {
+        "total": 605000,
+        "neto": 508403.36,
+        "count": 8
+      }
+    ],
+    [
+      "BODA",
+      {
+        "total": 385000,
+        "neto": 323529.41000000003,
+        "count": 3
+      }
+    ],
+    [
+      "AGENCIA",
+      {
+        "total": 279500,
+        "neto": 234873.95,
+        "count": 4
+      }
+    ],
+    [
+      "CORPORATIVO",
+      {
+        "total": 178500,
+        "neto": 150000.0,
+        "count": 1
+      }
+    ],
+    [
+      "DRONE",
+      {
+        "total": 140000,
+        "neto": 117647.06,
+        "count": 2
+      }
+    ],
+    [
+      "EDICION",
+      {
+        "total": 50000,
+        "neto": 42016.81,
+        "count": 1
+      }
+    ],
+    [
+      "REUNION",
+      {
+        "total": 25000,
+        "neto": 21008.4,
+        "count": 1
+      }
+    ]
+  ],
+  "month_totals": {
+    "Abr2026": {
+      "count": 10,
+      "total": 605550
+    },
+    "Ago2025": {
+      "count": 8,
+      "total": 643697.4789915966
+    },
+    "Dic2025": {
+      "count": 15,
+      "total": 2079800
+    },
+    "Feb2026": {
+      "count": 6,
+      "total": 1620000
+    },
+    "Jul2025": {
+      "count": 12,
+      "total": 925210.0840336134
+    },
+    "Jun2025": {
+      "count": 7,
+      "total": 494000.0
+    },
+    "Jun2026": {
+      "count": 2,
+      "total": 258500
+    },
+    "Mar2026": {
+      "count": 13,
+      "total": 1507041
+    },
+    "May2026": {
+      "count": 7,
+      "total": 1010800
+    },
+    "Nov2025": {
+      "count": 8,
+      "total": 676806.7226890756
+    },
+    "Oct2025": {
+      "count": 15,
+      "total": 1293949.579831933
+    },
+    "Sep2025": {
+      "count": 12,
+      "total": 933613.4453781513
+    }
+  },
+  "summary": {
+    "total": 14282246.462184874,
+    "neto": 13913729.32,
+    "iva": 368517.12000000005,
+    "entries_count": 138,
+    "clients_count": 54,
+    "sources": {
+      "Agencia": {
+        "total": 5356153.361344539,
+        "neto": 5364080.67,
+        "count": 38
+      },
+      "2Matute": {
+        "total": 8347761.168067229,
+        "neto": 8035741.09,
+        "count": 95
+      },
+      "Siderales": {
+        "total": 578331.9327731093,
+        "neto": 513907.56,
+        "count": 5
+      }
+    }
+  }
+}

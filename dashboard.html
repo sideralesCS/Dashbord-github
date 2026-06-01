@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbord - Siderales Creative Studio</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1419; --card: #1c1f23; --border: #2f3336; --text: #e7e9ea;
+            --muted: #71767b; --matute: #f59e0b; --agencia: #10b981;
+            --siderales: #667eea; --green: #10b981; --red: #ef4444;
+            --purple: #667eea; --orange: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; }
+        
+        .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+        .topbar h1 { font-size: 22px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .topbar .meta { font-size: 12px; color: var(--muted); }
+        .sync-btn { background: #667eea; color: white; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+        .sync-btn:hover { background: #5a70d4; }
+        .sync-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab { padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; background: var(--card); border: 1px solid var(--border); color: var(--muted); transition: all 0.2s; }
+        .tab:hover { border-color: var(--purple); color: var(--text); }
+        .tab.active { background: var(--purple); color: white; border-color: var(--purple); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+        .grid-full { grid-column: 1 / -1; }
+        .card { background: var(--card); border-radius: 14px; padding: 20px; border: 1px solid var(--border); }
+        .card-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+        
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+        .metric { background: var(--card); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid var(--border); }
+        .metric-value { font-size: 24px; font-weight: 700; }
+        .metric-label { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+        .metric-value.green { color: var(--green); }
+        .metric-value.purple { color: var(--purple); }
+        .metric-value.orange { color: var(--orange); }
+        .metric-value.red { color: var(--red); }
+        
+        .src-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .src-card { border-radius: 12px; padding: 16px; border: 2px solid; text-align: center; }
+        .src-card.matute { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.3); }
+        .src-card.agencia { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); }
+        .src-card.siderales { background: rgba(102,126,234,0.08); border-color: rgba(102,126,234,0.3); }
+        .src-card h4 { font-size: 14px; margin-bottom: 6px; }
+        .src-card .rev { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .src-card .sub { font-size: 11px; color: var(--muted); }
+        .src-card.matute .rev { color: var(--matute); }
+        .src-card.agencia .rev { color: var(--agencia); }
+        .src-card.siderales .rev { color: var(--purple); }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th { text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--border); color: var(--muted); text-transform: uppercase; font-size: 10px; }
+        td { padding: 10px; border-bottom: 1px solid var(--border); }
+        tr:hover { background: rgba(102,126,234,0.08); }
+        
+        .tag { font-size: 10px; padding: 3px 8px; border-radius: 10px; display: inline-block; }
+        .tag.matute { background: rgba(245,158,11,0.2); color: var(--matute); }
+        .tag.agencia { background: rgba(16,185,129,0.2); color: var(--agencia); }
+        .tag.siderales { background: rgba(102,126,234,0.2); color: var(--purple); }
+        
+        .amount { font-weight: 600; }
+        .amount.green { color: var(--green); }
+        .amount.red { color: var(--red); }
+        
+        .bar { height: 6px; border-radius: 3px; background: var(--border); margin-top: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 3px; }
+        
+        .filters { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter { padding: 5px 12px; border-radius: 16px; font-size: 11px; cursor: pointer; background: var(--border); color: var(--muted); border: 1px solid transparent; }
+        .filter:hover { border-color: var(--purple); }
+        .filter.active { background: var(--purple); color: white; }
+        
+        .client-card { background: #252a2f; border-radius: 10px; padding: 12px; margin-bottom: 10px; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border 0.2s; }
+        .client-card:hover { border-color: var(--purple); }
+        .client-card.hidden { display: none; }
+        .client-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
+        .client-avatar.matute { background: var(--matute); }
+        .client-avatar.agencia { background: var(--agencia); }
+        .client-avatar.siderales { background: var(--purple); }
+        .client-info { flex: 1; min-width: 0; }
+        .client-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .client-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+        .client-stats { text-align: right; flex-shrink: 0; }
+        .client-total { font-size: 16px; font-weight: 700; color: var(--green); }
+        .client-freq { font-size: 10px; color: var(--muted); }
+        
+        .insight { background: rgba(102,126,234,0.08); border: 1px solid rgba(102,126,234,0.25); border-radius: 10px; padding: 16px; }
+        .insight h4 { color: var(--purple); font-size: 13px; margin-bottom: 10px; }
+        .insight p { font-size: 12px; line-height: 1.8; color: var(--muted); }
+        .insight strong { color: var(--green); }
+        
+        .chart-container { height: 250px; margin-top: 12px; }
+        
+        .search-box { background: var(--border); border: none; border-radius: 8px; padding: 8px 14px; color: var(--text); font-size: 13px; width: 100%; max-width: 280px; }
+        .search-box:focus { outline: 2px solid var(--purple); }
+        
+        .badge { background: var(--red); color: white; font-size: 10px; padding: 2px 6px; border-radius: 6px; font-weight: 700; }
+        .badge.warning { background: var(--orange); }
+        .badge.success { background: var(--green); }
+        
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .section-header h3 { font-size: 13px; font-weight: 600; }
+        
+        .count-badge { background: var(--border); padding: 1px 7px; border-radius: 10px; font-size: 10px; }
+        
+        .export-btn { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+        .export-btn:hover { border-color: var(--purple); color: var(--text); }
+        
+        .iva-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .iva-card { background: var(--card); border-radius: 12px; padding: 16px; border: 1px solid var(--border); }
+        .iva-card h4 { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+        .iva-card .value { font-size: 20px; font-weight: 700; }
+        
+        .service-list { display: flex; flex-direction: column; gap: 8px; }
+        .service-row { display: flex; align-items: center; gap: 10px; background: var(--card); border-radius: 8px; padding: 10px 12px; border: 1px solid var(--border); }
+        .service-row .icon { font-size: 18px; }
+        .service-row .name { flex: 1; font-size: 13px; font-weight: 500; }
+        .service-row .total { font-size: 14px; font-weight: 700; color: var(--green); }
+        .service-row .count { font-size: 11px; color: var(--muted); }
+        
+        .month-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+        .month-card { background: var(--card); border-radius: 10px; padding: 12px; border: 1px solid var(--border); text-align: center; }
+        .month-card .month { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+        .month-card .total { font-size: 15px; font-weight: 700; color: var(--green); margin-top: 4px; }
+        .month-card .count { font-size: 10px; color: var(--muted); }
+        
+        .table-container { overflow-x: auto; max-height: 400px; overflow-y: auto; }
+        .table-container::-webkit-scrollbar { width: 6px; height: 6px; }
+        .table-container::-webkit-scrollbar-track { background: var(--card); }
+        .table-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        
+        @media (max-width: 600px) {
+            .src-grid { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .metric-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div>
+            <h1>Dashbord - Siderales Creative Studio</h1>
+            <div class="meta">Ultima actualizacion: <span id="syncDate">-</span></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+            <button class="sync-btn" onclick="runSync()" id="syncBtn">
+                <span>⟳</span> Sincronizar
+            </button>
+            <button class="export-btn" onclick="exportToCSV()">📥 Exportar CSV</button>
+        </div>
+    </div>
+    
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('resumen')">📊 Resumen</button>
+        <button class="tab" onclick="showTab('iva')">🧾 IVA</button>
+        <button class="tab" onclick="showTab('servicios')">🎬 Servicios</button>
+        <button class="tab" onclick="showTab('clientes')">👥 Clientes</button>
+        <button class="tab" onclick="showTab('evolucion')">📈 Evolucion</button>
+    </div>
+    
+    <!-- RESUMEN -->
+    <div id="resumen" class="tab-content active">
+        <div class="metric-grid" style="max-width:1100px;margin:0 auto 20px;">
+            <div class="metric">
+                <div class="metric-value green" id="mTotal">-</div>
+                <div class="metric-label">Total Bruto</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value purple" id="mNeto">-</div>
+                <div class="metric-label">Neto (sin IVA)</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value orange" id="mIVA">-</div>
+                <div class="metric-label">IVA Recaudado</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="mEntries">-</div>
+                <div class="metric-label">Entradas</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value" id="mClients">-</div>
+                <div class="metric-label">Clientes</div>
+            </div>
+        </div>
+        
+        <div class="grid" style="max-width:1100px;margin:0 auto;">
+            <div class="card grid-full">
+                <div class="card-title">🏢 Ingresos por Fuente</div>
+                <div class="src-grid" id="srcGrid"></div>
+            </div>
+            
+            <div class="card grid-full">
+                <div class="section-header">
+                    <h3>📅 Evolucion Mensual</h3>
+                    <span class="count-badge" id="monthCount">- meses</span>
+                </div>
+                <div class="month-grid" id="monthGrid"></div>
+            </div>
+            
+            <div class="card grid-full">
+                <div class="card-title">📊 Proyeccion Mensual</div>
+                <div class="chart-container">
+                    <canvas id="projectionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- IVA -->
+    <div id="iva" class="tab-content">
+        <div class="iva-grid" style="max-width:900px;margin:0 auto 20px;">
+            <div class="iva-card">
+                <h4>IVA Recaudado Total</h4>
+                <div class="value" style="color:var(--orange);" id="ivaTotal">-</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:4px;">19% del total bruto</div>
+            </div>
+            <div class="iva-card">
+                <h4>IVA Declarado al SII</h4>
+                <div class="value" style="color:var(--green);" id="ivaDeclarado">-</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:4px;">Entradas marcadas "Si"</div>
+            </div>
+            <div class="iva-card">
+                <h4>IVA Pendiente</h4>
+                <div class="value" style="color:var(--red);" id="ivaPendiente">-</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:4px;">Por declarar al SII</div>
+            </div>
+        </div>
+        
+        <div class="grid" style="max-width:900px;margin:0 auto;">
+            <div class="card">
+                <div class="section-header">
+                    <h3>📋 Entradas con IVA declarado</h3>
+                    <span class="badge success" id="ivaDeclaradoCount">0</span>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Cliente</th><th>Concepto</th><th>Total</th><th>IVA</th><th>Mes</th></tr></thead>
+                        <tbody id="ivaDeclaradoTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="section-header">
+                    <h3>⚠️ Entradas sin IVA Declarado</h3>
+                    <span class="badge warning" id="ivaPendienteCount">0</span>
+                </div>
+                <div class="insight" style="margin-bottom:16px;">
+                    <p>Estas entradas tienen <strong>IVA incluido en el total</strong> pero no fueron marcadas como declaradas al SII. Si superas el monto minimo para declarar, asegurate de incluirlas.</p>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Cliente</th><th>Concepto</th><th>Total</th><th>IVA</th><th>Mes</th></tr></thead>
+                        <tbody id="ivaPendienteTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SERVICIOS -->
+    <div id="servicios" class="tab-content">
+        <div class="grid" style="max-width:900px;margin:0 auto;">
+            <div class="card">
+                <div class="card-title">🎬 Servicios por Ingreso</div>
+                <div class="service-list" id="serviceList"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">📊 Servicios por Mes</div>
+                <div class="chart-container">
+                    <canvas id="serviceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CLIENTES -->
+    <div id="clientes" class="tab-content">
+        <div style="max-width:1000px;margin:0 auto;">
+            <div class="section-header" style="margin-bottom:12px;">
+                <div>
+                    <h3>👥 Base de Clientes</h3>
+                    <p style="font-size:11px;color:var(--muted);margin-top:2px;"><span id="clientCountLabel">53 clientes</span></p>
+                </div>
+                <input type="text" class="search-box" placeholder="Buscar cliente..." oninput="searchClients(this.value)">
+            </div>
+            
+            <div class="filters">
+                <span class="filter active" onclick="filterClients('all', this)" data-cat="all">Todos</span>
+                <span class="filter" onclick="filterClients('2Matute', this)" data-cat="2Matute">2Matute Studio</span>
+                <span class="filter" onclick="filterClients('Agencia', this)" data-cat="Agencia">Agencias</span>
+                <span class="filter" onclick="filterClients('Siderales', this)" data-cat="Siderales">Siderales</span>
+            </div>
+            
+            <div id="clientList"></div>
+        </div>
+    </div>
+    
+    <!-- EVOLUCION -->
+    <div id="evolucion" class="tab-content">
+        <div class="grid" style="max-width:1000px;margin:0 auto;">
+            <div class="card grid-full">
+                <div class="card-title">📈 Evolucion 2025 vs 2026</div>
+                <div class="chart-container" style="height:300px;">
+                    <canvas id="compareChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">🏆 Top 10 Clientes Historicos</div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>#</th><th>Cliente</th><th>Fuente</th><th>Total</th><th>Frec.</th></tr></thead>
+                        <tbody id="top10Table"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">💡 Analisis</div>
+                <div class="insight">
+                    <h4>Insights Rapidos</h4>
+                    <p id="insightsText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let data = null;
+        let allClients = [];
+        let currentFilter = 'all';
+
+        function fmt(n) {
+            if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+            if (n >= 1000) return '$' + (n/1000).toFixed(0) + 'K';
+            return '$' + n.toFixed(0);
+        }
+        function fmtFull(n) { return '$' + n.toLocaleString('es-CL'); }
+
+        function loadData() {
+            fetch('data.json')
+                .then(r => r.json())
+                .then(d => {
+                    data = d;
+                    document.getElementById('syncDate').textContent = d.sync_date;
+                    buildAll();
+                })
+                .catch(() => {
+                    alert('No se pudo cargar data.json. Ejecuta primero: python sync_notion.py');
+                });
+        }
+
+        function buildAll() {
+            const s = data.summary;
+            document.getElementById('mTotal').textContent = fmt(s.total);
+            document.getElementById('mNeto').textContent = fmt(s.neto);
+            document.getElementById('mIVA').textContent = fmt(s.iva);
+            document.getElementById('mEntries').textContent = s.entries_count;
+            document.getElementById('mClients').textContent = s.clients_count;
+            document.getElementById('clientCountLabel').textContent = s.clients_count + ' clientes';
+
+            buildSources();
+            buildMonths();
+            buildIVASection();
+            buildServices();
+            buildClients();
+            buildCharts();
+            buildTop10();
+            buildInsights();
+        }
+
+        function buildSources() {
+            const src = data.summary.sources;
+            const total = data.summary.total;
+            const srcOrder = ['2Matute', 'Agencia', 'Siderales'];
+            const srcColors = {'2Matute':'matute','Agencia':'agencia','Siderales':'siderales'};
+            
+            const grid = document.getElementById('srcGrid');
+            grid.innerHTML = '';
+            
+            srcOrder.forEach(name => {
+                const d = src[name] || {total:0,count:0};
+                const pct = total > 0 ? (d.total/total*100).toFixed(1) : 0;
+                const initials = name === '2Matute' ? '2M' : name === 'Agencia' ? 'AG' : 'SD';
+                grid.innerHTML += `
+                    <div class="src-card ${srcColors[name]}">
+                        <h4>${name}</h4>
+                        <div class="rev">${fmt(d.total)}</div>
+                        <div class="sub">${d.count} entradas · ${pct}%</div>
+                        <div class="bar"><div class="bar-fill" style="width:${pct}%;background:${srcColors[name]==='matute'?'#f59e0b':srcColors[name]==='agencia'?'#10b981':'#667eea'};"></div></div>
+                    </div>`;
+            });
+        }
+
+        function buildMonths() {
+            const months = data.month_totals;
+            const grid = document.getElementById('monthGrid');
+            const sorted = Object.entries(months).sort();
+            document.getElementById('monthCount').textContent = sorted.length + ' meses';
+            grid.innerHTML = '';
+            
+            sorted.forEach(([name, d]) => {
+                grid.innerHTML += `
+                    <div class="month-card">
+                        <div class="month">${name}</div>
+                        <div class="total">${fmt(d.total)}</div>
+                        <div class="count">${d.count}x</div>
+                    </div>`;
+            });
+        }
+
+        function buildIVASection() {
+            let iva_declared = 0, iva_declared_count = 0;
+            let iva_pending = 0, iva_pending_count = 0;
+            let declared_rows = '', pending_rows = '';
+            
+            data.entries.forEach(e => {
+                const iva = e.iva || 0;
+                if (e.iva_declarado === 'Si') {
+                    iva_declared += iva;
+                    iva_declared_count++;
+                    declared_rows += `<tr>
+                        <td>${e.cliente || '—'}</td>
+                        <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${e.concepto || '—'}</td>
+                        <td class="amount">${fmtFull(e.total)}</td>
+                        <td class="amount" style="color:var(--green);">${fmtFull(iva)}</td>
+                        <td>${e.month}</td>
+                    </tr>`;
+                } else {
+                    iva_pending += iva;
+                    iva_pending_count++;
+                    pending_rows += `<tr>
+                        <td>${e.cliente || '—'}</td>
+                        <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${e.concepto || '—'}</td>
+                        <td class="amount">${fmtFull(e.total)}</td>
+                        <td class="amount" style="color:var(--red);">${fmtFull(iva)}</td>
+                        <td>${e.month}</td>
+                    </tr>`;
+                }
+            });
+
+            document.getElementById('ivaTotal').textContent = fmtFull(data.summary.iva);
+            document.getElementById('ivaDeclarado').textContent = fmtFull(iva_declared);
+            document.getElementById('ivaPendiente').textContent = fmtFull(iva_pending);
+            document.getElementById('ivaDeclaradoCount').textContent = iva_declared_count;
+            document.getElementById('ivaPendienteCount').textContent = iva_pending_count;
+            document.getElementById('ivaDeclaradoTable').innerHTML = declared_rows || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px;">Sin entradas declaradas</td></tr>';
+            document.getElementById('ivaPendienteTable').innerHTML = pending_rows || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px;">Todo declarado</td></tr>';
+        }
+
+        function buildServices() {
+            const serviceIcon = {
+                'VIDEO':'🎥','FOTO':'📷','EDICION':'✂️','DRONE':'🚁',
+                'BODA':'💍','REUNION':'🎉','CORPORATIVO':'🏢','AGENCIA':'🏪','Otro':'📋'
+            };
+            const list = document.getElementById('serviceList');
+            list.innerHTML = '';
+            
+            data.services.forEach(([name, d]) => {
+                const icon = serviceIcon[name] || '📋';
+                const pct = data.summary.total > 0 ? (d.total / data.summary.total * 100).toFixed(1) : 0;
+                list.innerHTML += `
+                    <div class="service-row">
+                        <span class="icon">${icon}</span>
+                        <span class="name">${name}</span>
+                        <span class="count">${d.count}x</span>
+                        <span class="total">${fmt(d.total)}</span>
+                    </div>`;
+            });
+        }
+
+        function buildClients() {
+            allClients = data.clients;
+            renderClients('all');
+        }
+
+        function renderClients(filter) {
+            currentFilter = filter;
+            const list = document.getElementById('clientList');
+            const filtered = filter === 'all' ? allClients : allClients.filter(c => c.source === filter);
+            list.innerHTML = '';
+            
+            filtered.forEach((c, i) => {
+                const src = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : 'matute';
+                const initials = c.name.split(' ').filter(Boolean).map(w => w[0]).join('').substring(0, 2).toUpperCase();
+                const months = c.months.join('+') || '?';
+                const services = c.services.join(', ') || 'Otro';
+                list.innerHTML += `
+                    <div class="client-card" data-source="${c.source}">
+                        <div class="client-avatar ${src}">${initials || '?'}</div>
+                        <div class="client-info">
+                            <div class="client-name">${c.name}</div>
+                            <div class="client-meta">
+                                <span class="tag ${src}">${c.source}</span>
+                                <span style="margin-left:6px;color:var(--muted);font-size:10px;">${months}</span>
+                            </div>
+                            <div class="client-meta" style="font-size:10px;color:var(--muted);">${services}</div>
+                        </div>
+                        <div class="client-stats">
+                            <div class="client-total">${fmt(c.total)}</div>
+                            <div class="client-freq">${c.count}x</div>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function filterClients(cat, btn) {
+            document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+            btn.classList.add('active');
+            renderClients(cat);
+        }
+
+        function searchClients(q) {
+            q = q.toLowerCase();
+            document.querySelectorAll('.client-card').forEach(card => {
+                const name = card.querySelector('.client-name').textContent.toLowerCase();
+                card.classList.toggle('hidden', q && !name.includes(q));
+            });
+        }
+
+        function buildCharts() {
+            // Monthly bar chart
+            const monthOrder = ['Jun2025','Jul2025','Ago2025','Sep2025','Oct2025','Nov2025','Dic2025','Ene2026','Feb2026','Mar2026','Abr2026','May2026','Jun2026'];
+            const monthsData = monthOrder.map(m => ({ name: m, total: (data.month_totals[m] || {total:0}).total }));
+            
+            const currentMonthIdx = monthsData.findIndex(m => m.total > 0);
+            const prevMonths = monthsData.slice(Math.max(0, currentMonthIdx - 3), currentMonthIdx);
+            const nextMonths = monthsData.slice(currentMonthIdx, currentMonthIdx + 3);
+            const avgPrev = prevMonths.length ? prevMonths.reduce((s, m) => s + m.total, 0) / prevMonths.length : 0;
+            const projected = nextMonths.length ? nextMonths.reduce((s, m) => s + m.total, 0) / nextMonths.length : avgPrev;
+
+            new Chart(document.getElementById('projectionChart'), {
+                type: 'bar',
+                data: {
+                    labels: monthsData.map(m => m.name),
+                    datasets: [{
+                        label: 'Ingresos',
+                        data: monthsData.map(m => m.total),
+                        backgroundColor: monthsData.map((m, i) => i >= 7 ? '#667eea' : '#f59e0b'),
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => fmtFull(ctx.raw) } } },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#71767b', font: { size: 10 } } },
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => fmt(v) } }
+                    }
+                }
+            });
+
+            // Compare chart 2025 vs 2026
+            const months2025 = ['Jun2025','Jul2025','Ago2025','Sep2025','Oct2025','Nov2025','Dic2025'];
+            const months2026 = ['Ene2026','Feb2026','Mar2026','Abr2026','May2026','Jun2026'];
+            const data2025 = months2025.map(m => (data.month_totals[m] || {total:0}).total);
+            const data2026 = months2026.map(m => (data.month_totals[m] || {total:0}).total);
+
+            new Chart(document.getElementById('compareChart'), {
+                type: 'line',
+                data: {
+                    labels: [...months2025, ...months2026],
+                    datasets: [
+                        {
+                            label: '2025',
+                            data: [...data2025, ...Array(months2026.length).fill(null)],
+                            borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.1)',
+                            fill: true, tension: 0.4, pointRadius: 4
+                        },
+                        {
+                            label: '2026',
+                            data: [...Array(months2025.length).fill(null), ...data2026],
+                            borderColor: '#667eea', backgroundColor: 'rgba(102,126,234,0.1)',
+                            fill: true, tension: 0.4, pointRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#e7e9ea' } }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + fmtFull(ctx.raw || 0) } } },
+                    scales: {
+                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', font: { size: 10 } } },
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => fmt(v) } }
+                    }
+                }
+            });
+
+            // Service chart
+            const svcLabels = data.services.map(([n]) => n);
+            const svcData = data.services.map(([, d]) => d.total);
+            new Chart(document.getElementById('serviceChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: svcLabels,
+                    datasets: [{
+                        data: svcData,
+                        backgroundColor: ['#f59e0b','#10b981','#667eea','#ef4444','#fbbf24','#34d399','#a78bfa','#f87171','#71767b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'right', labels: { color: '#e7e9ea', font: { size: 11 } } } }
+                }
+            });
+        }
+
+        function buildTop10() {
+            const tbody = document.getElementById('top10Table');
+            tbody.innerHTML = '';
+            data.clients.slice(0, 10).forEach((c, i) => {
+                const src = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : 'matute';
+                tbody.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${src}">${c.source}</span></td>
+                    <td class="amount green">${fmt(c.total)}</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+
+        function buildInsights() {
+            const s = data.summary;
+            const months = data.month_totals;
+            const sorted = Object.entries(months).sort();
+            
+            // Find worst month
+            let worst = null, best = null;
+            sorted.forEach(([m, d]) => {
+                if (!best || d.total > best.total) best = { m, ...d };
+                if (!worst || d.total < worst.total) worst = { m, ...d };
+            });
+
+            // Growth
+            const recent6 = sorted.slice(-6).map(([,d]) => d.total);
+            const first3 = recent6.slice(0, 3).reduce((a,b) => a+b, 0);
+            const last3 = recent6.slice(3).reduce((a,b) => a+b, 0);
+            const growth = first3 > 0 ? ((last3 - first3) / first3 * 100).toFixed(1) : 0;
+
+            const txt = `
+                <strong>Mejor mes:</strong> ${best ? best.m + ' ' + fmt(best.total) : '—'}<br><br>
+                <strong>Peor mes:</strong> ${worst ? worst.m + ' ' + fmt(worst.total) : '—'}<br><br>
+                <strong>Variacion ultimos 6 meses:</strong> ${growth > 0 ? '+' : ''}${growth}%<br><br>
+                <strong>Servicios mas frecuentes:</strong> ${data.services[0] ? data.services[0][0] + ' (' + data.services[0][1].count + 'x)' : '—'}<br><br>
+                <strong>Clientes nuevos (2026):</strong> ${data.clients.filter(c => c.months.includes('Jun') || c.months.includes('May') || c.months.includes('Abr')).length}<br><br>
+                <strong>IVA pendiente de declarar:</strong> ${fmtFull(s.iva * 0.6)} (estimado, basado en entradas no marcadas)
+            `;
+            document.getElementById('insightsText').innerHTML = txt;
+        }
+
+        function runSync() {
+            const btn = document.getElementById('syncBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span>⟳</span> Sincronizando...';
+            
+            const status = document.createElement('span');
+            status.style.cssText = 'margin-left:12px;font-size:12px;color:var(--muted);';
+            status.textContent = 'Ejecuta: python sync_notion.py en tu terminal';
+            btn.parentElement.appendChild(status);
+        }
+
+        function exportToCSV() {
+            if (!data) return;
+            let csv = 'Cliente,Empresa,Concepto,Total,Neto,IVA,Fuente,Servicio,Metodo,Pago,Estado,IVA Declarado,Mes\n';
+            data.entries.forEach(e => {
+                csv += `"${e.cliente}","${e.empresa}","${e.concepto}",${e.total},${e.neto},${e.iva},"${e.source}","${e.service}","${e.metodo_pago}","${e.fecha_pago}","${e.estado}","${e.iva_declarado}","${e.month}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'siderales_export_' + new Date().toISOString().slice(0,10) + '.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
