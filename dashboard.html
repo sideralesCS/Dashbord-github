@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Siderales Creative Studio</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -660,19 +660,7 @@
             {name:"Leonardo huisack",source:"Matute Studio",total:45000,count:1,phone:"+56 9 5905 3572",years:["2026"],services:["Sesion"]},
             {name:"Ina Rojas CRINIMO",source:"Agencia",total:55000,count:1,phone:"+56 9 4988 3323",years:["2026"],services:["Video"]},
             {name:"Paty g2000",source:"Matute Studio",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]}
-        ];
-        
-        // Global state
-        let clients = [];
-        let currentDateFilter = 'month';
-        let currentCategoryFilter = 'all';
-        let currentAnalysisFilter = 'month';
-        let sortMode = 'total';
-        let viewMode = 'cards';
-        let selectedClients = new Set();
-        let currentClient = null;
-        let clientNotes = {};
-        let SHEETS_URL = localStorage.getItem('siderales_sheets_url') || 'https://script.google.com/macros/s/AKfycbxGZ60wquL21mofX8Vh8WipbBRuPnEAYyVUV_vVVEk_LQPMHHsthOY0nMdkc1kfH7qx/exec';
+];
         
         // Month names
         const MONTHS_ES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
