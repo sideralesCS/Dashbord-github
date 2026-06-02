@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0f1419; color: #e7e9ea; min-height: 100vh; padding: 16px; }
+        body { font-family: 'Inter', sans-serif; background: #0f1419; color: #e7e9ea; min-height: 100vh; padding: 16px; padding-bottom: 80px; }
         
         .tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid #2f3336; padding-bottom: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .tab { padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.2s; background: #1c1f23; border: 1px solid #2f3336; color: #71767b; white-space: nowrap; }
@@ -18,55 +18,67 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        .header { text-align: center; margin-bottom: 24px; }
+        .header { text-align: center; margin-bottom: 20px; }
         .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header p { color: #71767b; font-size: 11px; }
+        
+        .date-filter { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .date-btn { padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; background: #2f3336; color: #71767b; border: 1px solid transparent; white-space: nowrap; }
+        .date-btn:hover { border-color: #667eea; }
+        .date-btn.active { background: #667eea; color: white; }
+        
+        .kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+        .kpi-card { background: #1c1f23; border-radius: 12px; padding: 14px; border: 1px solid #2f3336; }
+        .kpi-label { font-size: 9px; color: #71767b; text-transform: uppercase; margin-bottom: 6px; }
+        .kpi-value { font-size: 20px; font-weight: 700; }
+        .kpi-value.green { color: #10b981; }
+        .kpi-value.purple { color: #667eea; }
+        .kpi-value.orange { color: #f59e0b; }
+        .kpi-value.red { color: #ef4444; }
+        .kpi-change { font-size: 10px; margin-top: 4px; }
+        .kpi-change.up { color: #10b981; }
+        .kpi-change.down { color: #ef4444; }
+        
+        .goal-card { background: #1c1f23; border-radius: 12px; padding: 16px; border: 1px solid #2f3336; margin-bottom: 16px; }
+        .goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .goal-title { font-size: 12px; color: #e7e9ea; font-weight: 600; }
+        .goal-values { font-size: 11px; color: #71767b; }
+        .goal-values span { color: #10b981; font-weight: 600; }
+        .goal-bar { height: 8px; background: #2f3336; border-radius: 4px; overflow: hidden; }
+        .goal-fill { height: 100%; background: linear-gradient(90deg, #667eea, #10b981); border-radius: 4px; transition: width 0.5s; }
         
         .grid { display: grid; gap: 16px; }
         .card { background: #1c1f23; border-radius: 16px; padding: 16px; border: 1px solid #2f3336; }
-        .card-title { font-size: 10px; color: #71767b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .card-title { font-size: 11px; color: #71767b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         
-        .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
-        .metric { background: #1c1f23; border-radius: 12px; padding: 14px; text-align: center; border: 1px solid #2f3336; }
-        .metric-value { font-size: 18px; font-weight: 700; }
-        .metric-value.green { color: #10b981; }
-        .metric-value.purple { color: #667eea; }
-        .metric-value.orange { color: #f59e0b; }
-        .metric-label { font-size: 9px; color: #71767b; text-transform: uppercase; margin-top: 3px; }
+        .charts-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .chart-container { height: 200px; position: relative; }
+        .chart-container.small { height: 160px; }
         
-        .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .source-card { background: linear-gradient(135deg, #1c1f23 0%, #252a2f 100%); border-radius: 12px; padding: 14px; border: 1px solid #2f3336; text-align: center; }
-        .source-card.matute { border-color: rgba(245,158,11,0.4); }
-        .source-card.agencia { border-color: rgba(16,185,129,0.4); }
-        .source-card.siderales { border-color: rgba(102,126,234,0.4); }
-        .source-card h3 { font-size: 13px; margin-bottom: 4px; }
-        .source-card .type { font-size: 9px; padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 6px; }
-        .source-card .type.matute { background: rgba(245,158,11,0.15); color: #f59e0b; }
-        .source-card .type.agencia { background: rgba(16,185,129,0.15); color: #10b981; }
-        .source-card .type.siderales { background: rgba(102,126,234,0.15); color: #667eea; }
-        .source-card .revenue { margin-top: 10px; font-size: 16px; font-weight: 700; }
-        .source-card .clients { font-size: 9px; color: #71767b; margin-top: 3px; }
+        .pie-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         
-        .table-container { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 11px; }
-        th { text-align: left; padding: 8px; border-bottom: 2px solid #2f3336; color: #71767b; text-transform: uppercase; font-size: 9px; }
-        td { padding: 10px 8px; border-bottom: 1px solid #2f3336; }
-        tr:hover { background: rgba(102,126,234,0.1); }
+        .activity-list { max-height: 300px; overflow-y: auto; }
+        .activity-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #2f3336; }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-info { flex: 1; }
+        .activity-name { font-size: 13px; font-weight: 600; }
+        .activity-meta { font-size: 10px; color: #71767b; margin-top: 2px; }
+        .activity-amount { font-size: 14px; font-weight: 700; color: #10b981; }
         
         .tag { font-size: 9px; padding: 2px 8px; border-radius: 12px; display: inline-block; }
         .tag.matute { background: rgba(245,158,11,0.2); color: #f59e0b; }
         .tag.agencia { background: rgba(16,185,129,0.2); color: #10b981; }
         .tag.siderales { background: rgba(102,126,234,0.2); color: #667eea; }
         
-        .amount { font-weight: 600; color: #10b981; }
-        .amount.low { color: #ef4444; }
+        .health-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .health-item { background: #252a2f; border-radius: 12px; padding: 14px; text-align: center; }
+        .health-value { font-size: 24px; font-weight: 700; }
+        .health-value.alert { color: #ef4444; }
+        .health-label { font-size: 10px; color: #71767b; margin-top: 4px; }
         
         .filters { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
         .filter { padding: 5px 10px; border-radius: 20px; font-size: 10px; cursor: pointer; background: #2f3336; color: #71767b; border: 1px solid transparent; white-space: nowrap; }
         .filter:hover { border-color: #667eea; }
         .filter.active { background: #667eea; color: white; }
-        
-        .chart-container { height: 200px; margin-top: 12px; }
         
         .client-card { background: #252a2f; border-radius: 12px; padding: 12px; margin-bottom: 10px; border: 1px solid #2f3336; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s; }
         .client-card:hover { border-color: #667eea; }
@@ -85,19 +97,22 @@
         
         .count-badge { background: #2f3336; padding: 2px 6px; border-radius: 10px; font-size: 9px; margin-left: 6px; }
         
-        .insight { background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%); border: 1px solid rgba(102,126,234,0.3); border-radius: 12px; padding: 14px; margin-top: 14px; }
-        .insight h4 { color: #667eea; margin-bottom: 8px; font-size: 12px; }
-        .insight p { font-size: 11px; line-height: 1.5; }
+        .batch-bar { display: none; background: #1c1f23; border: 1px solid #2f3336; border-radius: 12px; padding: 12px; margin-bottom: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .batch-bar.active { display: flex; }
+        .batch-count { font-size: 12px; color: #10b981; font-weight: 600; }
+        .batch-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .batch-btn { padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+        .batch-btn.source { background: #2f3336; color: #e7e9ea; }
+        .batch-btn.clear { background: transparent; color: #71767b; border: 1px solid #2f3336; }
+        .batch-btn.clear:hover { color: #e7e9ea; }
         
-        .bar { height: 4px; border-radius: 2px; background: #2f3336; margin-top: 6px; overflow: hidden; }
-        .bar-fill { height: 100%; border-radius: 2px; }
+        .search-box { width: 100%; background: #2f3336; border: none; border-radius: 8px; padding: 10px 14px; color: #e7e9ea; font-size: 13px; margin-bottom: 12px; }
+        .search-box:focus { outline: 2px solid #667eea; }
+        .search-box::placeholder { color: #71767b; }
         
-        .footer { text-align: center; margin-top: 24px; color: #71767b; font-size: 10px; }
-        
-        /* Modal */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 16px; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 16px; overflow-y: auto; }
         .modal-overlay.active { display: flex; }
-        .modal { background: #1c1f23; border-radius: 16px; padding: 20px; max-width: 360px; width: 100%; border: 1px solid #2f3336; position: relative; }
+        .modal { background: #1c1f23; border-radius: 16px; padding: 20px; max-width: 400px; width: 100%; border: 1px solid #2f3336; position: relative; margin: auto; }
         .modal-close { position: absolute; top: 12px; right: 12px; background: none; border: none; color: #71767b; font-size: 24px; cursor: pointer; width: 32px; height: 32px; }
         .modal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
         .modal-avatar { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: white; }
@@ -114,149 +129,157 @@
         .modal-detail:last-child { border-bottom: none; }
         .modal-detail-label { color: #71767b; font-size: 11px; }
         .modal-detail-value { font-weight: 600; font-size: 11px; text-align: right; }
-        
-        .modal-source-select { width: 100%; background: #252a2f; border: 1px solid #2f3336; border-radius: 8px; padding: 10px; color: #e7e9ea; font-size: 13px; margin-top: 12px; cursor: pointer; }
-        .modal-source-select:focus { outline: 2px solid #667eea; }
+        .modal-input-group { margin-bottom: 10px; }
+        .modal-input-group label { font-size: 10px; color: #71767b; display: block; margin-bottom: 4px; }
+        .modal-input-group input, .modal-input-group select { width: 100%; background: #252a2f; border: 1px solid #2f3336; border-radius: 8px; padding: 10px; color: #e7e9ea; font-size: 13px; }
         .modal-save-btn { width: 100%; background: #667eea; color: white; border: none; border-radius: 8px; padding: 12px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 12px; transition: background 0.2s; }
         .modal-save-btn:hover { background: #5a6fd6; }
-        .batch-bar { display: none; background: #1c1f23; border: 1px solid #2f3336; border-radius: 12px; padding: 12px; margin-bottom: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-        .batch-bar.active { display: flex; }
-        .batch-count { font-size: 12px; color: #10b981; font-weight: 600; }
-        .batch-actions { display: flex; gap: 8px; }
-        .batch-btn { padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
-        .batch-btn.source { background: #2f3336; color: #e7e9ea; }
-        .batch-btn.source:hover { background: #3f4449; }
-        .batch-btn.clear { background: transparent; color: #71767b; border: 1px solid #2f3336; }
-        .batch-btn.clear:hover { color: #e7e9ea; }
-        
-        .search-box { width: 100%; background: #2f3336; border: none; border-radius: 8px; padding: 10px 14px; color: #e7e9ea; font-size: 13px; margin-bottom: 12px; }
-        .search-box:focus { outline: 2px solid #667eea; }
-        .search-box::placeholder { color: #71767b; }
-        
         .modal-save-btn.saved { background: #10b981; }
         
+        .fab { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; font-size: 28px; cursor: pointer; box-shadow: 0 4px 20px rgba(102,126,234,0.4); z-index: 999; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+        .fab:hover { transform: scale(1.1); }
+        
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .section-header h3 { font-size: 14px; color: #e7e9ea; }
+        
+        .top-clients-list { max-height: 250px; overflow-y: auto; }
+        .top-client-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #2f3336; }
+        .top-client-item:last-child { border-bottom: none; }
+        .top-rank { font-size: 12px; color: #71767b; width: 20px; text-align: center; }
+        .top-bar { flex: 1; height: 24px; background: #2f3336; border-radius: 4px; overflow: hidden; }
+        .top-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 10px; font-weight: 600; color: white; }
+        .top-bar-fill.matute { background: #f59e0b; }
+        .top-bar-fill.agencia { background: #10b981; }
+        .top-bar-fill.siderales { background: #667eea; }
+        .top-value { font-size: 12px; font-weight: 600; color: #10b981; width: 80px; text-align: right; }
+        
+        .footer { text-align: center; margin-top: 32px; color: #71767b; font-size: 10px; }
+        
+        .duplicate-alert { display: none; background: rgba(245,158,11,0.15); border: 1px solid #f59e0b; border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 12px; color: #f59e0b; }
+        
         @media (max-width: 480px) {
-            .metric-grid { grid-template-columns: repeat(2, 1fr); }
-            .source-grid { grid-template-columns: 1fr; }
-            .metric-value { font-size: 16px; }
-            .client-total { font-size: 13px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .pie-grid { grid-template-columns: 1fr; }
+            .health-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-value { font-size: 16px; }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Dashboard - Siderales Creative</h1>
-        <p>2Matute · Agencias · Siderales · CLP</p>
+        <p style="color:#71767b;font-size:11px;">2Matute · Agencias · Siderales · CLP</p>
     </div>
     
     <div class="tabs">
         <button class="tab active" onclick="showTab('resumen')">Resumen</button>
-        <button class="tab" onclick="showTab('fuentes')">Fuentes</button>
-        <button class="tab" onclick="showTab('clientes')">Clientes <span class="count-badge">53</span></button>
-        <button class="tab" onclick="showTab('evolucion')">Evolucion</button>
+        <button class="tab" onclick="showTab('clientes')">Clientes <span class="count-badge" id="clientCountBadge">53</span></button>
+        <button class="tab" onclick="showTab('analisis')">Analisis</button>
     </div>
     
     <div id="resumen" class="tab-content active">
-        <div class="metric-grid">
-            <div class="metric"><div class="metric-value green">$13.180.470</div><div class="metric-label">Total CLP</div></div>
-            <div class="metric"><div class="metric-value purple">$6.735.791</div><div class="metric-label">2026 CLP</div></div>
-            <div class="metric"><div class="metric-value orange">$6.444.679</div><div class="metric-label">2025 CLP</div></div>
-            <div class="metric"><div class="metric-value">$1.013.113</div><div class="metric-label">Prom/mes CLP</div></div>
-            <div class="metric"><div class="metric-value">53</div><div class="metric-label">Clientes</div></div>
-            <div class="metric"><div class="metric-value">94</div><div class="metric-label">Entradas</div></div>
+        <!-- Date Filter -->
+        <div class="date-filter">
+            <button class="date-btn active" onclick="setDateFilter('month', this)">Este mes</button>
+            <button class="date-btn" onclick="setDateFilter('lastMonth', this)">Mes anterior</button>
+            <button class="date-btn" onclick="setDateFilter('year', this)">Este año</button>
+            <button class="date-btn" onclick="setDateFilter('all', this)">Todo</button>
         </div>
         
+        <!-- KPIs -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Ingresos del mes</div>
+                <div class="kpi-value green" id="kpiMonthRevenue">$1.010.800</div>
+                <div class="kpi-change up" id="kpiMonthChange">+18% vs mes anterior</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Meta mensual</div>
+                <div class="kpi-value" id="kpiGoal">$1.500.000</div>
+                <div class="kpi-change" id="kpiGoalProgress">67% alcanzado</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Clientes nuevos</div>
+                <div class="kpi-value purple" id="kpiNewClients">12</div>
+                <div class="kpi-change up" id="kpiNewClientsChange">+3 vs mes anterior</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Ticket promedio</div>
+                <div class="kpi-value orange" id="kpiAvgTicket">$165.669</div>
+                <div class="kpi-change" id="kpiAvgTicketChange">Por cliente</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Tasa recurrencia</div>
+                <div class="kpi-value" id="kpiRecurrence">30%</div>
+                <div class="kpi-change" id="kpiRecurrenceChange">16 de 53 vuelven</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Servicios este mes</div>
+                <div class="kpi-value" id="kpiServices">7</div>
+                <div class="kpi-change" id="kpiServicesChange">Entradas registradas</div>
+            </div>
+        </div>
+        
+        <!-- Goal Progress -->
+        <div class="goal-card">
+            <div class="goal-header">
+                <span class="goal-title">Progreso meta mensual</span>
+                <span class="goal-values"><span id="goalCurrent">$1.010.800</span> / $<span id="goalTarget">1.500.000</span></span>
+            </div>
+            <div class="goal-bar">
+                <div class="goal-fill" id="goalFill" style="width: 67%;"></div>
+            </div>
+        </div>
+        
+        <!-- Charts Row 1 -->
         <div class="card">
-            <div class="card-title">Ingresos por Fuente</div>
-            <div class="source-grid">
-                <div class="source-card matute">
-                    <h3>2Matute</h3>
-                    <span class="type matute">Estudio</span>
-                    <div class="revenue" style="color:#f59e0b;">$8.524.286</div>
-                    <div class="clients">41 clientes</div>
-                    <div class="bar"><div class="bar-fill" style="width:77%;background:#f59e0b;"></div></div>
-                </div>
-                <div class="source-card agencia">
-                    <h3>Agencias</h3>
-                    <span class="type agencia">Propalta/Makrim</span>
-                    <div class="revenue" style="color:#10b981;">$4.135.368</div>
-                    <div class="clients">8 clientes</div>
-                    <div class="bar"><div class="bar-fill" style="width:31%;background:#10b981;"></div></div>
-                </div>
-                <div class="source-card siderales">
-                    <h3>Siderales</h3>
-                    <span class="type siderales">Freelance</span>
-                    <div class="revenue" style="color:#667eea;">$519.508</div>
-                    <div class="clients">4 clientes</div>
-                    <div class="bar"><div class="bar-fill" style="width:4%;background:#667eea;"></div></div>
-                </div>
+            <div class="card-title">Tendencia ingresos (12 meses)</div>
+            <div class="chart-container"><canvas id="trendChart"></canvas></div>
+        </div>
+        
+        <!-- Charts Row 2 -->
+        <div class="pie-grid">
+            <div class="card">
+                <div class="card-title">Distribucion por fuente</div>
+                <div class="chart-container small"><canvas id="sourcePieChart"></canvas></div>
+            </div>
+            <div class="card">
+                <div class="card-title">Comparativa mensual</div>
+                <div class="chart-container small"><canvas id="compareBarChart"></canvas></div>
             </div>
         </div>
         
-        <div class="card" style="margin-top:16px;">
-            <div class="card-title">Evolucion 2026</div>
-            <div class="table-container">
-                <table>
-                    <thead><tr><th>Mes</th><th>Total</th><th>Entradas</th><th>Estado</th></tr></thead>
-                    <tbody>
-                        <tr><td>Ene 2026</td><td class="amount">$1.732.900</td><td>13</td><td><span class="tag matute">Mejor</span></td></tr>
-                        <tr><td>Feb 2026</td><td class="amount">$1.620.000</td><td>6</td><td>-</td></tr>
-                        <tr><td>Mar 2026</td><td class="amount">$1.507.041</td><td>13</td><td>-</td></tr>
-                        <tr><td>Abr 2026</td><td class="amount low">$605.550</td><td>10</td><td><span class="tag" style="background:rgba(239,68,68,0.2);color:#ef4444">-65%</span></td></tr>
-                        <tr><td>May 2026</td><td class="amount">$1.010.800</td><td>7</td><td><span class="tag" style="background:rgba(16,185,129,0.2);color:#10b981">Recupera</span></td></tr>
-                        <tr><td>Jun 2026</td><td class="amount">$258.500</td><td>2</td><td><span class="tag" style="background:rgba(113,118,123,0.2);color:#71767b">Incompleto</span></td></tr>
-                    </tbody>
-                </table>
-            </div>
+        <!-- Top Clients Horizontal -->
+        <div class="card">
+            <div class="card-title">Top 5 clientes</div>
+            <div class="top-clients-list" id="top5Chart"></div>
         </div>
         
-        <div class="card" style="margin-top:16px;">
-            <div class="card-title">Grafico 2026</div>
-            <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-title">Actividad reciente</div>
+            <div class="activity-list" id="activityList"></div>
         </div>
-    </div>
-    
-    <div id="fuentes" class="tab-content">
-        <div class="grid">
-            <div class="card">
-                <div class="card-title">Las 3 Fuentes</div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Fuente</th><th>Total</th><th>Clientes</th><th>%</th></tr></thead>
-                        <tbody>
-                            <tr><td><span class="tag matute">2Matute</span></td><td class="amount">$8.524.286</td><td>41</td><td>64.7%</td></tr>
-                            <tr><td><span class="tag agencia">Agencias</span></td><td class="amount">$4.135.368</td><td>8</td><td>31.4%</td></tr>
-                            <tr><td><span class="tag siderales">Siderales</span></td><td class="amount">$519.508</td><td>4</td><td>3.9%</td></tr>
-                        </tbody>
-                    </table>
+        
+        <!-- Health Indicators -->
+        <div class="card">
+            <div class="card-title">Indicadores de salud</div>
+            <div class="health-grid">
+                <div class="health-item">
+                    <div class="health-value alert" id="healthInactive">8</div>
+                    <div class="health-label">Sin actividad 60+ dias</div>
                 </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">Agencias</div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>Agencia</th><th>Contacto</th><th>Veces</th><th>Total</th></tr></thead>
-                        <tbody>
-                            <tr><td><strong>Propalta</strong></td><td>Nimrod +56 9 9874 8782</td><td>11</td><td class="amount">$2.855.648</td></tr>
-                            <tr><td><strong>Camila Mili (Punto Zero)</strong></td><td>-</td><td>11</td><td class="amount">$1.017.084</td></tr>
-                            <tr><td><strong>Vale Marion (Miura)</strong></td><td>-</td><td>4</td><td class="amount">$345.210</td></tr>
-                            <tr><td><strong>Maccarena (Makrim)</strong></td><td>+56 9 3105 2886</td><td>3</td><td class="amount">$232.300</td></tr>
-                            <tr><td><strong>Sergui (SERCAR)</strong></td><td>+56 9 7865 8552</td><td>1</td><td class="amount">$100.840</td></tr>
-                        </tbody>
-                    </table>
+                <div class="health-item">
+                    <div class="health-value" id="healthTopConcentration">21%</div>
+                    <div class="health-label">Top 3 = % total</div>
                 </div>
-            </div>
-            
-            <div class="card">
-                <div class="insight">
-                    <h4>Analisis</h4>
-                    <p>
-                        <strong>2Matute</strong> domina con 77% — estudio fotografico en Limache.<br><br>
-                        <strong>Agencias</strong> representan 31% — Nimrod y Camila Mili son los mas grandes.<br><br>
-                        <strong>Siderales</strong> solo 4% — necesita expansion.<br><br>
-                        <strong>ABRIL 2026</strong> fue el peor mes (-65%). Junio incompleto.
-                    </p>
+                <div class="health-item">
+                    <div class="health-value" id="healthTopService">Foto</div>
+                    <div class="health-label">Servicio mas popular</div>
+                </div>
+                <div class="health-item">
+                    <div class="health-value" id="healthRetention">30%</div>
+                    <div class="health-label">Tasa retencion</div>
                 </div>
             </div>
         </div>
@@ -265,7 +288,7 @@
     <div id="clientes" class="tab-content">
         <div class="section-header">
             <div>
-                <h3 style="font-size:14px;color:#e7e9ea;">Clientes</h3>
+                <h3>Gestion de clientes</h3>
                 <p style="font-size:10px;color:#71767b;margin-top:3px;">53 clientes · selecciona para editar en lote</p>
             </div>
         </div>
@@ -273,23 +296,23 @@
         <div class="batch-bar" id="batchBar">
             <span class="batch-count" id="batchCount">0 seleccionados</span>
             <div class="batch-actions">
-                <select class="batch-btn source" id="batchSourceSelect" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;">
+                <select id="batchSourceSelect" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;font-size:11px;">
                     <option value="2Matute">2Matute</option>
                     <option value="Agencia">Agencia</option>
                     <option value="Siderales">Siderales</option>
                 </select>
-                <button class="batch-btn source" onclick="batchChangeSource()">Cambiar categoria</button>
+                <button class="batch-btn source" onclick="batchChangeSource()">Cambiar</button>
                 <button class="batch-btn clear" onclick="clearSelection()">Limpiar</button>
                 <button class="batch-btn clear" onclick="openAddClientModal()" style="background:#667eea;color:white;">+ Nuevo</button>
-                <button class="batch-btn clear" onclick="exportCSV()" style="background:#10b981;color:white;">Exportar CSV</button>
+                <button class="batch-btn clear" onclick="exportCSV()" style="background:#10b981;color:white;">Exportar</button>
                 <input type="file" id="importCSVInput" accept=".csv" style="display:none;" onchange="importCSV(event)">
-                <button class="batch-btn clear" onclick="document.getElementById('importCSVInput').click()" style="background:#f59e0b;color:white;">Importar CSV</button>
+                <button class="batch-btn clear" onclick="document.getElementById('importCSVInput').click()" style="background:#f59e0b;color:white;">Importar</button>
             </div>
         </div>
         
-        <div id="duplicateAlert" style="display:none;background:rgba(245,158,11,0.15);border:1px solid #f59e0b;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px;color:#f59e0b;"></div>
+        <div class="duplicate-alert" id="duplicateAlert"></div>
         
-        <input type="text" class="search-box" id="searchBox" placeholder="Buscar cliente..." oninput="searchClients()">
+        <input type="text" class="search-box" id="searchBox" placeholder="Buscar cliente..." oninput="renderClients(getCurrentFilter())">
         
         <div class="filters">
             <span class="filter active" onclick="filterByCat('all', this)" data-cat="all">Todos (53)</span>
@@ -301,40 +324,43 @@
         <div id="clientList"></div>
     </div>
     
-    <div id="evolucion" class="tab-content">
-        <div class="grid">
-            <div class="card">
-                <div class="card-title">2026 vs 2025</div>
-                <div class="chart-container"><canvas id="compareChart"></canvas></div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">Top 10 Clientes</div>
-                <div class="table-container">
-                    <table>
-                        <thead><tr><th>#</th><th>Cliente</th><th>Fuente</th><th>Total</th><th>Frec.</th></tr></thead>
-                        <tbody id="top10Table"></tbody>
-                    </table>
+    <div id="analisis" class="tab-content">
+        <div class="card">
+            <div class="card-title">Analisis por fuente</div>
+            <div class="chart-container"><canvas id="sourceBarChart"></canvas></div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Servicios mas solicitados</div>
+            <div id="servicesChart"></div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Estadisticas clave</div>
+            <div class="health-grid">
+                <div class="health-item">
+                    <div class="health-value">$93.409</div>
+                    <div class="health-label">Ticket promedio entrada</div>
                 </div>
-            </div>
-            
-            <div class="card">
-                <div class="insight">
-                    <h4>Por hacer</h4>
-                    <p>
-                        1. Completar JUNIO 2026 (incompleto)<br>
-                        2. Revisar caida ABRIL (-65%)<br>
-                        3. Expandir Siderales (solo 4%)<br>
-                        4. Agregar clientes nuevos 2026
-                    </p>
+                <div class="health-item">
+                    <div class="health-value">1.7</div>
+                    <div class="health-label">Promedio entradas/cliente</div>
+                </div>
+                <div class="health-item">
+                    <div class="health-value">$550.708</div>
+                    <div class="health-label">Cliente agencia promedio</div>
+                </div>
+                <div class="health-item">
+                    <div class="health-value">$81.042</div>
+                    <div class="health-label">Cliente 2Matute promedio</div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- MODAL CLIENTE -->
+    <!-- Modal Cliente -->
     <div class="modal-overlay" id="clientModal" onclick="if(event.target.id==='clientModal')closeModal()">
-        <div class="modal" style="max-width:400px;">
+        <div class="modal">
             <button class="modal-close" onclick="closeModal()">x</button>
             <div class="modal-header">
                 <div class="modal-avatar" id="modalAvatar"></div>
@@ -347,77 +373,75 @@
                 <div class="modal-stat"><div class="modal-stat-value" id="modalTotal"></div><div class="modal-stat-label">Total CLP</div></div>
                 <div class="modal-stat"><div class="modal-stat-value" id="modalCount"></div><div class="modal-stat-label">Servicios</div></div>
             </div>
-            
-            <div style="margin-bottom:16px;">
-                <div style="font-size:10px;color:#71767b;margin-bottom:8px;text-transform:uppercase;">Editar datos</div>
-                <div class="modal-input-group" style="margin-bottom:10px;">
-                    <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Nombre</label>
-                    <input type="text" id="editName" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
-                </div>
-                <div class="modal-input-group" style="margin-bottom:10px;">
-                    <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Telefono</label>
-                    <input type="text" id="editPhone" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
-                </div>
-                <div class="modal-input-group" style="margin-bottom:10px;">
-                    <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Categoria</label>
-                    <select id="editSource" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
-                        <option value="2Matute">2Matute Studio</option>
-                        <option value="Agencia">Agencia</option>
-                        <option value="Siderales">Siderales Creative</option>
-                    </select>
-                </div>
-                <button class="modal-save-btn" id="modalSaveBtn" onclick="saveClientData()">Guardar cambios</button>
+            <div class="modal-input-group">
+                <label>Nombre</label>
+                <input type="text" id="editName">
             </div>
-            
-            <div id="modalDetails"></div>
-            
-            <div style="margin-top:16px;">
-                <div style="font-size:10px;color:#71767b;margin-bottom:8px;text-transform:uppercase;">Notas</div>
-                <textarea id="clientNotes" placeholder="Agrega notas sobre este cliente..." style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:12px;min-height:80px;resize:vertical;font-family:Inter,sans-serif;" onblur="saveClientNotes()"></textarea>
+            <div class="modal-input-group">
+                <label>Telefono</label>
+                <input type="text" id="editPhone">
             </div>
-        </div>
-    </div>
-    
-    <!-- MODAL AGREGAR CLIENTE -->
-    <div class="modal-overlay" id="addClientModal" onclick="if(event.target.id==='addClientModal')closeAddModal()">
-        <div class="modal" style="max-width:400px;">
-            <button class="modal-close" onclick="closeAddModal()">x</button>
-            <div style="margin-bottom:20px;">
-                <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;">Agregar Cliente</h3>
-                <p style="font-size:11px;color:#71767b;">Completa los datos del nuevo cliente</p>
-            </div>
-            <div class="modal-input-group" style="margin-bottom:12px;">
-                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Nombre *</label>
-                <input type="text" id="newClientName" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="Nombre del cliente" oninput="checkDuplicateOnType(this.value)">
-            </div>
-            <div class="modal-input-group" style="margin-bottom:12px;">
-                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Telefono</label>
-                <input type="text" id="newClientPhone" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="+56 9 XXXX XXXX">
-            </div>
-            <div class="modal-input-group" style="margin-bottom:12px;">
-                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Categoria *</label>
-                <select id="newClientSource" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
+            <div class="modal-input-group">
+                <label>Categoria</label>
+                <select id="editSource">
                     <option value="2Matute">2Matute Studio</option>
                     <option value="Agencia">Agencia</option>
                     <option value="Siderales">Siderales Creative</option>
                 </select>
             </div>
-            <div class="modal-input-group" style="margin-bottom:12px;">
-                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Total (CLP)</label>
-                <input type="number" id="newClientTotal" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="0">
+            <button class="modal-save-btn" id="modalSaveBtn" onclick="saveClientData()">Guardar cambios</button>
+            <div id="modalDetails" style="margin-top:16px;"></div>
+            <div class="modal-input-group" style="margin-top:16px;">
+                <label>Notas</label>
+                <textarea id="clientNotes" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:12px;min-height:60px;resize:vertical;" onblur="saveClientNotes()"></textarea>
             </div>
-            <div class="modal-input-group" style="margin-bottom:12px;">
-                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Servicios (separados por coma)</label>
-                <input type="text" id="newClientServices" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="Foto, Video, Drone">
+        </div>
+    </div>
+    
+    <!-- Modal Agregar Cliente -->
+    <div class="modal-overlay" id="addClientModal" onclick="if(event.target.id==='addClientModal')closeAddModal()">
+        <div class="modal">
+            <button class="modal-close" onclick="closeAddModal()">x</button>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;">Agregar Cliente</h3>
+            <p style="font-size:11px;color:#71767b;margin-bottom:16px;">Completa los datos</p>
+            <div class="modal-input-group">
+                <label>Nombre *</label>
+                <input type="text" id="newClientName" placeholder="Nombre del cliente" oninput="checkDuplicateOnType(this.value)">
+            </div>
+            <div class="modal-input-group">
+                <label>Telefono</label>
+                <input type="text" id="newClientPhone" placeholder="+56 9 XXXX XXXX">
+            </div>
+            <div class="modal-input-group">
+                <label>Categoria</label>
+                <select id="newClientSource">
+                    <option value="2Matute">2Matute Studio</option>
+                    <option value="Agencia">Agencia</option>
+                    <option value="Siderales">Siderales Creative</option>
+                </select>
+            </div>
+            <div class="modal-input-group">
+                <label>Total (CLP)</label>
+                <input type="number" id="newClientTotal" placeholder="0">
+            </div>
+            <div class="modal-input-group">
+                <label>Servicios (separados por coma)</label>
+                <input type="text" id="newClientServices" placeholder="Foto, Video">
             </div>
             <button class="modal-save-btn" onclick="addNewClient()">Agregar cliente</button>
         </div>
     </div>
     
+    <!-- FAB -->
+    <button class="fab" onclick="openAddClientModal()">+</button>
+    
     <div class="footer">Siderales Creative Studio · Limache, Chile · CLP</div>
     
     <script>
         let selectedClients = new Set();
+        let currentClient = null;
+        let clientNotes = {};
+        let currentDateFilter = 'month';
         
         const clients = [
             {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"],services:["Video","Foto","Edicion"]},
@@ -475,32 +499,333 @@
             {name:"Paty g2000",source:"2Matute",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]},
         ];
 
+        // Monthly data for charts
+        const monthlyData = {
+            labels: ['Jul 25','Ago 25','Sep 25','Oct 25','Nov 25','Dic 25','Ene 26','Feb 26','Mar 26','Abr 26','May 26','Jun 26'],
+            values: [925210,643697,933613,1293950,676807,2079800,1732900,1620000,1507041,605550,1010800,258500],
+            colors: ['#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b']
+        };
+
+        // Source distribution
+        const sourceData = [
+            {label:'2Matute',value:8524286,color:'#f59e0b'},
+            {label:'Agencias',value:4135368,color:'#10b981'},
+            {label:'Siderales',value:519508,color:'#667eea'}
+        ];
+
+        // Init
+        initDashboard();
+
         function showTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             event.target.classList.add('active');
+            
+            if (id === 'clientes') {
+                renderClients('all');
+            }
         }
-        
+
+        function setDateFilter(filter, btn) {
+            currentDateFilter = filter;
+            document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateKPIs();
+        }
+
+        function updateKPIs() {
+            // Calculate based on filter
+            let totalRevenue = clients.reduce((sum, c) => sum + c.total, 0);
+            let thisMonth = 1010800;
+            let lastMonth = 605550;
+            let newClients = 12;
+            let avgTicket = Math.round(totalRevenue / clients.length);
+            let recurrence = Math.round((clients.filter(c => c.count >= 2).length / clients.length) * 100);
+            
+            // Update DOM
+            document.getElementById('kpiMonthRevenue').textContent = '$' + thisMonth.toLocaleString('es-CL');
+            document.getElementById('kpiMonthChange').textContent = '+' + Math.round((thisMonth - lastMonth) / lastMonth * 100) + '% vs mes anterior';
+            
+            document.getElementById('kpiNewClients').textContent = newClients;
+            document.getElementById('kpiNewClientsChange').textContent = '+3 vs mes anterior';
+            
+            document.getElementById('kpiAvgTicket').textContent = '$' + avgTicket.toLocaleString('es-CL');
+            document.getElementById('kpiRecurrence').textContent = recurrence + '%';
+            document.getElementById('kpiRecurrenceChange').textContent = clients.filter(c => c.count >= 2).length + ' de ' + clients.length + ' vuelven';
+            
+            // Goal
+            let goal = 1500000;
+            let progress = Math.round((thisMonth / goal) * 100);
+            document.getElementById('kpiGoal').textContent = '$' + goal.toLocaleString('es-CL');
+            document.getElementById('kpiGoalProgress').textContent = progress + '% alcanzado';
+            document.getElementById('goalCurrent').textContent = '$' + thisMonth.toLocaleString('es-CL');
+            document.getElementById('goalFill').style.width = progress + '%';
+            
+            // Health
+            let inactive = clients.filter(c => c.count === 1 && c.years.includes('2025') && !c.years.includes('2026')).length;
+            document.getElementById('healthInactive').textContent = inactive;
+            
+            let top3 = clients.slice(0, 3).reduce((sum, c) => sum + c.total, 0);
+            let top3Pct = Math.round((top3 / totalRevenue) * 100);
+            document.getElementById('healthTopConcentration').textContent = top3Pct + '%';
+            
+            // Most popular service
+            let servicesCount = {};
+            clients.forEach(c => {
+                c.services.forEach(s => {
+                    servicesCount[s] = (servicesCount[s] || 0) + 1;
+                });
+            });
+            let topService = Object.keys(servicesCount).reduce((a, b) => servicesCount[a] > servicesCount[b] ? a : b);
+            document.getElementById('healthTopService').textContent = topService;
+            
+            document.getElementById('healthRetention').textContent = recurrence + '%';
+        }
+
+        function initDashboard() {
+            initTrendChart();
+            initSourcePieChart();
+            initCompareBarChart();
+            initTop5Chart();
+            initActivityList();
+            initSourceBarChart();
+            initServicesChart();
+            updateKPIs();
+            updateFilterCounts();
+        }
+
+        function initTrendChart() {
+            new Chart(document.getElementById('trendChart'), {
+                type: 'line',
+                data: {
+                    labels: monthlyData.labels,
+                    datasets: [{
+                        label: 'Ingresos',
+                        data: monthlyData.values,
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102,126,234,0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 4,
+                        pointBackgroundColor: monthlyData.colors
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '$' + ctx.raw.toLocaleString('es-CL') } } },
+                    scales: { x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', font: { size: 10 } } }, y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } } }
+            });
+        }
+
+        function initSourcePieChart() {
+            new Chart(document.getElementById('sourcePieChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: sourceData.map(s => s.label),
+                    datasets: [{
+                        data: sourceData.map(s => s.value),
+                        backgroundColor: sourceData.map(s => s.color),
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { color: '#e7e9ea', font: { size: 10 }, padding: 10 } } }
+                }
+            });
+        }
+
+        function initCompareBarChart() {
+            const currentMonth = monthlyData.values[11];
+            const lastMonth = monthlyData.values[10];
+            
+            new Chart(document.getElementById('compareBarChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Mes anterior', 'Mes actual'],
+                    datasets: [{
+                        data: [lastMonth, currentMonth],
+                        backgroundColor: ['#71767b', '#10b981'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '$' + ctx.raw.toLocaleString('es-CL') } } },
+                    scales: { x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } }, y: { grid: { display: false }, ticks: { color: '#71767b' } } }
+                }
+            });
+        }
+
+        function initTop5Chart() {
+            const container = document.getElementById('top5Chart');
+            const top5 = clients.slice(0, 5);
+            const maxTotal = top5[0].total;
+            
+            let html = '';
+            top5.forEach((c, i) => {
+                const pct = Math.round((c.total / maxTotal) * 100);
+                const srcClass = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : 'matute';
+                html += '<div class="top-client-item">' +
+                    '<span class="top-rank">' + (i + 1) + '</span>' +
+                    '<div class="top-bar"><div class="top-bar-fill ' + srcClass + '" style="width:' + pct + '%">' + c.name.substring(0, 15) + '</div></div>' +
+                    '<span class="top-value">$' + c.total.toLocaleString('es-CL') + '</span></div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function initActivityList() {
+            const container = document.getElementById('activityList');
+            // Simulate recent activity
+            const recent = [
+                {name:'Nimrod',source:'Agencia',total:350000,date:'Hoy 14:30',services:['Video']},
+                {name:'Fernanda Venegas',source:'2Matute',total:45000,date:'Hoy 10:15',services:['Sesion']},
+                {name:'Majo turismo',source:'Siderales',total:25000,date:'Ayer 18:00',services:['Video','Foto']},
+                {name:'Joaco El Padrino',source:'2Matute',total:55000,date:'Hace 2 dias',services:['Boda']},
+                {name:'Karina Influencer',source:'2Matute',total:60000,date:'Hace 3 dias',services:['Foto']},
+                {name:'Ina Rojas CRINIMO',source:'Agencia',total:55000,date:'Hace 4 dias',services:['Video']},
+                {name:'Leonardo huisack',source:'2Matute',total:45000,date:'Hace 5 dias',services:['Sesion']},
+                {name:'Paty g2000',source:'2Matute',total:22000,date:'Hace 6 dias',services:['Sesion']},
+            ];
+            
+            let html = '';
+            recent.forEach(r => {
+                const srcClass = r.source === 'Agencia' ? 'agencia' : r.source === 'Siderales' ? 'siderales' : 'matute';
+                html += '<div class="activity-item">' +
+                    '<div class="activity-info"><div class="activity-name">' + r.name + '</div><div class="activity-meta"><span class="tag ' + srcClass + '">' + r.source + '</span> · ' + r.date + '</div></div>' +
+                    '<div class="activity-amount">$' + r.total.toLocaleString('es-CL') + '</div></div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function initSourceBarChart() {
+            new Chart(document.getElementById('sourceBarChart'), {
+                type: 'bar',
+                data: {
+                    labels: sourceData.map(s => s.label),
+                    datasets: [{
+                        data: sourceData.map(s => s.value),
+                        backgroundColor: sourceData.map(s => s.color),
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '$' + ctx.raw.toLocaleString('es-CL') } } },
+                    scales: { x: { grid: { display: false }, ticks: { color: '#71767b' } }, y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } }
+                }
+            });
+        }
+
+        function initServicesChart() {
+            const container = document.getElementById('servicesChart');
+            let servicesCount = {};
+            clients.forEach(c => {
+                c.services.forEach(s => {
+                    servicesCount[s] = (servicesCount[s] || 0) + 1;
+                });
+            });
+            
+            const sorted = Object.entries(servicesCount).sort((a, b) => b[1] - a[1]);
+            const max = sorted[0][1];
+            
+            let html = '';
+            sorted.forEach(([service, count]) => {
+                const pct = Math.round((count / max) * 100);
+                html += '<div style="margin-bottom:12px;">' +
+                    '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">' +
+                    '<span>' + service + '</span><span style="color:#71767b">' + count + ' clientes</span></div>' +
+                    '<div style="height:6px;background:#2f3336;border-radius:3px;"><div style="height:100%;width:' + pct + '%;background:#667eea;border-radius:3px;"></div></div></div>';
+            });
+            container.innerHTML = html;
+        }
+
+        // Client management functions
+        function getCurrentFilter() {
+            return document.querySelector('.filter.active')?.getAttribute('data-cat') || 'all';
+        }
+
         function filterByCat(cat, btn) {
             document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
             btn.classList.add('active');
             renderClients(cat);
         }
-        
+
         function getSourceColor(source) {
-            if (source === 'Agencia') return 'agencia';
-            if (source === 'Siderales') return 'siderales';
-            return 'matute';
+            return source === 'Agencia' ? 'agencia' : source === 'Siderales' ? 'siderales' : 'matute';
         }
-        
+
         function getInitials(name) {
-            return name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+            return name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
         }
-        
-        let currentClient = null;
-        let clientNotes = {};
-        
+
+        function renderClients(filterCat) {
+            const list = document.getElementById('clientList');
+            list.innerHTML = '';
+            
+            let filtered = filterCat === 'all' ? clients : clients.filter(c => c.source === filterCat);
+            
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
+            if (searchTerm) {
+                filtered = filtered.filter(c => c.name.toLowerCase().includes(searchTerm));
+            }
+            
+            filtered.forEach(c => {
+                const src = getSourceColor(c.source);
+                const isSelected = selectedClients.has(c.name);
+                list.innerHTML += '<div class="client-card' + (isSelected ? ' selected' : '') + '" data-name="' + c.name + '">' +
+                    '<input type="checkbox" class="client-checkbox" ' + (isSelected ? 'checked' : '') + ' onclick="toggleClientSelection(\'' + c.name.replace(/'/g, "\\'") + '\', event)">' +
+                    '<div class="client-avatar ' + src + '" onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')">' + getInitials(c.name) + '</div>' +
+                    '<div class="client-info" onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')"><div class="client-name">' + c.name + '</div><div class="client-meta"><span class="tag ' + src + '">' + c.source + '</span> ' + c.years.join('+') + '</div></div>' +
+                    '<div class="client-stats"><div class="client-total">$' + c.total.toLocaleString('es-CL') + '</div><div class="client-frec">' + c.count + 'x</div></div></div>';
+            });
+            
+            updateBatchBar();
+        }
+
+        function toggleClientSelection(name, event) {
+            event.stopPropagation();
+            if (selectedClients.has(name)) {
+                selectedClients.delete(name);
+            } else {
+                selectedClients.add(name);
+            }
+            const card = document.querySelector('[data-name="' + name + '"]');
+            if (card) card.classList.toggle('selected', selectedClients.has(name));
+            updateBatchBar();
+        }
+
+        function updateBatchBar() {
+            const count = selectedClients.size;
+            document.getElementById('batchCount').textContent = count + ' seleccionado' + (count !== 1 ? 's' : '');
+            document.getElementById('batchBar').classList.toggle('active', count > 0);
+        }
+
+        function clearSelection() {
+            selectedClients.clear();
+            document.querySelectorAll('.client-card').forEach(card => card.classList.remove('selected'));
+            document.querySelectorAll('.client-checkbox').forEach(cb => cb.checked = false);
+            updateBatchBar();
+        }
+
+        function batchChangeSource() {
+            const newSource = document.getElementById('batchSourceSelect').value;
+            selectedClients.forEach(name => {
+                const client = clients.find(c => c.name === name);
+                if (client) client.source = newSource;
+            });
+            clearSelection();
+            renderClients(getCurrentFilter());
+            updateFilterCounts();
+            initDashboard();
+        }
+
         function showClientModal(client) {
             currentClient = client;
             const src = getSourceColor(client.source);
@@ -511,12 +836,9 @@
             document.getElementById('modalTotal').textContent = '$' + client.total.toLocaleString('es-CL');
             document.getElementById('modalCount').textContent = client.count + 'x';
             
-            // Fill edit fields
             document.getElementById('editName').value = client.name;
             document.getElementById('editPhone').value = client.phone || '';
             document.getElementById('editSource').value = client.source;
-            
-            // Fill notes
             document.getElementById('clientNotes').value = clientNotes[client.name] || '';
             
             let details = '';
@@ -526,13 +848,16 @@
             details += '<div class="modal-detail"><span class="modal-detail-label">Ticket promedio</span><span class="modal-detail-value">$' + Math.round(client.total / client.count).toLocaleString('es-CL') + '</span></div>';
             document.getElementById('modalDetails').innerHTML = details;
             
-            // Reset button
             document.getElementById('modalSaveBtn').textContent = 'Guardar cambios';
             document.getElementById('modalSaveBtn').classList.remove('saved');
             
             document.getElementById('clientModal').classList.add('active');
         }
-        
+
+        function closeModal() {
+            document.getElementById('clientModal').classList.remove('active');
+        }
+
         function saveClientData() {
             if (!currentClient) return;
             
@@ -540,22 +865,17 @@
             const newPhone = document.getElementById('editPhone').value.trim();
             const newSource = document.getElementById('editSource').value;
             
-            // Update client
             const clientIndex = clients.findIndex(c => c.name === currentClient.name);
             if (clientIndex !== -1) {
                 clients[clientIndex].name = newName || currentClient.name;
                 clients[clientIndex].phone = newPhone;
                 clients[clientIndex].source = newSource;
                 
-                // Save notes
                 if (clientNotes[currentClient.name]) {
                     clientNotes[newName || currentClient.name] = clientNotes[currentClient.name];
-                    if (newName !== currentClient.name) {
-                        delete clientNotes[currentClient.name];
-                    }
+                    if (newName !== currentClient.name) delete clientNotes[currentClient.name];
                 }
                 
-                // Update references in selectedClients
                 if (selectedClients.has(currentClient.name)) {
                     selectedClients.delete(currentClient.name);
                     selectedClients.add(newName || currentClient.name);
@@ -564,41 +884,40 @@
                 currentClient = clients[clientIndex];
             }
             
-            // Update modal display
             const src = getSourceColor(newSource);
             document.getElementById('modalAvatar').className = 'modal-avatar ' + src;
             document.getElementById('modalAvatar').textContent = getInitials(newName || currentClient.name);
             document.getElementById('modalName').textContent = newName || currentClient.name;
             document.getElementById('modalSource').innerHTML = '<span class="tag ' + src + '">' + newSource + '</span> ' + currentClient.years.join(' + ');
             
-            // Show saved feedback
             const btn = document.getElementById('modalSaveBtn');
             btn.textContent = 'Guardado!';
             btn.classList.add('saved');
             
-            // Re-render client list
-            const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
-            renderClients(activeFilter);
+            renderClients(getCurrentFilter());
+            updateFilterCounts();
+            initDashboard();
         }
-        
+
         function saveClientNotes() {
             if (!currentClient) return;
             clientNotes[currentClient.name] = document.getElementById('clientNotes').value;
         }
-        
+
         function openAddClientModal() {
             document.getElementById('newClientName').value = '';
             document.getElementById('newClientPhone').value = '';
             document.getElementById('newClientSource').value = '2Matute';
             document.getElementById('newClientTotal').value = '';
             document.getElementById('newClientServices').value = '';
+            document.getElementById('duplicateAlert').style.display = 'none';
             document.getElementById('addClientModal').classList.add('active');
         }
-        
+
         function closeAddModal() {
             document.getElementById('addClientModal').classList.remove('active');
         }
-        
+
         function addNewClient() {
             const name = document.getElementById('newClientName').value.trim();
             const phone = document.getElementById('newClientPhone').value.trim();
@@ -612,53 +931,46 @@
                 return;
             }
             
-            // Check for duplicate
             const existing = clients.find(c => c.name.toLowerCase() === name.toLowerCase());
             if (existing) {
-                if (!confirm('Ya existe "' + existing.name + '" con ' + existing.count + 'x servicios. Quieres actualizarlo en vez de crear uno nuevo?')) {
-                    return;
-                }
-                // Update existing
+                if (!confirm('Ya existe "' + existing.name + '". Quieres actualizarlo?')) return;
                 existing.phone = phone || existing.phone;
                 existing.source = source;
                 existing.total += total;
                 existing.count += 1;
-                if (total > 0 && !existing.services.includes(services[0])) {
-                    existing.services.push(...services);
-                }
                 closeAddModal();
+                renderClients(getCurrentFilter());
                 updateFilterCounts();
-                renderClients(document.querySelector('.filter.active')?.getAttribute('data-cat') || 'all');
+                initDashboard();
                 return;
             }
             
-            const newClient = {
-                name: name,
-                source: source,
-                total: total,
-                count: 1,
-                phone: phone,
-                years: ['2026'],
-                services: services
-            };
-            
+            const newClient = { name, source, total, count: 1, phone, years: ['2026'], services };
             clients.push(newClient);
             clients.sort((a, b) => b.total - a.total);
             
-            // Update count badge
-            document.querySelector('.count-badge').textContent = clients.length;
-            
             closeAddModal();
             document.getElementById('duplicateAlert').style.display = 'none';
-            
-            // Re-render
-            const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
-            renderClients(activeFilter);
-            
-            // Update filter counts
+            document.getElementById('clientCountBadge').textContent = clients.length;
+            renderClients(getCurrentFilter());
             updateFilterCounts();
+            initDashboard();
         }
-        
+
+        function checkDuplicateOnType(name) {
+            if (name.length < 3) {
+                document.getElementById('duplicateAlert').style.display = 'none';
+                return;
+            }
+            const matches = clients.filter(c => c.name.toLowerCase().includes(name.toLowerCase()));
+            if (matches.length > 0) {
+                document.getElementById('duplicateAlert').innerHTML = '<strong>Posible duplicado:</strong> ' + matches.map(m => m.name).join(', ');
+                document.getElementById('duplicateAlert').style.display = 'block';
+            } else {
+                document.getElementById('duplicateAlert').style.display = 'none';
+            }
+        }
+
         function updateFilterCounts() {
             const countAll = clients.length;
             const countMatute = clients.filter(c => c.source === '2Matute').length;
@@ -670,8 +982,8 @@
             document.querySelector('[data-cat="Agencia"]').textContent = 'Agencias (' + countAgencia + ')';
             document.querySelector('[data-cat="Siderales"]').textContent = 'Siderales (' + countSiderales + ')';
         }
-        
-        // CSV Export
+
+        // CSV Functions
         function exportCSV() {
             let csv = 'Nombre,Categoria,Total,Servicios,Telefono,Anos,Frecuencia\n';
             clients.forEach(c => {
@@ -684,194 +996,55 @@
             link.download = 'clientes_siderales_' + new Date().toISOString().split('T')[0] + '.csv';
             link.click();
         }
-        
-        // CSV Import
+
         function importCSV(event) {
             const file = event.target.files[0];
             if (!file) return;
             
             const reader = new FileReader();
             reader.onload = function(e) {
-                const content = e.target.result;
-                const lines = content.split('\n');
-                const headers = lines[0].split(',');
-                
-                // Detect duplicates warning
-                let duplicates = [];
-                const newClients = [];
+                const lines = e.target.result.split('\n');
+                let newCount = 0;
+                let skipCount = 0;
                 
                 for (let i = 1; i < lines.length; i++) {
                     if (!lines[i].trim()) continue;
                     
-                    // Simple CSV parse
                     const cols = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
                     if (cols.length < 3) continue;
                     
                     const name = cols[0].replace(/"/g, '').trim();
                     const source = cols[1].replace(/"/g, '').trim() || '2Matute';
                     const total = parseInt(cols[2].replace(/"/g, '').trim()) || 0;
+                    
+                    if (clients.find(c => c.name.toLowerCase() === name.toLowerCase())) {
+                        skipCount++;
+                        continue;
+                    }
+                    
                     const services = cols.length > 3 ? cols[3].replace(/"/g, '').split(';').map(s => s.trim()).filter(s => s) : ['Otro'];
                     const phone = cols.length > 4 ? cols[4].replace(/"/g, '').trim() : '';
                     const years = cols.length > 5 ? cols[5].replace(/"/g, '').split(';').filter(y => y) : ['2026'];
                     const count = cols.length > 6 ? parseInt(cols[6].replace(/"/g, '').trim()) || 1 : 1;
                     
-                    // Check for existing client
-                    const exists = clients.find(c => c.name.toLowerCase() === name.toLowerCase());
-                    if (exists) {
-                        duplicates.push(name);
-                    } else {
-                        newClients.push({ name, source, total, services, phone, years, count });
-                    }
+                    clients.push({ name, source, total, services, phone, years, count });
+                    newCount++;
                 }
                 
-                // Show duplicates alert
-                if (duplicates.length > 0) {
-                    document.getElementById('duplicateAlert').innerHTML = '<strong>Duplicados detectados:</strong> ' + duplicates.join(', ') + ' — estos no se importaron.';
-                    document.getElementById('duplicateAlert').style.display = 'block';
-                } else {
-                    document.getElementById('duplicateAlert').style.display = 'none';
-                }
+                clients.sort((a, b) => b.total - a.total);
+                document.getElementById('clientCountBadge').textContent = clients.length;
+                updateFilterCounts();
+                renderClients(getCurrentFilter());
+                initDashboard();
                 
-                // Add new clients
-                if (newClients.length > 0) {
-                    clients.push(...newClients);
-                    clients.sort((a, b) => b.total - a.total);
-                    updateFilterCounts();
-                    renderClients(document.querySelector('.filter.active')?.getAttribute('data-cat') || 'all');
-                    alert('Importados ' + newClients.length + ' clientes nuevos!');
-                }
-                
-                // Reset file input
+                alert('Importados ' + newCount + ' clientes. ' + skipCount + ' duplicados omitidos.');
                 event.target.value = '';
             };
             reader.readAsText(file);
         }
-        
-        // Check for duplicates when adding client
-        function checkDuplicates(name) {
-            const normalized = name.toLowerCase().trim();
-            const matches = clients.filter(c => 
-                c.name.toLowerCase() === normalized || 
-                (c.phone && c.phone.replace(/\s/g, '') === name.replace(/\s/g, ''))
-            );
-            
-            if (matches.length > 0) {
-                document.getElementById('duplicateAlert').innerHTML = '<strong>Posible duplicado:</strong> ' + matches.map(m => m.name).join(', ');
-                document.getElementById('duplicateAlert').style.display = 'block';
-                return matches;
-            } else {
-                document.getElementById('duplicateAlert').style.display = 'none';
-                return [];
-            }
-        }
-        
-        function checkDuplicateOnType(name) {
-            if (name.length < 3) {
-                document.getElementById('duplicateAlert').style.display = 'none';
-                return;
-            }
-            checkDuplicates(name);
-        }
-        
-        function closeModal() {
-            document.getElementById('clientModal').classList.remove('active');
-        }
-        
-        function renderClients(filterCat) {
-            const list = document.getElementById('clientList');
-            list.innerHTML = '';
-            
-            let filtered = filterCat === 'all' ? clients : clients.filter(c => c.source === filterCat);
-            
-            // Apply search filter
-            const searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
-            if (searchTerm) {
-                filtered = filtered.filter(c => c.name.toLowerCase().includes(searchTerm));
-            }
-            
-            filtered.forEach(c => {
-                const src = getSourceColor(c.source);
-                const isSelected = selectedClients.has(c.name);
-                list.innerHTML += '<div class="client-card' + (isSelected ? ' selected' : '') + '" data-name="' + c.name + '">' +
-                    '<input type="checkbox" class="client-checkbox" ' + (isSelected ? 'checked' : '') + ' onclick="toggleClientSelection(\'' + c.name.replace(/'/g, "\\'") + '\', event)">' +
-                    '<div class="client-avatar ' + src + '" onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')">' + getInitials(c.name) + '</div>' +
-                    '<div class="client-info" onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')"><div class="client-name">' + c.name + '</div><div class="client-meta"><span class="tag ' + src + '">' + c.source + '</span> <span style="margin-left:6px;color:#71767b">' + c.years.join('+') + '</span></div></div>' +
-                    '<div class="client-stats"><div class="client-total">$' + c.total.toLocaleString('es-CL') + '</div><div class="client-frec">' + c.count + 'x</div></div></div>';
-            });
-            
-            updateBatchBar();
-        }
-        
-        function toggleClientSelection(name, event) {
-            event.stopPropagation();
-            if (selectedClients.has(name)) {
-                selectedClients.delete(name);
-            } else {
-                selectedClients.add(name);
-            }
-            const card = document.querySelector('[data-name="' + name + '"]');
-            if (card) card.classList.toggle('selected', selectedClients.has(name));
-            updateBatchBar();
-        }
-        
-        function updateBatchBar() {
-            const count = selectedClients.size;
-            document.getElementById('batchCount').textContent = count + ' seleccionado' + (count !== 1 ? 's' : '');
-            document.getElementById('batchBar').classList.toggle('active', count > 0);
-        }
-        
-        function clearSelection() {
-            selectedClients.clear();
-            document.querySelectorAll('.client-card').forEach(card => card.classList.remove('selected'));
-            document.querySelectorAll('.client-checkbox').forEach(cb => cb.checked = false);
-            updateBatchBar();
-        }
-        
-        function batchChangeSource() {
-            const newSource = document.getElementById('batchSourceSelect').value;
-            selectedClients.forEach(name => {
-                const client = clients.find(c => c.name === name);
-                if (client) client.source = newSource;
-            });
-            clearSelection();
-            // Re-render with current filter
-            const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
-            renderClients(activeFilter);
-        }
-        
-        function searchClients() {
-            const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
-            renderClients(activeFilter);
-        }
-        
-        function initCharts() {
-            new Chart(document.getElementById('monthlyChart'), {
-                type: 'bar',
-                data: { labels: ['Ene','Feb','Mar','Abr','May','Jun'], datasets: [{ label: 'Ingresos 2026', data: [1732900, 1620000, 1507041, 605550, 1010800, 258500], backgroundColor: ['#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b'], borderRadius: 4 }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '$' + ctx.raw.toLocaleString('es-CL') + ' CLP' } } }, scales: { x: { grid: { display: false }, ticks: { color: '#71767b' } }, y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } } }
-            });
-            
-            new Chart(document.getElementById('compareChart'), {
-                type: 'line',
-                data: {
-                    labels: ['Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'],
-                    datasets: [
-                        { label: '2025', data: [494000, 925210, 643697, 933613, 1293950, 676807, 2079800, 0, 0, 0, 0, 0, 0], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.1)', fill: true, tension: 0.4 },
-                        { label: '2026', data: [0, 0, 0, 0, 0, 0, 0, 1732900, 1620000, 1507041, 605550, 1010800, 258500], borderColor: '#667eea', backgroundColor: 'rgba(102,126,234,0.1)', fill: true, tension: 0.4 }
-                    ]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true, labels: { color: '#e7e9ea' } }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw.toLocaleString('es-CL') } } }, scales: { x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b' } }, y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } } }
-            });
-            
-            const top10 = document.getElementById('top10Table');
-            clients.slice(0, 10).forEach((c, i) => {
-                const srcClass = getSourceColor(c.source);
-                top10.innerHTML += '<tr><td>' + (i+1) + '</td><td><strong>' + c.name + '</strong></td><td><span class="tag ' + srcClass + '">' + c.source + '</span></td><td class="amount">$' + c.total.toLocaleString('es-CL') + '</td><td>' + c.count + 'x</td></tr>';
-            });
-        }
-        
+
+        // Initialize clients tab
         renderClients('all');
-        initCharts();
     </script>
 </body>
 </html>
