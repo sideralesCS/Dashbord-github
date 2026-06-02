@@ -510,8 +510,8 @@
         let clientNotes = {};
         let currentDateFilter = 'month';
         let viewMode = 'cards';
-        let SHEETS_URL = localStorage.getItem('siderales_sheets_url') || '';
-        let syncEnabled = !!SHEETS_URL;
+        let SHEETS_URL = localStorage.getItem('siderales_sheets_url') || 'https://script.google.com/macros/s/AKfycbxGZ60wquL21mofX8Vh8WipbBRuPnEAYyVUV_vVVEk_LQPMHHsthOY0nMdkc1kfH7qx/exec';
+        let syncEnabled = true;
         
         // Google Sheets sync functions
         function showSyncStatus(msg, isError) {
