@@ -226,7 +226,7 @@
         <!-- Goal Progress -->
         <div class="goal-card">
             <div class="goal-header">
-                <span class="goal-title">Progreso meta mensual</span>
+                <span class="goal-title">Progreso meta <span id="goalPeriodLabel">mensual</span></span>
                 <span class="goal-values"><span id="goalCurrent">$1.010.800</span> / $<span id="goalTarget">1.500.000</span></span>
             </div>
             <div class="goal-bar">
@@ -606,6 +606,54 @@
             {label:'Estudio',value:0,color:'#ef4444'}
         ];
 
+        // Get filtered source data based on current date filter
+        function getFilteredSourceData() {
+            let totals = { 'Matute Studio': 0, 'Agencia': 0, 'Siderales': 0, 'Estudio': 0 };
+            
+            if (currentDateFilter === 'month') {
+                // June 2026
+                monthlyEntries['2026']['Jun'].forEach(e => {
+                    const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
+                               e.source === 'Estudio' ? 'Estudio' :
+                               e.source === 'Siderales' ? 'Siderales' : 'Agencia';
+                    totals[src] = (totals[src] || 0) + e.total;
+                });
+            } else if (currentDateFilter === 'lastMonth') {
+                // May 2026
+                monthlyEntries['2026']['May'].forEach(e => {
+                    const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
+                               e.source === 'Estudio' ? 'Estudio' :
+                               e.source === 'Siderales' ? 'Siderales' : 'Agencia';
+                    totals[src] = (totals[src] || 0) + e.total;
+                });
+            } else if (currentDateFilter === 'year') {
+                // All 2026
+                Object.values(monthlyEntries['2026']).forEach(monthEntries => {
+                    monthEntries.forEach(e => {
+                        const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
+                                   e.source === 'Estudio' ? 'Estudio' :
+                                   e.source === 'Siderales' ? 'Siderales' : 'Agencia';
+                        totals[src] = (totals[src] || 0) + e.total;
+                    });
+                });
+            } else {
+                // All time - use static data
+                return [
+                    {label:'Matute Studio',value:8524286,color:'#f59e0b'},
+                    {label:'Agencias',value:4135368,color:'#10b981'},
+                    {label:'Siderales',value:519508,color:'#667eea'},
+                    {label:'Estudio',value:0,color:'#ef4444'}
+                ];
+            }
+            
+            return [
+                {label:'Matute Studio',value:totals['Matute Studio'],color:'#f59e0b'},
+                {label:'Agencias',value:totals['Agencia'],color:'#10b981'},
+                {label:'Siderales',value:totals['Siderales'],color:'#667eea'},
+                {label:'Estudio',value:totals['Estudio'],color:'#ef4444'}
+            ];
+        }
+
         // Init
         initDashboard();
 
@@ -708,10 +756,12 @@
             document.getElementById('kpiRecurrenceChange').textContent = clients.filter(c => c.count >= 2).length + ' de ' + clients.length + ' vuelven';
             
             // Goal - adjust based on filter
-            let goal = currentDateFilter === 'month' ? 1500000 : currentDateFilter === 'year' ? 18000000 : 20000000;
+            let goalLabel = currentDateFilter === 'month' ? 'mensual' : currentDateFilter === 'lastMonth' ? 'mensual' : currentDateFilter === 'year' ? 'anual' : 'total';
+            let goal = currentDateFilter === 'month' ? 1500000 : currentDateFilter === 'lastMonth' ? 1500000 : currentDateFilter === 'year' ? 18000000 : 20000000;
             let progress = Math.round((thisMonth / goal) * 100);
             document.getElementById('kpiGoal').textContent = '$' + (goal/1000000).toFixed(1) + 'M';
             document.getElementById('kpiGoalProgress').textContent = Math.min(progress, 100) + '% alcanzado';
+            document.getElementById('goalPeriodLabel').textContent = goalLabel;
             document.getElementById('goalCurrent').textContent = '$' + thisMonth.toLocaleString('es-CL');
             document.getElementById('goalTarget').textContent = '$' + goal.toLocaleString('es-CL');
             document.getElementById('goalFill').style.width = Math.min(progress, 100) + '%';
@@ -780,13 +830,17 @@
         }
 
         function initSourcePieChart() {
+            const filteredData = getFilteredSourceData();
+            const pieChart = Chart.getChart('sourcePieChart');
+            if (pieChart) pieChart.destroy();
+            
             new Chart(document.getElementById('sourcePieChart'), {
                 type: 'doughnut',
                 data: {
-                    labels: sourceData.map(s => s.label),
+                    labels: filteredData.map(s => s.label),
                     datasets: [{
-                        data: sourceData.map(s => s.value),
-                        backgroundColor: sourceData.map(s => s.color),
+                        data: filteredData.map(s => s.value),
+                        backgroundColor: filteredData.map(s => s.color),
                         borderWidth: 0
                     }]
                 },
@@ -838,8 +892,43 @@
 
         function initTop5Chart() {
             const container = document.getElementById('top5Chart');
-            const top5 = clients.slice(0, 5);
-            const maxTotal = top5[0].total;
+            
+            // Get clients based on current filter
+            let filteredClients = [...clients];
+            
+            if (currentDateFilter === 'month') {
+                // Top from June 2026 entries
+                const junClients = {};
+                monthlyEntries['2026']['Jun'].forEach(e => {
+                    junClients[e.client] = (junClients[e.client] || 0) + e.total;
+                });
+                filteredClients = clients.filter(c => Object.keys(junClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
+                filteredClients.sort((a, b) => (junClients[b.name] || 0) - (junClients[a.name] || 0));
+            } else if (currentDateFilter === 'lastMonth') {
+                // Top from May 2026
+                const mayClients = {};
+                monthlyEntries['2026']['May'].forEach(e => {
+                    mayClients[e.client] = (mayClients[e.client] || 0) + e.total;
+                });
+                filteredClients = clients.filter(c => Object.keys(mayClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
+                filteredClients.sort((a, b) => (mayClients[b.name] || 0) - (mayClients[a.name] || 0));
+            } else if (currentDateFilter === 'year') {
+                // Top from 2026
+                const yearClients = {};
+                Object.values(monthlyEntries['2026']).forEach(monthEntries => {
+                    monthEntries.forEach(e => {
+                        yearClients[e.client] = (yearClients[e.client] || 0) + e.total;
+                    });
+                });
+                filteredClients = clients.filter(c => Object.keys(yearClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
+                filteredClients.sort((a, b) => (yearClients[b.name] || 0) - (yearClients[a.name] || 0));
+            } else {
+                // All time - use client totals
+                filteredClients.sort((a, b) => b.total - a.total);
+            }
+            
+            const top5 = filteredClients.slice(0, 5);
+            const maxTotal = top5[0]?.total || 1;
             
             let html = '';
             top5.forEach((c, i) => {
@@ -897,13 +986,17 @@
         }
 
         function initSourceBarChart() {
+            const filteredData = getFilteredSourceData();
+            const barChart = Chart.getChart('sourceBarChart');
+            if (barChart) barChart.destroy();
+            
             new Chart(document.getElementById('sourceBarChart'), {
                 type: 'bar',
                 data: {
-                    labels: sourceData.map(s => s.label),
+                    labels: filteredData.map(s => s.label),
                     datasets: [{
-                        data: sourceData.map(s => s.value),
-                        backgroundColor: sourceData.map(s => s.color),
+                        data: filteredData.map(s => s.value),
+                        backgroundColor: filteredData.map(s => s.color),
                         borderRadius: 8
                     }]
                 },
