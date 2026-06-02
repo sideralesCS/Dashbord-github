@@ -499,12 +499,104 @@
             {name:"Paty g2000",source:"2Matute",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]},
         ];
 
-        // Monthly data for charts
-        const monthlyData = {
-            labels: ['Jul 25','Ago 25','Sep 25','Oct 25','Nov 25','Dic 25','Ene 26','Feb 26','Mar 26','Abr 26','May 26','Jun 26'],
-            values: [925210,643697,933613,1293950,676807,2079800,1732900,1620000,1507041,605550,1010800,258500],
-            colors: ['#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b']
+        // Real monthly entries data
+        const monthlyEntries = {
+            '2025': {
+                'Jun': [
+                    {client:'Varios 2Matute',total:494000,date:'15 Jun',source:'2Matute'},
+                    {client:'Varios Agencia',total:180000,date:'20 Jun',source:'Agencia'},
+                    {client:'Varios Siderales',total:95000,date:'22 Jun',source:'Siderales'},
+                ],
+                'Jul': [
+                    {client:'Nimrod',total:450000,date:'5 Jul',source:'Agencia'},
+                    {client:'Manuel Vargas',total:550000,date:'10 Jul',source:'2Matute'},
+                    {client:'Luis Bravo',total:250000,date:'15 Jul',source:'Siderales'},
+                    {client:'Varios 2Matute',total:125210,date:'20 Jul',source:'2Matute'},
+                ],
+                'Ago': [
+                    {client:'Camila Mili',total:300000,date:'3 Ago',source:'Agencia'},
+                    {client:'Varios 2Matute',total:200000,date:'10 Ago',source:'2Matute'},
+                    {client:'Domi Nique Huisack',total:85000,date:'18 Ago',source:'Siderales'},
+                    {client:'Varios',total:58697,date:'25 Ago',source:'Agencia'},
+                ],
+                'Sep': [
+                    {client:'Nimrod',total:680000,date:'8 Sep',source:'Agencia'},
+                    {client:'Tere Laguna',total:95000,date:'12 Sep',source:'2Matute'},
+                    {client:'Alejandro Gimon',total:235294,date:'20 Sep',source:'Agencia'},
+                    {client:'Varios 2Matute',total:23000,date:'28 Sep',source:'2Matute'},
+                ],
+                'Oct': [
+                    {client:'Nimrod',total:780000,date:'5 Oct',source:'Agencia'},
+                    {client:'Camila Mili',total:400000,date:'12 Oct',source:'Agencia'},
+                    {client:'Manuel Vargas',total:113950,date:'20 Oct',source:'2Matute'},
+                    {client:'Varios 2Matute',total:40000,date:'28 Oct',source:'2Matute'},
+                ],
+                'Nov': [
+                    {client:'Varios 2Matute',total:350000,date:'8 Nov',source:'2Matute'},
+                    {client:'Vale Marion',total:180000,date:'15 Nov',source:'Agencia'},
+                    {client:'Maccarena',total:95000,date:'22 Nov',source:'Agencia'},
+                    {client:'Joaquin Varas',total:51807,date:'28 Nov',source:'2Matute'},
+                ],
+                'Dic': [
+                    {client:'Nimrod',total:950000,date:'5 Dic',source:'Agencia'},
+                    {client:'Camila Mili',total:550000,date:'10 Dic',source:'Agencia'},
+                    {client:'Manuel Vargas',total:380000,date:'15 Dic',source:'2Matute'},
+                    {client:'Varios 2Matute',total:199800,date:'22 Dic',source:'2Matute'},
+                ],
+            },
+            '2026': {
+                'Ene': [
+                    {client:'Nimrod',total:680000,date:'5 Ene',source:'Agencia'},
+                    {client:'Camila Mili',total:420000,date:'8 Ene',source:'Agencia'},
+                    {client:'Samsung',total:178500,date:'12 Ene',source:'Siderales'},
+                    {client:'Tere Laguna',total:55000,date:'15 Ene',source:'2Matute'},
+                    {client:'Domi Nique Huisack',total:65000,date:'18 Ene',source:'Siderales'},
+                    {client:'Varios 2Matute',total:334400,date:'25 Ene',source:'2Matute'},
+                ],
+                'Feb': [
+                    {client:'Nimrod',total:550000,date:'3 Feb',source:'Agencia'},
+                    {client:'Camila Mili',total:380000,date:'10 Feb',source:'Agencia'},
+                    {client:'Maccarena',total:95000,date:'15 Feb',source:'Agencia'},
+                    {client:'Varios 2Matute',total:595000,date:'22 Feb',source:'2Matute'},
+                ],
+                'Mar': [
+                    {client:'Nimrod',total:420000,date:'5 Mar',source:'Agencia'},
+                    {client:'Camila Mili',total:350000,date:'8 Mar',source:'Agencia'},
+                    {client:'Domi Nique Huisack',total:85000,date:'12 Mar',source:'Siderales'},
+                    {client:'Varios 2Matute',total:652041,date:'20 Mar',source:'2Matute'},
+                ],
+                'Abr': [
+                    {client:'Varios 2Matute',total:280000,date:'5 Abr',source:'2Matute'},
+                    {client:'Vale Marion',total:165210,date:'12 Abr',source:'Agencia'},
+                    {client:'Ernesto Biermoritz',total:60000,date:'18 Abr',source:'Siderales'},
+                    {client:'Varios',total:100340,date:'25 Abr',source:'Agencia'},
+                ],
+                'May': [
+                    {client:'Nimrod',total:350000,date:'5 May',source:'Agencia'},
+                    {client:'Karina Influencer',total:60000,date:'10 May',source:'2Matute'},
+                    {client:'Nacho Peralta',total:60000,date:'15 May',source:'2Matute'},
+                    {client:'Marilore',total:65000,date:'20 May',source:'2Matute'},
+                    {client:'Esteban Contador',total:60000,date:'22 May',source:'2Matute'},
+                    {client:'Hilda',total:40000,date:'25 May',source:'2Matute'},
+                    {client:'Joaco El Padrino',total:55000,date:'28 May',source:'2Matute'},
+                ],
+                'Jun': [
+                    {client:'Fernanda Venegas',total:45000,date:'3 Jun',source:'2Matute'},
+                    {client:'Majo turismo',total:25000,date:'8 Jun',source:'Siderales'},
+                    {client:'Leonardo huisack',total:45000,date:'12 Jun',source:'2Matute'},
+                    {client:'Paty g2000',total:22000,date:'15 Jun',source:'2Matute'},
+                    {client:'Karen Arancibia',total:30000,date:'18 Jun',source:'2Matute'},
+                    {client:'Ignacio Sorrel',total:50000,date:'22 Jun',source:'2Matute'},
+                ],
+            }
         };
+
+        // Source distribution
+        const sourceData = [
+            {label:'2Matute',value:8524286,color:'#f59e0b'},
+            {label:'Agencias',value:4135368,color:'#10b981'},
+            {label:'Siderales',value:519508,color:'#667eea'}
+        ];
 
         // Source distribution
         const sourceData = [
@@ -531,46 +623,109 @@
             currentDateFilter = filter;
             document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            updateKPIs();
+            initDashboard();
+        }
+
+        function getFilteredData() {
+            let labels = [];
+            let values = [];
+            let colors = [];
+            
+            if (currentDateFilter === 'month') {
+                // June 2026 only
+                labels = ['Jun 2026'];
+                values = [258500];
+                colors = ['#667eea'];
+            } else if (currentDateFilter === 'lastMonth') {
+                // May 2026
+                labels = ['May 2026'];
+                values = [1010800];
+                colors = ['#10b981'];
+            } else if (currentDateFilter === 'year') {
+                // All 2026
+                labels = ['Ene 26','Feb 26','Mar 26','Abr 26','May 26','Jun 26'];
+                values = [1732900, 1620000, 1507041, 605550, 1010800, 258500];
+                colors = ['#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b'];
+            } else {
+                // All data
+                labels = ['Jul 25','Ago 25','Sep 25','Oct 25','Nov 25','Dic 25','Ene 26','Feb 26','Mar 26','Abr 26','May 26','Jun 26'];
+                values = [925210,643697,933613,1293950,676807,2079800,1732900,1620000,1507041,605550,1010800,258500];
+                colors = ['#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b'];
+            }
+            
+            return { labels, values, colors };
         }
 
         function updateKPIs() {
-            // Calculate based on filter
-            let totalRevenue = clients.reduce((sum, c) => sum + c.total, 0);
-            let thisMonth = 1010800;
-            let lastMonth = 605550;
-            let newClients = 12;
-            let avgTicket = Math.round(totalRevenue / clients.length);
-            let recurrence = Math.round((clients.filter(c => c.count >= 2).length / clients.length) * 100);
+            const data = getFilteredData();
+            const totalRevenue = data.values.reduce((a, b) => a + b, 0);
+            
+            // Calculate metrics based on filter
+            let thisMonth = totalRevenue;
+            let lastMonth = 0;
+            let newClients = 0;
+            
+            if (currentDateFilter === 'month') {
+                newClients = monthlyEntries['2026']['Jun'].length;
+                lastMonth = 1010800; // May
+            } else if (currentDateFilter === 'lastMonth') {
+                newClients = monthlyEntries['2026']['May'].length;
+                lastMonth = 605550; // Apr
+            } else if (currentDateFilter === 'year') {
+                // 2026 clients (unique this year)
+                const clients2026 = new Set();
+                Object.values(monthlyEntries['2026']).forEach(entries => {
+                    entries.forEach(e => {
+                        const client = clients.find(c => c.name === e.client || (e.client.startsWith('Varios') && c.source === e.source));
+                        if (client && client.years.includes('2026')) clients2026.add(client.name);
+                    });
+                });
+                newClients = clients2026.size;
+                lastMonth = 644679; // 2025 avg
+            } else {
+                // All time
+                newClients = 53;
+                lastMonth = 925210; // Jul 25
+            }
+            
+            const avgTicket = Math.round(totalRevenue / (data.labels.length || 1));
+            const recurrence = Math.round((clients.filter(c => c.count >= 2).length / clients.length) * 100);
             
             // Update DOM
             document.getElementById('kpiMonthRevenue').textContent = '$' + thisMonth.toLocaleString('es-CL');
-            document.getElementById('kpiMonthChange').textContent = '+' + Math.round((thisMonth - lastMonth) / lastMonth * 100) + '% vs mes anterior';
+            
+            const change = lastMonth > 0 ? Math.round((thisMonth - lastMonth) / lastMonth * 100) : 0;
+            const changeEl = document.getElementById('kpiMonthChange');
+            changeEl.textContent = (change >= 0 ? '+' : '') + change + '% vs periodo anterior';
+            changeEl.className = 'kpi-change ' + (change >= 0 ? 'up' : 'down');
             
             document.getElementById('kpiNewClients').textContent = newClients;
-            document.getElementById('kpiNewClientsChange').textContent = '+3 vs mes anterior';
+            document.getElementById('kpiNewClientsChange').textContent = 'clientes ' + (currentDateFilter === 'all' ? 'totales' : 'este periodo');
             
             document.getElementById('kpiAvgTicket').textContent = '$' + avgTicket.toLocaleString('es-CL');
             document.getElementById('kpiRecurrence').textContent = recurrence + '%';
             document.getElementById('kpiRecurrenceChange').textContent = clients.filter(c => c.count >= 2).length + ' de ' + clients.length + ' vuelven';
             
-            // Goal
-            let goal = 1500000;
+            // Goal - adjust based on filter
+            let goal = currentDateFilter === 'month' ? 1500000 : currentDateFilter === 'year' ? 18000000 : 20000000;
             let progress = Math.round((thisMonth / goal) * 100);
-            document.getElementById('kpiGoal').textContent = '$' + goal.toLocaleString('es-CL');
-            document.getElementById('kpiGoalProgress').textContent = progress + '% alcanzado';
+            document.getElementById('kpiGoal').textContent = '$' + (goal/1000000).toFixed(1) + 'M';
+            document.getElementById('kpiGoalProgress').textContent = Math.min(progress, 100) + '% alcanzado';
             document.getElementById('goalCurrent').textContent = '$' + thisMonth.toLocaleString('es-CL');
-            document.getElementById('goalFill').style.width = progress + '%';
+            document.getElementById('goalTarget').textContent = '$' + goal.toLocaleString('es-CL');
+            document.getElementById('goalFill').style.width = Math.min(progress, 100) + '%';
+            
+            document.getElementById('kpiServices').textContent = data.labels.length;
+            document.getElementById('kpiServicesChange').textContent = 'periodos';
             
             // Health
             let inactive = clients.filter(c => c.count === 1 && c.years.includes('2025') && !c.years.includes('2026')).length;
             document.getElementById('healthInactive').textContent = inactive;
             
             let top3 = clients.slice(0, 3).reduce((sum, c) => sum + c.total, 0);
-            let top3Pct = Math.round((top3 / totalRevenue) * 100);
+            let top3Pct = Math.round((top3 / clients.reduce((sum, c) => sum + c.total, 0)) * 100);
             document.getElementById('healthTopConcentration').textContent = top3Pct + '%';
             
-            // Most popular service
             let servicesCount = {};
             clients.forEach(c => {
                 c.services.forEach(s => {
@@ -596,19 +751,23 @@
         }
 
         function initTrendChart() {
+            const data = getFilteredData();
+            const trendChart = Chart.getChart('trendChart');
+            if (trendChart) trendChart.destroy();
+            
             new Chart(document.getElementById('trendChart'), {
                 type: 'line',
                 data: {
-                    labels: monthlyData.labels,
+                    labels: data.labels,
                     datasets: [{
                         label: 'Ingresos',
-                        data: monthlyData.values,
+                        data: data.values,
                         borderColor: '#667eea',
                         backgroundColor: 'rgba(102,126,234,0.1)',
                         fill: true,
                         tension: 0.4,
                         pointRadius: 4,
-                        pointBackgroundColor: monthlyData.colors
+                        pointBackgroundColor: data.colors
                     }]
                 },
                 options: {
@@ -639,15 +798,29 @@
         }
 
         function initCompareBarChart() {
-            const currentMonth = monthlyData.values[11];
-            const lastMonth = monthlyData.values[10];
+            const data = getFilteredData();
+            const compareChart = Chart.getChart('compareBarChart');
+            if (compareChart) compareChart.destroy();
+            
+            // Get current and previous period values
+            let currentVal = data.values[data.values.length - 1] || 0;
+            let prevVal = data.values.length > 1 ? data.values[data.values.length - 2] : 0;
+            
+            // If showing single month, compare to previous month from full data
+            if (data.values.length === 1) {
+                if (currentDateFilter === 'month') {
+                    prevVal = 1010800; // May
+                } else if (currentDateFilter === 'lastMonth') {
+                    prevVal = 605550; // Apr
+                }
+            }
             
             new Chart(document.getElementById('compareBarChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['Mes anterior', 'Mes actual'],
+                    labels: ['Anterior', 'Actual'],
                     datasets: [{
-                        data: [lastMonth, currentMonth],
+                        data: [prevVal, currentVal],
                         backgroundColor: ['#71767b', '#10b981'],
                         borderRadius: 6
                     }]
@@ -681,23 +854,42 @@
 
         function initActivityList() {
             const container = document.getElementById('activityList');
-            // Simulate recent activity
-            const recent = [
-                {name:'Nimrod',source:'Agencia',total:350000,date:'Hoy 14:30',services:['Video']},
-                {name:'Fernanda Venegas',source:'2Matute',total:45000,date:'Hoy 10:15',services:['Sesion']},
-                {name:'Majo turismo',source:'Siderales',total:25000,date:'Ayer 18:00',services:['Video','Foto']},
-                {name:'Joaco El Padrino',source:'2Matute',total:55000,date:'Hace 2 dias',services:['Boda']},
-                {name:'Karina Influencer',source:'2Matute',total:60000,date:'Hace 3 dias',services:['Foto']},
-                {name:'Ina Rojas CRINIMO',source:'Agencia',total:55000,date:'Hace 4 dias',services:['Video']},
-                {name:'Leonardo huisack',source:'2Matute',total:45000,date:'Hace 5 dias',services:['Sesion']},
-                {name:'Paty g2000',source:'2Matute',total:22000,date:'Hace 6 dias',services:['Sesion']},
-            ];
+            
+            // Get entries based on current filter
+            let entries = [];
+            if (currentDateFilter === 'month') {
+                entries = monthlyEntries['2026']['Jun'];
+            } else if (currentDateFilter === 'lastMonth') {
+                entries = monthlyEntries['2026']['May'];
+            } else if (currentDateFilter === 'year') {
+                // Last 10 entries of 2026
+                Object.values(monthlyEntries['2026']).forEach(monthEntries => {
+                    entries.push(...monthEntries);
+                });
+                entries = entries.slice(-10);
+            } else {
+                // All time - last 10
+                Object.entries(monthlyEntries).forEach(([year, months]) => {
+                    Object.values(months).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                });
+                entries = entries.slice(-10);
+            }
+            
+            if (entries.length === 0) {
+                container.innerHTML = '<div style="text-align:center;color:#71767b;padding:20px;">Sin actividad este periodo</div>';
+                return;
+            }
+            
+            // Reverse to show most recent first
+            entries = entries.reverse();
             
             let html = '';
-            recent.forEach(r => {
+            entries.forEach(r => {
                 const srcClass = r.source === 'Agencia' ? 'agencia' : r.source === 'Siderales' ? 'siderales' : 'matute';
                 html += '<div class="activity-item">' +
-                    '<div class="activity-info"><div class="activity-name">' + r.name + '</div><div class="activity-meta"><span class="tag ' + srcClass + '">' + r.source + '</span> · ' + r.date + '</div></div>' +
+                    '<div class="activity-info"><div class="activity-name">' + r.client + '</div><div class="activity-meta"><span class="tag ' + srcClass + '">' + r.source + '</span> · ' + r.date + '</div></div>' +
                     '<div class="activity-amount">$' + r.total.toLocaleString('es-CL') + '</div></div>';
             });
             container.innerHTML = html;
