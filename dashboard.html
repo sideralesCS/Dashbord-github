@@ -336,7 +336,8 @@
                     <button class="view-btn" id="viewTableBtn" onclick="setViewMode('table')">Tabla</button>
                 </div>
                 <button class="batch-btn clear" id="mergeBtn" onclick="openMergeModal()" style="display:none;background:#ef4444;color:white;">Fusionar</button>
-                <button class="batch-btn clear" onclick="configureSheetsURL()" id="syncBtn" style="background:#667eea;color:white;">Sync</button>
+                <button class="batch-btn clear" onclick="backupToSheets()" style="background:#10b981;color:white;">Subir a Sheets</button>
+                <button class="batch-btn clear" onclick="restoreFromSheets()" style="background:#f59e0b;color:white;">Bajar de Sheets</button>
                 <select id="batchSourceSelect" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;font-size:11px;">
                     <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
@@ -513,20 +514,45 @@
         let SHEETS_URL = localStorage.getItem('siderales_sheets_url') || 'https://script.google.com/macros/s/AKfycbxGZ60wquL21mofX8Vh8WipbBRuPnEAYyVUV_vVVEk_LQPMHHsthOY0nMdkc1kfH7qx/exec';
         let syncEnabled = true;
         
-        // Google Sheets sync functions
+        // Google Sheets sync functions - manual backup/restore
         function showSyncStatus(msg, isError) {
             const el = document.getElementById('syncStatus');
             if (el) {
                 el.textContent = msg;
                 el.style.color = isError ? '#ef4444' : '#10b981';
-                setTimeout(() => { el.textContent = ''; }, 3000);
+                setTimeout(() => { el.textContent = ''; }, 5000);
             }
         }
         
-        async function syncFromSheets() {
-            if (!syncEnabled || !SHEETS_URL) return;
+        async function backupToSheets() {
+            if (!SHEETS_URL) {
+                showSyncStatus('Configura URL primero', true);
+                return;
+            }
             
-            showSyncStatus('Sincronizando...', false);
+            showSyncStatus('Respaldando...', false);
+            try {
+                await fetch(SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({clients: clients})
+                });
+                showSyncStatus('✓ Respaldado en Sheets', false);
+            } catch(e) {
+                showSyncStatus('Error', true);
+            }
+        }
+        
+        async function restoreFromSheets() {
+            if (!SHEETS_URL) {
+                showSyncStatus('Configura URL primero', true);
+                return;
+            }
+            
+            if (!confirm('Esto reemplazara tus datos actuales con los de Google Sheets. Continuar?')) return;
+            
+            showSyncStatus('Restaurando...', false);
             try {
                 const resp = await fetch(SHEETS_URL);
                 const data = await resp.json();
@@ -539,42 +565,21 @@
                     updateFilterCounts();
                     initDashboard();
                     document.getElementById('clientCountBadge').textContent = clients.length;
-                    showSyncStatus('✓ ' + clients.length + ' clientes', false);
-                    console.log('Synced', clients.length, 'clients from Google Sheets');
+                    showSyncStatus('✓ ' + clients.length + ' clientes restaurados', false);
                 } else {
-                    showSyncStatus('Sin datos', true);
+                    showSyncStatus('Sheets vacio', true);
                 }
             } catch(e) {
-                showSyncStatus('Error sync', true);
-                console.log('Sync from Sheets failed:', e);
-            }
-        }
-        
-        async function syncToSheets() {
-            if (!syncEnabled || !SHEETS_URL) return;
-            
-            try {
-                await fetch(SHEETS_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({clients: clients})
-                });
-                showSyncStatus('✓ Guardado', false);
-                console.log('Synced', clients.length, 'clients to Google Sheets');
-            } catch(e) {
-                console.log('Sync to Sheets failed:', e);
+                showSyncStatus('Error', true);
             }
         }
         
         function configureSheetsURL() {
-            const url = prompt('Ingresa la URL del Web App de Google Sheets:\n\nPara crear:\n1. Ve a sheets.google.com\n2. Crea spreadsheet "Siderales Clientes"\n3. Extensiones > Apps Script\n4. Pega el codigo de siderales_sheets_script.js\n5. Despliegue > Nuevo > Web app\n6. Acceso: Cualquiera\n7. Copia la URL aqui', SHEETS_URL);
+            const url = prompt('Ingresa la URL del Web App de Google Sheets:', SHEETS_URL);
             if (url) {
                 SHEETS_URL = url.trim();
                 localStorage.setItem('siderales_sheets_url', SHEETS_URL);
-                syncEnabled = true;
-                syncFromSheets();
-                alert('Sincronizacion configurada!');
+                showSyncStatus('URL configurada', false);
             }
         }
         
@@ -587,13 +592,12 @@
             }
         }
         
-        // LocalStorage functions
+        // LocalStorage functions - Dashboard is the source of truth
         function saveToStorage() {
             try {
                 localStorage.setItem('siderales_clients', JSON.stringify(clients));
                 localStorage.setItem('siderales_notes', JSON.stringify(clientNotes));
-                // Auto-sync to Google Sheets
-                if (syncEnabled) syncToSheets();
+                // Data saved locally - use manual backup to Sheets when needed
             } catch(e) {
                 console.log('Storage save failed:', e);
             }
@@ -608,7 +612,7 @@
                     if (Array.isArray(parsed) && parsed.length > 0) {
                         clients.length = 0;
                         clients.push(...parsed);
-                        console.log('Loaded', clients.length, 'clients from storage');
+                        console.log('Loaded', clients.length, 'clients from local storage');
                     }
                 }
                 if (storedNotes) {
@@ -625,9 +629,8 @@
             location.reload();
         }
         
-        // Load from storage and sync on init
+        // Load from localStorage on init - Dashboard is source of truth
         loadFromStorage();
-        if (syncEnabled) syncFromSheets();
         
         const clients = [
             {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"],services:["Video","Foto","Edicion"]},
