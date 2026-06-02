@@ -280,6 +280,7 @@
                 </select>
                 <button class="batch-btn source" onclick="batchChangeSource()">Cambiar categoria</button>
                 <button class="batch-btn clear" onclick="clearSelection()">Limpiar</button>
+                <button class="batch-btn clear" onclick="openAddClientModal()" style="background:#667eea;color:white;">+ Nuevo</button>
             </div>
         </div>
         
@@ -328,7 +329,7 @@
     
     <!-- MODAL CLIENTE -->
     <div class="modal-overlay" id="clientModal" onclick="if(event.target.id==='clientModal')closeModal()">
-        <div class="modal">
+        <div class="modal" style="max-width:400px;">
             <button class="modal-close" onclick="closeModal()">x</button>
             <div class="modal-header">
                 <div class="modal-avatar" id="modalAvatar"></div>
@@ -341,13 +342,70 @@
                 <div class="modal-stat"><div class="modal-stat-value" id="modalTotal"></div><div class="modal-stat-label">Total CLP</div></div>
                 <div class="modal-stat"><div class="modal-stat-value" id="modalCount"></div><div class="modal-stat-label">Servicios</div></div>
             </div>
+            
+            <div style="margin-bottom:16px;">
+                <div style="font-size:10px;color:#71767b;margin-bottom:8px;text-transform:uppercase;">Editar datos</div>
+                <div class="modal-input-group" style="margin-bottom:10px;">
+                    <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Nombre</label>
+                    <input type="text" id="editName" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
+                </div>
+                <div class="modal-input-group" style="margin-bottom:10px;">
+                    <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Telefono</label>
+                    <input type="text" id="editPhone" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
+                </div>
+                <div class="modal-input-group" style="margin-bottom:10px;">
+                    <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Categoria</label>
+                    <select id="editSource" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
+                        <option value="2Matute">2Matute Studio</option>
+                        <option value="Agencia">Agencia</option>
+                        <option value="Siderales">Siderales Creative</option>
+                    </select>
+                </div>
+                <button class="modal-save-btn" id="modalSaveBtn" onclick="saveClientData()">Guardar cambios</button>
+            </div>
+            
             <div id="modalDetails"></div>
-            <select class="modal-source-select" id="modalSourceSelect">
-                <option value="2Matute">2Matute Studio</option>
-                <option value="Agencia">Agencia</option>
-                <option value="Siderales">Siderales Creative</option>
-            </select>
-            <button class="modal-save-btn" id="modalSaveBtn" onclick="saveClientSource()">Guardar cambio</button>
+            
+            <div style="margin-top:16px;">
+                <div style="font-size:10px;color:#71767b;margin-bottom:8px;text-transform:uppercase;">Notas</div>
+                <textarea id="clientNotes" placeholder="Agrega notas sobre este cliente..." style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:12px;min-height:80px;resize:vertical;font-family:Inter,sans-serif;" onblur="saveClientNotes()"></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL AGREGAR CLIENTE -->
+    <div class="modal-overlay" id="addClientModal" onclick="if(event.target.id==='addClientModal')closeAddModal()">
+        <div class="modal" style="max-width:400px;">
+            <button class="modal-close" onclick="closeAddModal()">x</button>
+            <div style="margin-bottom:20px;">
+                <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;">Agregar Cliente</h3>
+                <p style="font-size:11px;color:#71767b;">Completa los datos del nuevo cliente</p>
+            </div>
+            <div class="modal-input-group" style="margin-bottom:12px;">
+                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Nombre *</label>
+                <input type="text" id="newClientName" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="Nombre del cliente">
+            </div>
+            <div class="modal-input-group" style="margin-bottom:12px;">
+                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Telefono</label>
+                <input type="text" id="newClientPhone" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="+56 9 XXXX XXXX">
+            </div>
+            <div class="modal-input-group" style="margin-bottom:12px;">
+                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Categoria *</label>
+                <select id="newClientSource" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
+                    <option value="2Matute">2Matute Studio</option>
+                    <option value="Agencia">Agencia</option>
+                    <option value="Siderales">Siderales Creative</option>
+                </select>
+            </div>
+            <div class="modal-input-group" style="margin-bottom:12px;">
+                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Total (CLP)</label>
+                <input type="number" id="newClientTotal" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="0">
+            </div>
+            <div class="modal-input-group" style="margin-bottom:12px;">
+                <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Servicios (separados por coma)</label>
+                <input type="text" id="newClientServices" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="Foto, Video, Drone">
+            </div>
+            <button class="modal-save-btn" onclick="addNewClient()">Agregar cliente</button>
         </div>
     </div>
     
@@ -436,6 +494,7 @@
         }
         
         let currentClient = null;
+        let clientNotes = {};
         
         function showClientModal(client) {
             currentClient = client;
@@ -447,8 +506,13 @@
             document.getElementById('modalTotal').textContent = '$' + client.total.toLocaleString('es-CL');
             document.getElementById('modalCount').textContent = client.count + 'x';
             
-            // Set select to current source
-            document.getElementById('modalSourceSelect').value = client.source;
+            // Fill edit fields
+            document.getElementById('editName').value = client.name;
+            document.getElementById('editPhone').value = client.phone || '';
+            document.getElementById('editSource').value = client.source;
+            
+            // Fill notes
+            document.getElementById('clientNotes').value = clientNotes[client.name] || '';
             
             let details = '';
             if (client.phone) details += '<div class="modal-detail"><span class="modal-detail-label">Telefono</span><span class="modal-detail-value">' + client.phone + '</span></div>';
@@ -458,27 +522,48 @@
             document.getElementById('modalDetails').innerHTML = details;
             
             // Reset button
-            document.getElementById('modalSaveBtn').textContent = 'Guardar cambio';
+            document.getElementById('modalSaveBtn').textContent = 'Guardar cambios';
             document.getElementById('modalSaveBtn').classList.remove('saved');
             
             document.getElementById('clientModal').classList.add('active');
         }
         
-        function saveClientSource() {
+        function saveClientData() {
             if (!currentClient) return;
             
-            const newSource = document.getElementById('modalSourceSelect').value;
-            currentClient.source = newSource;
+            const newName = document.getElementById('editName').value.trim();
+            const newPhone = document.getElementById('editPhone').value.trim();
+            const newSource = document.getElementById('editSource').value;
             
-            // Update in clients array
+            // Update client
             const clientIndex = clients.findIndex(c => c.name === currentClient.name);
             if (clientIndex !== -1) {
+                clients[clientIndex].name = newName || currentClient.name;
+                clients[clientIndex].phone = newPhone;
                 clients[clientIndex].source = newSource;
+                
+                // Save notes
+                if (clientNotes[currentClient.name]) {
+                    clientNotes[newName || currentClient.name] = clientNotes[currentClient.name];
+                    if (newName !== currentClient.name) {
+                        delete clientNotes[currentClient.name];
+                    }
+                }
+                
+                // Update references in selectedClients
+                if (selectedClients.has(currentClient.name)) {
+                    selectedClients.delete(currentClient.name);
+                    selectedClients.add(newName || currentClient.name);
+                }
+                
+                currentClient = clients[clientIndex];
             }
             
             // Update modal display
             const src = getSourceColor(newSource);
             document.getElementById('modalAvatar').className = 'modal-avatar ' + src;
+            document.getElementById('modalAvatar').textContent = getInitials(newName || currentClient.name);
+            document.getElementById('modalName').textContent = newName || currentClient.name;
             document.getElementById('modalSource').innerHTML = '<span class="tag ' + src + '">' + newSource + '</span> ' + currentClient.years.join(' + ');
             
             // Show saved feedback
@@ -489,6 +574,81 @@
             // Re-render client list
             const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
             renderClients(activeFilter);
+        }
+        
+        function saveClientNotes() {
+            if (!currentClient) return;
+            clientNotes[currentClient.name] = document.getElementById('clientNotes').value;
+        }
+        
+        function openAddClientModal() {
+            document.getElementById('newClientName').value = '';
+            document.getElementById('newClientPhone').value = '';
+            document.getElementById('newClientSource').value = '2Matute';
+            document.getElementById('newClientTotal').value = '';
+            document.getElementById('newClientServices').value = '';
+            document.getElementById('addClientModal').classList.add('active');
+        }
+        
+        function closeAddModal() {
+            document.getElementById('addClientModal').classList.remove('active');
+        }
+        
+        function addNewClient() {
+            const name = document.getElementById('newClientName').value.trim();
+            const phone = document.getElementById('newClientPhone').value.trim();
+            const source = document.getElementById('newClientSource').value;
+            const total = parseInt(document.getElementById('newClientTotal').value) || 0;
+            const servicesStr = document.getElementById('newClientServices').value.trim();
+            const services = servicesStr ? servicesStr.split(',').map(s => s.trim()) : ['Otro'];
+            
+            if (!name) {
+                alert('El nombre es obligatorio');
+                return;
+            }
+            
+            // Check for duplicate
+            if (clients.find(c => c.name.toLowerCase() === name.toLowerCase())) {
+                alert('Ya existe un cliente con ese nombre');
+                return;
+            }
+            
+            const newClient = {
+                name: name,
+                source: source,
+                total: total,
+                count: 1,
+                phone: phone,
+                years: ['2026'],
+                services: services
+            };
+            
+            clients.push(newClient);
+            clients.sort((a, b) => b.total - a.total);
+            
+            // Update count badge
+            document.querySelector('.count-badge').textContent = clients.length;
+            
+            closeAddModal();
+            
+            // Re-render
+            const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
+            renderClients(activeFilter);
+            
+            // Update filter counts
+            updateFilterCounts();
+        }
+        
+        function updateFilterCounts() {
+            const countAll = clients.length;
+            const countMatute = clients.filter(c => c.source === '2Matute').length;
+            const countAgencia = clients.filter(c => c.source === 'Agencia').length;
+            const countSiderales = clients.filter(c => c.source === 'Siderales').length;
+            
+            document.querySelector('[data-cat="all"]').textContent = 'Todos (' + countAll + ')';
+            document.querySelector('[data-cat="2Matute"]').textContent = '2Matute (' + countMatute + ')';
+            document.querySelector('[data-cat="Agencia"]').textContent = 'Agencias (' + countAgencia + ')';
+            document.querySelector('[data-cat="Siderales"]').textContent = 'Siderales (' + countSiderales + ')';
         }
         
         function closeModal() {
