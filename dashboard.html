@@ -219,8 +219,8 @@
         
         <!-- KPIs -->
         <div class="kpi-grid">
-            <div class="kpi-card">
-                <div class="kpi-label">Ingresos del mes</div>
+            <div class="kpi-card" id="revenueKpiCard" onclick="showRevenueHistory()" style="cursor:pointer;">
+                <div class="kpi-label">Ingresos del mes <span style="font-size:9px;color:#667eea;">(presiona)</span></div>
                 <div class="kpi-value green" id="kpiMonthRevenue">$1.010.800</div>
                 <div class="kpi-change up" id="kpiMonthChange">+18% vs mes anterior</div>
             </div>
@@ -509,6 +509,16 @@
                 <button class="modal-save-btn" onclick="confirmMerge()" style="flex:1;background:#ef4444;">Fusionar</button>
                 <button class="modal-save-btn" onclick="closeMergeModal()" style="flex:1;background:#2f3336;">Cancelar</button>
             </div>
+        </div>
+    </div>
+    
+    <!-- Modal Historial de Ingresos -->
+    <div class="modal-overlay" id="revenueHistoryModal" onclick="if(event.target.id==='revenueHistoryModal')closeRevenueHistoryModal()">
+        <div class="modal" style="max-width:450px;max-height:80vh;overflow-y:auto;">
+            <button class="modal-close" onclick="closeRevenueHistoryModal()">x</button>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;">Historial de Ingresos</h3>
+            <p style="font-size:11px;color:#71767b;margin-bottom:16px;" id="revenueHistoryPeriod"></p>
+            <div id="revenueHistoryList"></div>
         </div>
     </div>
     
@@ -1746,6 +1756,73 @@
         
         function closeMergeModal() {
             document.getElementById('mergeModal').classList.remove('active');
+        }
+        
+        function showRevenueHistory() {
+            // Get entries based on current date filter
+            let entries = [];
+            let periodLabel = '';
+            
+            const now = new Date();
+            const currYear = now.getFullYear();
+            const currMonth = now.getMonth();
+            const prevMonth = currMonth === 0 ? 11 : currMonth - 1;
+            const prevYear = currMonth === 0 ? currYear - 1 : currYear;
+            const MONTHS_FULL = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+            
+            if (currentDateFilter === 'month') {
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][currMonth];
+                periodLabel = MONTHS_FULL[currMonth] + ' ' + currYear;
+                if (monthlyEntries[currYear] && monthlyEntries[currYear][monthKey]) {
+                    entries = [...monthlyEntries[currYear][monthKey]];
+                }
+            } else if (currentDateFilter === 'lastMonth') {
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][prevMonth];
+                periodLabel = MONTHS_FULL[prevMonth] + ' ' + prevYear;
+                if (monthlyEntries[prevYear] && monthlyEntries[prevYear][monthKey]) {
+                    entries = [...monthlyEntries[prevYear][monthKey]];
+                }
+            } else if (currentDateFilter === 'year') {
+                periodLabel = currYear.toString();
+                if (monthlyEntries[currYear]) {
+                    Object.values(monthlyEntries[currYear]).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                }
+            } else {
+                periodLabel = 'Todo el periodo';
+                Object.values(monthlyEntries).forEach(yearData => {
+                    Object.values(yearData).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                });
+            }
+            
+            // Sort by total descending
+            entries.sort((a, b) => b.total - a.total);
+            
+            // Build HTML
+            const totalAll = entries.reduce((sum, e) => sum + e.total, 0);
+            let html = '<div style="margin-bottom:16px;padding:12px;background:#252a2f;border-radius:8px;text-align:center;">' +
+                '<div style="font-size:11px;color:#71767b;">Total del periodo</div>' +
+                '<div style="font-size:24px;font-weight:700;color:#10b981;">$' + totalAll.toLocaleString('es-CL') + '</div>' +
+                '<div style="font-size:10px;color:#71767b;margin-top:4px;">' + entries.length + ' servicios</div></div>';
+            
+            entries.forEach(e => {
+                const srcClass = e.source === 'Agencia' ? 'agencia' : e.source === 'Siderales' ? 'siderales' : 'matute';
+                html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #2f3336;">' +
+                    '<div><div style="font-size:13px;font-weight:600;">' + e.client + '</div>' +
+                    '<div style="font-size:10px;color:#71767b;"><span class="tag ' + srcClass + '">' + e.source + '</span> · ' + e.date + '</div></div>' +
+                    '<div style="font-size:14px;font-weight:700;color:#10b981;">$' + e.total.toLocaleString('es-CL') + '</div></div>';
+            });
+            
+            document.getElementById('revenueHistoryPeriod').textContent = periodLabel;
+            document.getElementById('revenueHistoryList').innerHTML = html;
+            document.getElementById('revenueHistoryModal').classList.add('active');
+        }
+        
+        function closeRevenueHistoryModal() {
+            document.getElementById('revenueHistoryModal').classList.remove('active');
         }
         
         function confirmMerge() {
