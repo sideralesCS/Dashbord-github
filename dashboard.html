@@ -324,14 +324,23 @@
             </div>
         </div>
         
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
+            <select id="sortSelect" onchange="setSortMode(this.value)" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;font-size:11px;">
+                <option value="total">Total ↓</option>
+                <option value="count">Servicios ↓</option>
+                <option value="name">Nombre A-Z</option>
+                <option value="recent">Mas reciente</option>
+            </select>
+            <div class="view-toggle">
+                <button class="view-btn active" id="viewCardsBtn" onclick="setViewMode('cards')">Tarjetas</button>
+                <button class="view-btn" id="viewTableBtn" onclick="setViewMode('table')">Tabla</button>
+            </div>
+        </div>
+        
         <div class="batch-bar" id="batchBar">
             <span class="batch-count" id="batchCount">0 seleccionados</span>
             <span id="syncStatus" style="font-size:10px;color:#71767b;margin-left:8px;"></span>
             <div class="batch-actions">
-                <div class="view-toggle">
-                    <button class="view-btn active" id="viewCardsBtn" onclick="setViewMode('cards')">Tarjetas</button>
-                    <button class="view-btn" id="viewTableBtn" onclick="setViewMode('table')">Tabla</button>
-                </div>
                 <button class="batch-btn clear" id="mergeBtn" onclick="openMergeModal()" style="display:none;background:#ef4444;color:white;">Fusionar</button>
                 <button class="batch-btn clear" onclick="backupToSheets()" style="background:#10b981;color:white;">Subir a Sheets</button>
                 <button class="batch-btn clear" onclick="restoreFromSheets()" style="background:#f59e0b;color:white;">Bajar de Sheets</button>
@@ -358,15 +367,6 @@
             <span class="filter" onclick="filterByCat('Matute Studio', this)" data-cat="Matute Studio">Matute Studio (41)</span>
             <span class="filter" onclick="filterByCat('Agencia', this)" data-cat="Agencia">Agencias (8)</span>
             <span class="filter" onclick="filterByCat('Siderales', this)" data-cat="Siderales">Siderales (4)</span>
-        </div>
-        
-        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
-            <select id="sortSelect" onchange="setSortMode(this.value)" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;font-size:11px;">
-                <option value="total">Total ↓</option>
-                <option value="count">Servicios ↓</option>
-                <option value="name">Nombre A-Z</option>
-                <option value="recent">Mas reciente</option>
-            </select>
         </div>
         
         <div id="clientList"></div>
