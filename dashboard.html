@@ -70,6 +70,8 @@
         
         .client-card { background: #252a2f; border-radius: 12px; padding: 12px; margin-bottom: 10px; border: 1px solid #2f3336; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s; }
         .client-card:hover { border-color: #667eea; }
+        .client-card.selected { border-color: #10b981; background: rgba(16,185,129,0.1); }
+        .client-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: #10b981; flex-shrink: 0; }
         .client-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
         .client-avatar.matute { background: #f59e0b; }
         .client-avatar.agencia { background: #10b981; }
@@ -117,6 +119,20 @@
         .modal-source-select:focus { outline: 2px solid #667eea; }
         .modal-save-btn { width: 100%; background: #667eea; color: white; border: none; border-radius: 8px; padding: 12px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 12px; transition: background 0.2s; }
         .modal-save-btn:hover { background: #5a6fd6; }
+        .batch-bar { display: none; background: #1c1f23; border: 1px solid #2f3336; border-radius: 12px; padding: 12px; margin-bottom: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .batch-bar.active { display: flex; }
+        .batch-count { font-size: 12px; color: #10b981; font-weight: 600; }
+        .batch-actions { display: flex; gap: 8px; }
+        .batch-btn { padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+        .batch-btn.source { background: #2f3336; color: #e7e9ea; }
+        .batch-btn.source:hover { background: #3f4449; }
+        .batch-btn.clear { background: transparent; color: #71767b; border: 1px solid #2f3336; }
+        .batch-btn.clear:hover { color: #e7e9ea; }
+        
+        .search-box { width: 100%; background: #2f3336; border: none; border-radius: 8px; padding: 10px 14px; color: #e7e9ea; font-size: 13px; margin-bottom: 12px; }
+        .search-box:focus { outline: 2px solid #667eea; }
+        .search-box::placeholder { color: #71767b; }
+        
         .modal-save-btn.saved { background: #10b981; }
         
         @media (max-width: 480px) {
@@ -250,9 +266,24 @@
         <div class="section-header">
             <div>
                 <h3 style="font-size:14px;color:#e7e9ea;">Clientes</h3>
-                <p style="font-size:10px;color:#71767b;margin-top:3px;">53 clientes · toca uno para ver detalles</p>
+                <p style="font-size:10px;color:#71767b;margin-top:3px;">53 clientes · selecciona para editar en lote</p>
             </div>
         </div>
+        
+        <div class="batch-bar" id="batchBar">
+            <span class="batch-count" id="batchCount">0 seleccionados</span>
+            <div class="batch-actions">
+                <select class="batch-btn source" id="batchSourceSelect" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;">
+                    <option value="2Matute">2Matute</option>
+                    <option value="Agencia">Agencia</option>
+                    <option value="Siderales">Siderales</option>
+                </select>
+                <button class="batch-btn source" onclick="batchChangeSource()">Cambiar categoria</button>
+                <button class="batch-btn clear" onclick="clearSelection()">Limpiar</button>
+            </div>
+        </div>
+        
+        <input type="text" class="search-box" id="searchBox" placeholder="Buscar cliente..." oninput="searchClients()">
         
         <div class="filters">
             <span class="filter active" onclick="filterByCat('all', this)" data-cat="all">Todos (53)</span>
@@ -323,6 +354,8 @@
     <div class="footer">Siderales Creative Studio · Limache, Chile · CLP</div>
     
     <script>
+        let selectedClients = new Set();
+        
         const clients = [
             {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"],services:["Video","Foto","Edicion"]},
             {name:"Camila Mili",source:"Agencia",total:1017084,count:11,phone:"",years:["2025","2026"],services:["Video","Foto","Drone"]},
@@ -465,15 +498,68 @@
         function renderClients(filterCat) {
             const list = document.getElementById('clientList');
             list.innerHTML = '';
-            const filtered = filterCat === 'all' ? clients : clients.filter(c => c.source === filterCat);
+            
+            let filtered = filterCat === 'all' ? clients : clients.filter(c => c.source === filterCat);
+            
+            // Apply search filter
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
+            if (searchTerm) {
+                filtered = filtered.filter(c => c.name.toLowerCase().includes(searchTerm));
+            }
             
             filtered.forEach(c => {
                 const src = getSourceColor(c.source);
-                list.innerHTML += '<div class="client-card" onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')">' +
-                    '<div class="client-avatar ' + src + '">' + getInitials(c.name) + '</div>' +
-                    '<div class="client-info"><div class="client-name">' + c.name + '</div><div class="client-meta"><span class="tag ' + src + '">' + c.source + '</span> <span style="margin-left:6px;color:#71767b">' + c.years.join('+') + '</span></div></div>' +
+                const isSelected = selectedClients.has(c.name);
+                list.innerHTML += '<div class="client-card' + (isSelected ? ' selected' : '') + '" data-name="' + c.name + '">' +
+                    '<input type="checkbox" class="client-checkbox" ' + (isSelected ? 'checked' : '') + ' onclick="toggleClientSelection(\'' + c.name.replace(/'/g, "\\'") + '\', event)">' +
+                    '<div class="client-avatar ' + src + '" onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')">' + getInitials(c.name) + '</div>' +
+                    '<div class="client-info" onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')"><div class="client-name">' + c.name + '</div><div class="client-meta"><span class="tag ' + src + '">' + c.source + '</span> <span style="margin-left:6px;color:#71767b">' + c.years.join('+') + '</span></div></div>' +
                     '<div class="client-stats"><div class="client-total">$' + c.total.toLocaleString('es-CL') + '</div><div class="client-frec">' + c.count + 'x</div></div></div>';
             });
+            
+            updateBatchBar();
+        }
+        
+        function toggleClientSelection(name, event) {
+            event.stopPropagation();
+            if (selectedClients.has(name)) {
+                selectedClients.delete(name);
+            } else {
+                selectedClients.add(name);
+            }
+            const card = document.querySelector('[data-name="' + name + '"]');
+            if (card) card.classList.toggle('selected', selectedClients.has(name));
+            updateBatchBar();
+        }
+        
+        function updateBatchBar() {
+            const count = selectedClients.size;
+            document.getElementById('batchCount').textContent = count + ' seleccionado' + (count !== 1 ? 's' : '');
+            document.getElementById('batchBar').classList.toggle('active', count > 0);
+        }
+        
+        function clearSelection() {
+            selectedClients.clear();
+            document.querySelectorAll('.client-card').forEach(card => card.classList.remove('selected'));
+            document.querySelectorAll('.client-checkbox').forEach(cb => cb.checked = false);
+            updateBatchBar();
+        }
+        
+        function batchChangeSource() {
+            const newSource = document.getElementById('batchSourceSelect').value;
+            selectedClients.forEach(name => {
+                const client = clients.find(c => c.name === name);
+                if (client) client.source = newSource;
+            });
+            clearSelection();
+            // Re-render with current filter
+            const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
+            renderClients(activeFilter);
+        }
+        
+        function searchClients() {
+            const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
+            renderClients(activeFilter);
         }
         
         function initCharts() {
