@@ -65,6 +65,7 @@
         .activity-amount { font-size: 14px; font-weight: 700; color: #10b981; }
         
         .tag { font-size: 9px; padding: 2px 8px; border-radius: 12px; display: inline-block; }
+        .tag.estudio { background: rgba(239,68,68,0.2); color: #ef4444; }
         .tag.matute { background: rgba(245,158,11,0.2); color: #f59e0b; }
         .tag.agencia { background: rgba(16,185,129,0.2); color: #10b981; }
         .tag.siderales { background: rgba(102,126,234,0.2); color: #667eea; }
@@ -85,7 +86,7 @@
         .client-card.selected { border-color: #10b981; background: rgba(16,185,129,0.1); }
         .client-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: #10b981; flex-shrink: 0; }
         .client-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
-        .client-avatar.matute { background: #f59e0b; }
+        .client-avatar.estudio { background: #ef4444; }
         .client-avatar.agencia { background: #10b981; }
         .client-avatar.siderales { background: #667eea; }
         .client-info { flex: 1; min-width: 0; }
@@ -116,6 +117,7 @@
         .modal-close { position: absolute; top: 12px; right: 12px; background: none; border: none; color: #71767b; font-size: 24px; cursor: pointer; width: 32px; height: 32px; }
         .modal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
         .modal-avatar { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: white; }
+        .modal-avatar.estudio { background: #ef4444; }
         .modal-avatar.matute { background: #f59e0b; }
         .modal-avatar.agencia { background: #10b981; }
         .modal-avatar.siderales { background: #667eea; }
@@ -148,6 +150,7 @@
         .top-rank { font-size: 12px; color: #71767b; width: 20px; text-align: center; }
         .top-bar { flex: 1; height: 24px; background: #2f3336; border-radius: 4px; overflow: hidden; }
         .top-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 10px; font-weight: 600; color: white; }
+        .top-bar-fill.estudio { background: #ef4444; }
         .top-bar-fill.matute { background: #f59e0b; }
         .top-bar-fill.agencia { background: #10b981; }
         .top-bar-fill.siderales { background: #667eea; }
@@ -168,7 +171,7 @@
 <body>
     <div class="header">
         <h1>Dashboard - Siderales Creative</h1>
-        <p style="color:#71767b;font-size:11px;">2Matute · Agencias · Siderales · CLP</p>
+        <p style="color:#71767b;font-size:11px;">Matute Studio · Agencias · Siderales · CLP</p>
     </div>
     
     <div class="tabs">
@@ -297,9 +300,10 @@
             <span class="batch-count" id="batchCount">0 seleccionados</span>
             <div class="batch-actions">
                 <select id="batchSourceSelect" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;font-size:11px;">
-                    <option value="2Matute">2Matute</option>
+                    <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
                     <option value="Siderales">Siderales</option>
+                    <option value="Estudio">Estudio</option>
                 </select>
                 <button class="batch-btn source" onclick="batchChangeSource()">Cambiar</button>
                 <button class="batch-btn clear" onclick="clearSelection()">Limpiar</button>
@@ -316,9 +320,10 @@
         
         <div class="filters">
             <span class="filter active" onclick="filterByCat('all', this)" data-cat="all">Todos (53)</span>
-            <span class="filter" onclick="filterByCat('2Matute', this)" data-cat="2Matute">2Matute (41)</span>
+            <span class="filter" onclick="filterByCat('Matute Studio', this)" data-cat="Matute Studio">Matute Studio (41)</span>
             <span class="filter" onclick="filterByCat('Agencia', this)" data-cat="Agencia">Agencias (8)</span>
             <span class="filter" onclick="filterByCat('Siderales', this)" data-cat="Siderales">Siderales (4)</span>
+            <span class="filter" onclick="filterByCat('Estudio', this)" data-cat="Estudio">Estudio (0)</span>
         </div>
         
         <div id="clientList"></div>
@@ -352,7 +357,7 @@
                 </div>
                 <div class="health-item">
                     <div class="health-value">$81.042</div>
-                    <div class="health-label">Cliente 2Matute promedio</div>
+                    <div class="health-label">Cliente Matute Studio promedio</div>
                 </div>
             </div>
         </div>
@@ -384,9 +389,10 @@
             <div class="modal-input-group">
                 <label>Categoria</label>
                 <select id="editSource">
-                    <option value="2Matute">2Matute Studio</option>
+                    <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
                     <option value="Siderales">Siderales Creative</option>
+                    <option value="Estudio">Estudio</option>
                 </select>
             </div>
             <button class="modal-save-btn" id="modalSaveBtn" onclick="saveClientData()">Guardar cambios</button>
@@ -415,9 +421,10 @@
             <div class="modal-input-group">
                 <label>Categoria</label>
                 <select id="newClientSource">
-                    <option value="2Matute">2Matute Studio</option>
+                    <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
                     <option value="Siderales">Siderales Creative</option>
+                    <option value="Estudio">Estudio</option>
                 </select>
             </div>
             <div class="modal-input-group">
@@ -446,102 +453,102 @@
         const clients = [
             {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"],services:["Video","Foto","Edicion"]},
             {name:"Camila Mili",source:"Agencia",total:1017084,count:11,phone:"",years:["2025","2026"],services:["Video","Foto","Drone"]},
-            {name:"Manuel Vargas",source:"2Matute",total:827731,count:2,phone:"+56 9 8902 0811",years:["2025"],services:["Foto","Boda"]},
+            {name:"Manuel Vargas",source:"Matute Studio",total:827731,count:2,phone:"+56 9 8902 0811",years:["2025"],services:["Foto","Boda"]},
             {name:"Vale Marion",source:"Agencia",total:345210,count:4,phone:"",years:["2025"],services:["Video","Foto"]},
             {name:"Luis Bravo",source:"Siderales",total:250000,count:1,phone:"+56 9 8312 8163",years:["2025"],services:["Video"]},
             {name:"Alejandro Gimon",source:"Agencia",total:235294,count:1,phone:"",years:["2025"],services:["Video"]},
             {name:"Maccarena",source:"Agencia",total:232300,count:3,phone:"+56 9 3105 2886",years:["2025","2026"],services:["Foto","Video"]},
-            {name:"Tere Laguna",source:"2Matute",total:185042,count:3,phone:"+56 9 8989 3336",years:["2025","2026"],services:["Foto","Sesion"]},
-            {name:"Javiera Fulla",source:"2Matute",total:155462,count:2,phone:"+56 9 7787 7010",years:["2025"],services:["Foto"]},
+            {name:"Tere Laguna",source:"Matute Studio",total:185042,count:3,phone:"+56 9 8989 3336",years:["2025","2026"],services:["Foto","Sesion"]},
+            {name:"Javiera Fulla",source:"Matute Studio",total:155462,count:2,phone:"+56 9 7787 7010",years:["2025"],services:["Foto"]},
             {name:"Samsung",source:"Siderales",total:178500,count:1,phone:"",years:["2026"],services:["Video","Drone"]},
             {name:"Domi Nique Huisack",source:"Siderales",total:179008,count:4,phone:"+56 9 5391 0108",years:["2025","2026"],services:["Video","Foto"]},
-            {name:"Joaquin Varas",source:"2Matute",total:109244,count:1,phone:"",years:["2025"],services:["Boda"]},
-            {name:"Nicole Ramos",source:"2Matute",total:120000,count:1,phone:"+56 9 9881 9732",years:["2025"],services:["Sesion"]},
+            {name:"Joaquin Varas",source:"Matute Studio",total:109244,count:1,phone:"",years:["2025"],services:["Boda"]},
+            {name:"Nicole Ramos",source:"Matute Studio",total:120000,count:1,phone:"+56 9 9881 9732",years:["2025"],services:["Sesion"]},
             {name:"Sergui",source:"Agencia",total:100840,count:1,phone:"+56 9 7865 8552",years:["2025"],services:["Video"]},
-            {name:"Elias Thorfit",source:"2Matute",total:100840,count:2,phone:"",years:["2025"],services:["Foto"]},
-            {name:"Dj Milo",source:"2Matute",total:96639,count:3,phone:"",years:["2025"],services:["Foto","Evento"]},
-            {name:"Cami Sotomayor",source:"2Matute",total:75000,count:1,phone:"",years:["2026"],services:["Sesion"]},
-            {name:"Dominic Sarmiento",source:"2Matute",total:70588,count:2,phone:"",years:["2025"],services:["Foto"]},
-            {name:"Daniela Riveros",source:"2Matute",total:69412,count:2,phone:"",years:["2025"],services:["Foto"]},
-            {name:"YANET",source:"2Matute",total:66500,count:1,phone:"",years:["2026"],services:["Sesion"]},
-            {name:"Marcela Fernandez",source:"2Matute",total:60000,count:1,phone:"",years:["2026"],services:["Sesion"]},
-            {name:"Alvaro Veas",source:"2Matute",total:58824,count:2,phone:"+56 9 6317 7921",years:["2025"],services:["Foto"]},
-            {name:"Nancy Ponce",source:"2Matute",total:58824,count:1,phone:"",years:["2025"],services:["Sesion"]},
-            {name:"Rashel Luque",source:"2Matute",total:58824,count:1,phone:"",years:["2025"],services:["Sesion"]},
-            {name:"Cesar Aguero",source:"2Matute",total:58824,count:2,phone:"",years:["2025"],services:["Foto"]},
-            {name:"Leo Camus",source:"2Matute",total:79832,count:2,phone:"+56 9 7453 4012",years:["2025"],services:["Foto","Evento"]},
-            {name:"Constanza Cornejo",source:"2Matute",total:45000,count:1,phone:"+56 9 7297 2793",years:["2025"],services:["Sesion"]},
-            {name:"Karina Influencer",source:"2Matute",total:60000,count:1,phone:"+56 9 5993 3000",years:["2026"],services:["Foto"]},
-            {name:"Nacho Peralta",source:"2Matute",total:60000,count:1,phone:"+56 9 6510 3641",years:["2026"],services:["Sesion"]},
+            {name:"Elias Thorfit",source:"Matute Studio",total:100840,count:2,phone:"",years:["2025"],services:["Foto"]},
+            {name:"Dj Milo",source:"Matute Studio",total:96639,count:3,phone:"",years:["2025"],services:["Foto","Evento"]},
+            {name:"Cami Sotomayor",source:"Matute Studio",total:75000,count:1,phone:"",years:["2026"],services:["Sesion"]},
+            {name:"Dominic Sarmiento",source:"Matute Studio",total:70588,count:2,phone:"",years:["2025"],services:["Foto"]},
+            {name:"Daniela Riveros",source:"Matute Studio",total:69412,count:2,phone:"",years:["2025"],services:["Foto"]},
+            {name:"YANET",source:"Matute Studio",total:66500,count:1,phone:"",years:["2026"],services:["Sesion"]},
+            {name:"Marcela Fernandez",source:"Matute Studio",total:60000,count:1,phone:"",years:["2026"],services:["Sesion"]},
+            {name:"Alvaro Veas",source:"Matute Studio",total:58824,count:2,phone:"+56 9 6317 7921",years:["2025"],services:["Foto"]},
+            {name:"Nancy Ponce",source:"Matute Studio",total:58824,count:1,phone:"",years:["2025"],services:["Sesion"]},
+            {name:"Rashel Luque",source:"Matute Studio",total:58824,count:1,phone:"",years:["2025"],services:["Sesion"]},
+            {name:"Cesar Aguero",source:"Matute Studio",total:58824,count:2,phone:"",years:["2025"],services:["Foto"]},
+            {name:"Leo Camus",source:"Matute Studio",total:79832,count:2,phone:"+56 9 7453 4012",years:["2025"],services:["Foto","Evento"]},
+            {name:"Constanza Cornejo",source:"Matute Studio",total:45000,count:1,phone:"+56 9 7297 2793",years:["2025"],services:["Sesion"]},
+            {name:"Karina Influencer",source:"Matute Studio",total:60000,count:1,phone:"+56 9 5993 3000",years:["2026"],services:["Foto"]},
+            {name:"Nacho Peralta",source:"Matute Studio",total:60000,count:1,phone:"+56 9 6510 3641",years:["2026"],services:["Sesion"]},
             {name:"Ernesto Biermoritz",source:"Siderales",total:90000,count:2,phone:"+56 9 5446 2988",years:["2025","2026"],services:["Video","Evento"]},
-            {name:"Isadora Olivares",source:"2Matute",total:13000,count:1,phone:"",years:["2026"],services:["Sesion"]},
-            {name:"Marilore",source:"2Matute",total:65000,count:1,phone:"+56 9 9133 1815",years:["2026"],services:["Sesion"]},
-            {name:"Esteban Contador",source:"2Matute",total:60000,count:1,phone:"+56 9 5634 1881",years:["2026"],services:["Sesion"]},
-            {name:"Mili pole sport",source:"2Matute",total:25000,count:1,phone:"+56 9 4245 2359",years:["2026"],services:["Foto"]},
-            {name:"Hilda",source:"2Matute",total:40000,count:1,phone:"+56 9 8205 0836",years:["2026"],services:["Sesion"]},
+            {name:"Isadora Olivares",source:"Matute Studio",total:13000,count:1,phone:"",years:["2026"],services:["Sesion"]},
+            {name:"Marilore",source:"Matute Studio",total:65000,count:1,phone:"+56 9 9133 1815",years:["2026"],services:["Sesion"]},
+            {name:"Esteban Contador",source:"Matute Studio",total:60000,count:1,phone:"+56 9 5634 1881",years:["2026"],services:["Sesion"]},
+            {name:"Mili pole sport",source:"Matute Studio",total:25000,count:1,phone:"+56 9 4245 2359",years:["2026"],services:["Foto"]},
+            {name:"Hilda",source:"Matute Studio",total:40000,count:1,phone:"+56 9 8205 0836",years:["2026"],services:["Sesion"]},
             {name:"Macca Makrim",source:"Agencia",total:80000,count:1,phone:"+56 9 3105 2886",years:["2026"],services:["Video"]},
             {name:"Javi Miss Biermoritz",source:"Siderales",total:22000,count:1,phone:"+56 9 9012 7988",years:["2026"],services:["Foto"]},
-            {name:"Montserrat Urmeneta Barra",source:"2Matute",total:35000,count:1,phone:"+56 9 9821 5348",years:["2026"],services:["Sesion"]},
-            {name:"Ignacio Sorrel",source:"2Matute",total:50000,count:1,phone:"+56 9 9315 4409",years:["2026"],services:["Sesion"]},
+            {name:"Montserrat Urmeneta Barra",source:"Matute Studio",total:35000,count:1,phone:"+56 9 9821 5348",years:["2026"],services:["Sesion"]},
+            {name:"Ignacio Sorrel",source:"Matute Studio",total:50000,count:1,phone:"+56 9 9315 4409",years:["2026"],services:["Sesion"]},
             {name:"Majo turismo",source:"Siderales",total:25000,count:1,phone:"+56 9 8307 4112",years:["2026"],services:["Video","Foto"]},
-            {name:"Cris turismo",source:"2Matute",total:20000,count:1,phone:"+56 9 6551 0998",years:["2026"],services:["Foto"]},
-            {name:"Fernanda Venegas",source:"2Matute",total:45000,count:1,phone:"+56 9 4401 3766",years:["2026"],services:["Sesion"]},
-            {name:"Karen Arancibia Espinoza",source:"2Matute",total:30000,count:1,phone:"+56 9 7996 3179",years:["2026"],services:["Sesion"]},
+            {name:"Cris turismo",source:"Matute Studio",total:20000,count:1,phone:"+56 9 6551 0998",years:["2026"],services:["Foto"]},
+            {name:"Fernanda Venegas",source:"Matute Studio",total:45000,count:1,phone:"+56 9 4401 3766",years:["2026"],services:["Sesion"]},
+            {name:"Karen Arancibia Espinoza",source:"Matute Studio",total:30000,count:1,phone:"+56 9 7996 3179",years:["2026"],services:["Sesion"]},
             {name:"Sofi B PROPALTA",source:"Agencia",total:35000,count:1,phone:"+56 9 9232 0199",years:["2026"],services:["Video"]},
-            {name:"Joaco El Padrino",source:"2Matute",total:55000,count:1,phone:"+56 9 5363 1935",years:["2026"],services:["Boda"]},
-            {name:"Celis",source:"2Matute",total:28000,count:1,phone:"+56 9 3764 1560",years:["2026"],services:["Sesion"]},
-            {name:"Pc Armado",source:"2Matute",total:35000,count:1,phone:"+56 9 2243 0962",years:["2026"],services:["Otro"]},
-            {name:"Danilo Sandoval",source:"2Matute",total:25000,count:1,phone:"+56 9 8537 3171",years:["2026"],services:["Sesion"]},
-            {name:"thefavourite",source:"2Matute",total:30000,count:1,phone:"+56 9 2054 9001",years:["2026"],services:["Sesion"]},
-            {name:"fotos reu familiar donde lucas",source:"2Matute",total:40000,count:1,phone:"+56 9 9282 9157",years:["2026"],services:["Evento"]},
-            {name:"Leonardo huisack",source:"2Matute",total:45000,count:1,phone:"+56 9 5905 3572",years:["2026"],services:["Sesion"]},
+            {name:"Joaco El Padrino",source:"Matute Studio",total:55000,count:1,phone:"+56 9 5363 1935",years:["2026"],services:["Boda"]},
+            {name:"Celis",source:"Matute Studio",total:28000,count:1,phone:"+56 9 3764 1560",years:["2026"],services:["Sesion"]},
+            {name:"Pc Armado",source:"Matute Studio",total:35000,count:1,phone:"+56 9 2243 0962",years:["2026"],services:["Otro"]},
+            {name:"Danilo Sandoval",source:"Matute Studio",total:25000,count:1,phone:"+56 9 8537 3171",years:["2026"],services:["Sesion"]},
+            {name:"thefavourite",source:"Matute Studio",total:30000,count:1,phone:"+56 9 2054 9001",years:["2026"],services:["Sesion"]},
+            {name:"fotos reu familiar donde lucas",source:"Matute Studio",total:40000,count:1,phone:"+56 9 9282 9157",years:["2026"],services:["Evento"]},
+            {name:"Leonardo huisack",source:"Matute Studio",total:45000,count:1,phone:"+56 9 5905 3572",years:["2026"],services:["Sesion"]},
             {name:"Ina Rojas CRINIMO",source:"Agencia",total:55000,count:1,phone:"+56 9 4988 3323",years:["2026"],services:["Video"]},
-            {name:"Paty g2000",source:"2Matute",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]},
+            {name:"Paty g2000",source:"Matute Studio",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]},
         ];
 
         // Real monthly entries data
         const monthlyEntries = {
             '2025': {
                 'Jun': [
-                    {client:'Varios 2Matute',total:494000,date:'15 Jun',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:494000,date:'15 Jun',source:"Matute Studio"},
                     {client:'Varios Agencia',total:180000,date:'20 Jun',source:'Agencia'},
                     {client:'Varios Siderales',total:95000,date:'22 Jun',source:'Siderales'},
                 ],
                 'Jul': [
                     {client:'Nimrod',total:450000,date:'5 Jul',source:'Agencia'},
-                    {client:'Manuel Vargas',total:550000,date:'10 Jul',source:'2Matute'},
+                    {client:'Manuel Vargas',total:550000,date:'10 Jul',source:"Matute Studio"},
                     {client:'Luis Bravo',total:250000,date:'15 Jul',source:'Siderales'},
-                    {client:'Varios 2Matute',total:125210,date:'20 Jul',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:125210,date:'20 Jul',source:"Matute Studio"},
                 ],
                 'Ago': [
                     {client:'Camila Mili',total:300000,date:'3 Ago',source:'Agencia'},
-                    {client:'Varios 2Matute',total:200000,date:'10 Ago',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:200000,date:'10 Ago',source:"Matute Studio"},
                     {client:'Domi Nique Huisack',total:85000,date:'18 Ago',source:'Siderales'},
                     {client:'Varios',total:58697,date:'25 Ago',source:'Agencia'},
                 ],
                 'Sep': [
                     {client:'Nimrod',total:680000,date:'8 Sep',source:'Agencia'},
-                    {client:'Tere Laguna',total:95000,date:'12 Sep',source:'2Matute'},
+                    {client:'Tere Laguna',total:95000,date:'12 Sep',source:"Matute Studio"},
                     {client:'Alejandro Gimon',total:235294,date:'20 Sep',source:'Agencia'},
-                    {client:'Varios 2Matute',total:23000,date:'28 Sep',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:23000,date:'28 Sep',source:"Matute Studio"},
                 ],
                 'Oct': [
                     {client:'Nimrod',total:780000,date:'5 Oct',source:'Agencia'},
                     {client:'Camila Mili',total:400000,date:'12 Oct',source:'Agencia'},
-                    {client:'Manuel Vargas',total:113950,date:'20 Oct',source:'2Matute'},
-                    {client:'Varios 2Matute',total:40000,date:'28 Oct',source:'2Matute'},
+                    {client:'Manuel Vargas',total:113950,date:'20 Oct',source:"Matute Studio"},
+                    {client:'Varios Matute Studio',total:40000,date:'28 Oct',source:"Matute Studio"},
                 ],
                 'Nov': [
-                    {client:'Varios 2Matute',total:350000,date:'8 Nov',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:350000,date:'8 Nov',source:"Matute Studio"},
                     {client:'Vale Marion',total:180000,date:'15 Nov',source:'Agencia'},
                     {client:'Maccarena',total:95000,date:'22 Nov',source:'Agencia'},
-                    {client:'Joaquin Varas',total:51807,date:'28 Nov',source:'2Matute'},
+                    {client:'Joaquin Varas',total:51807,date:'28 Nov',source:"Matute Studio"},
                 ],
                 'Dic': [
                     {client:'Nimrod',total:950000,date:'5 Dic',source:'Agencia'},
                     {client:'Camila Mili',total:550000,date:'10 Dic',source:'Agencia'},
-                    {client:'Manuel Vargas',total:380000,date:'15 Dic',source:'2Matute'},
-                    {client:'Varios 2Matute',total:199800,date:'22 Dic',source:'2Matute'},
+                    {client:'Manuel Vargas',total:380000,date:'15 Dic',source:"Matute Studio"},
+                    {client:'Varios Matute Studio',total:199800,date:'22 Dic',source:"Matute Studio"},
                 ],
             },
             '2026': {
@@ -549,60 +556,54 @@
                     {client:'Nimrod',total:680000,date:'5 Ene',source:'Agencia'},
                     {client:'Camila Mili',total:420000,date:'8 Ene',source:'Agencia'},
                     {client:'Samsung',total:178500,date:'12 Ene',source:'Siderales'},
-                    {client:'Tere Laguna',total:55000,date:'15 Ene',source:'2Matute'},
+                    {client:'Tere Laguna',total:55000,date:'15 Ene',source:"Matute Studio"},
                     {client:'Domi Nique Huisack',total:65000,date:'18 Ene',source:'Siderales'},
-                    {client:'Varios 2Matute',total:334400,date:'25 Ene',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:334400,date:'25 Ene',source:"Matute Studio"},
                 ],
                 'Feb': [
                     {client:'Nimrod',total:550000,date:'3 Feb',source:'Agencia'},
                     {client:'Camila Mili',total:380000,date:'10 Feb',source:'Agencia'},
                     {client:'Maccarena',total:95000,date:'15 Feb',source:'Agencia'},
-                    {client:'Varios 2Matute',total:595000,date:'22 Feb',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:595000,date:'22 Feb',source:"Matute Studio"},
                 ],
                 'Mar': [
                     {client:'Nimrod',total:420000,date:'5 Mar',source:'Agencia'},
                     {client:'Camila Mili',total:350000,date:'8 Mar',source:'Agencia'},
                     {client:'Domi Nique Huisack',total:85000,date:'12 Mar',source:'Siderales'},
-                    {client:'Varios 2Matute',total:652041,date:'20 Mar',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:652041,date:'20 Mar',source:"Matute Studio"},
                 ],
                 'Abr': [
-                    {client:'Varios 2Matute',total:280000,date:'5 Abr',source:'2Matute'},
+                    {client:'Varios Matute Studio',total:280000,date:'5 Abr',source:"Matute Studio"},
                     {client:'Vale Marion',total:165210,date:'12 Abr',source:'Agencia'},
                     {client:'Ernesto Biermoritz',total:60000,date:'18 Abr',source:'Siderales'},
                     {client:'Varios',total:100340,date:'25 Abr',source:'Agencia'},
                 ],
                 'May': [
                     {client:'Nimrod',total:350000,date:'5 May',source:'Agencia'},
-                    {client:'Karina Influencer',total:60000,date:'10 May',source:'2Matute'},
-                    {client:'Nacho Peralta',total:60000,date:'15 May',source:'2Matute'},
-                    {client:'Marilore',total:65000,date:'20 May',source:'2Matute'},
-                    {client:'Esteban Contador',total:60000,date:'22 May',source:'2Matute'},
-                    {client:'Hilda',total:40000,date:'25 May',source:'2Matute'},
-                    {client:'Joaco El Padrino',total:55000,date:'28 May',source:'2Matute'},
+                    {client:'Karina Influencer',total:60000,date:'10 May',source:"Matute Studio"},
+                    {client:'Nacho Peralta',total:60000,date:'15 May',source:"Matute Studio"},
+                    {client:'Marilore',total:65000,date:'20 May',source:"Matute Studio"},
+                    {client:'Esteban Contador',total:60000,date:'22 May',source:"Matute Studio"},
+                    {client:'Hilda',total:40000,date:'25 May',source:"Matute Studio"},
+                    {client:'Joaco El Padrino',total:55000,date:'28 May',source:"Matute Studio"},
                 ],
                 'Jun': [
-                    {client:'Fernanda Venegas',total:45000,date:'3 Jun',source:'2Matute'},
+                    {client:'Fernanda Venegas',total:45000,date:'3 Jun',source:"Matute Studio"},
                     {client:'Majo turismo',total:25000,date:'8 Jun',source:'Siderales'},
-                    {client:'Leonardo huisack',total:45000,date:'12 Jun',source:'2Matute'},
-                    {client:'Paty g2000',total:22000,date:'15 Jun',source:'2Matute'},
-                    {client:'Karen Arancibia',total:30000,date:'18 Jun',source:'2Matute'},
-                    {client:'Ignacio Sorrel',total:50000,date:'22 Jun',source:'2Matute'},
+                    {client:'Leonardo huisack',total:45000,date:'12 Jun',source:"Matute Studio"},
+                    {client:'Paty g2000',total:22000,date:'15 Jun',source:"Matute Studio"},
+                    {client:'Karen Arancibia',total:30000,date:'18 Jun',source:"Matute Studio"},
+                    {client:'Ignacio Sorrel',total:50000,date:'22 Jun',source:"Matute Studio"},
                 ],
             }
         };
 
         // Source distribution
         const sourceData = [
-            {label:'2Matute',value:8524286,color:'#f59e0b'},
+            {label:'Matute Studio',value:8524286,color:'#f59e0b'},
             {label:'Agencias',value:4135368,color:'#10b981'},
-            {label:'Siderales',value:519508,color:'#667eea'}
-        ];
-
-        // Source distribution
-        const sourceData = [
-            {label:'2Matute',value:8524286,color:'#f59e0b'},
-            {label:'Agencias',value:4135368,color:'#10b981'},
-            {label:'Siderales',value:519508,color:'#667eea'}
+            {label:'Siderales',value:519508,color:'#667eea'},
+            {label:'Estudio',value:0,color:'#ef4444'}
         ];
 
         // Init
@@ -843,7 +844,7 @@
             let html = '';
             top5.forEach((c, i) => {
                 const pct = Math.round((c.total / maxTotal) * 100);
-                const srcClass = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : 'matute';
+                const srcClass = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : c.source === 'Estudio' ? 'estudio' : 'matute';
                 html += '<div class="top-client-item">' +
                     '<span class="top-rank">' + (i + 1) + '</span>' +
                     '<div class="top-bar"><div class="top-bar-fill ' + srcClass + '" style="width:' + pct + '%">' + c.name.substring(0, 15) + '</div></div>' +
@@ -887,7 +888,7 @@
             
             let html = '';
             entries.forEach(r => {
-                const srcClass = r.source === 'Agencia' ? 'agencia' : r.source === 'Siderales' ? 'siderales' : 'matute';
+                const srcClass = r.source === 'Agencia' ? 'agencia' : r.source === 'Siderales' ? 'siderales' : r.source === 'Estudio' ? 'estudio' : 'matute';
                 html += '<div class="activity-item">' +
                     '<div class="activity-info"><div class="activity-name">' + r.client + '</div><div class="activity-meta"><span class="tag ' + srcClass + '">' + r.source + '</span> · ' + r.date + '</div></div>' +
                     '<div class="activity-amount">$' + r.total.toLocaleString('es-CL') + '</div></div>';
@@ -950,7 +951,7 @@
         }
 
         function getSourceColor(source) {
-            return source === 'Agencia' ? 'agencia' : source === 'Siderales' ? 'siderales' : 'matute';
+            return source === 'Agencia' ? 'agencia' : source === 'Siderales' ? 'siderales' : source === 'Estudio' ? 'estudio' : 'matute';
         }
 
         function getInitials(name) {
@@ -1099,7 +1100,7 @@
         function openAddClientModal() {
             document.getElementById('newClientName').value = '';
             document.getElementById('newClientPhone').value = '';
-            document.getElementById('newClientSource').value = '2Matute';
+            document.getElementById('newClientSource').value = 'Siderales';
             document.getElementById('newClientTotal').value = '';
             document.getElementById('newClientServices').value = '';
             document.getElementById('duplicateAlert').style.display = 'none';
@@ -1113,10 +1114,22 @@
         function addNewClient() {
             const name = document.getElementById('newClientName').value.trim();
             const phone = document.getElementById('newClientPhone').value.trim();
-            const source = document.getElementById('newClientSource').value;
+            let source = document.getElementById('newClientSource').value;
             const total = parseInt(document.getElementById('newClientTotal').value) || 0;
             const servicesStr = document.getElementById('newClientServices').value.trim();
             const services = servicesStr ? servicesStr.split(',').map(s => s.trim()) : ['Otro'];
+            
+            // Smart default category logic for Matute Studio:
+            // - Photo session clients (App 40.000 plan) → Estudio
+            // - Other Matute clients → Siderales
+            if (source === 'Matute Studio') {
+                const isSession = services.some(s => 
+                    s.toLowerCase().includes('sesion') || 
+                    s.toLowerCase().includes('app') ||
+                    name.toLowerCase().includes('app')
+                );
+                source = isSession ? 'Estudio' : 'Siderales';
+            }
             
             if (!name) {
                 alert('El nombre es obligatorio');
@@ -1165,12 +1178,12 @@
 
         function updateFilterCounts() {
             const countAll = clients.length;
-            const countMatute = clients.filter(c => c.source === '2Matute').length;
+            const countMatute = clients.filter(c => c.source === 'Matute Studio').length;
             const countAgencia = clients.filter(c => c.source === 'Agencia').length;
             const countSiderales = clients.filter(c => c.source === 'Siderales').length;
             
             document.querySelector('[data-cat="all"]').textContent = 'Todos (' + countAll + ')';
-            document.querySelector('[data-cat="2Matute"]').textContent = '2Matute (' + countMatute + ')';
+            document.querySelector('[data-cat="Matute Studio"]').textContent = 'Matute Studio (' + countMatute + ')';
             document.querySelector('[data-cat="Agencia"]').textContent = 'Agencias (' + countAgencia + ')';
             document.querySelector('[data-cat="Siderales"]').textContent = 'Siderales (' + countSiderales + ')';
         }
@@ -1206,7 +1219,7 @@
                     if (cols.length < 3) continue;
                     
                     const name = cols[0].replace(/"/g, '').trim();
-                    const source = cols[1].replace(/"/g, '').trim() || '2Matute';
+                    const source = cols[1].replace(/"/g, '').trim() || 'Siderales';
                     const total = parseInt(cols[2].replace(/"/g, '').trim()) || 0;
                     
                     if (clients.find(c => c.name.toLowerCase() === name.toLowerCase())) {
