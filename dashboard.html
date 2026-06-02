@@ -623,16 +623,8 @@
             }
         }
         
-        function resetToOriginal() {
-            localStorage.removeItem('siderales_clients');
-            localStorage.removeItem('siderales_notes');
-            location.reload();
-        }
-        
-        // Load from localStorage on init - Dashboard is source of truth
-        loadFromStorage();
-        
-        const clients = [
+        // Default clients - only used if localStorage is empty
+        const DEFAULT_CLIENTS = [
             {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"],services:["Video","Foto","Edicion"]},
             {name:"Camila Mili",source:"Agencia",total:1017084,count:11,phone:"",years:["2025","2026"],services:["Video","Foto","Drone"]},
             {name:"Manuel Vargas",source:"Matute Studio",total:827731,count:2,phone:"+56 9 8902 0811",years:["2025"],services:["Foto","Boda"]},
@@ -685,8 +677,61 @@
             {name:"fotos reu familiar donde lucas",source:"Matute Studio",total:40000,count:1,phone:"+56 9 9282 9157",years:["2026"],services:["Evento"]},
             {name:"Leonardo huisack",source:"Matute Studio",total:45000,count:1,phone:"+56 9 5905 3572",years:["2026"],services:["Sesion"]},
             {name:"Ina Rojas CRINIMO",source:"Agencia",total:55000,count:1,phone:"+56 9 4988 3323",years:["2026"],services:["Video"]},
-            {name:"Paty g2000",source:"Matute Studio",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]},
+            {name:"Paty g2000",source:"Matute Studio",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]}
         ];
+        
+        // Clients array - MUST be defined before loadFromStorage
+        let clients = [];
+        
+        // Save to localStorage - ALWAYS saves current state
+        function saveToStorage() {
+            try {
+                localStorage.setItem('siderales_clients', JSON.stringify(clients));
+                localStorage.setItem('siderales_notes', JSON.stringify(clientNotes));
+                console.log('Saved', clients.length, 'clients to localStorage');
+            } catch(e) {
+                console.log('Storage save failed:', e);
+            }
+        }
+        
+        // Load from localStorage - NEVER overwrites saved data
+        function loadFromStorage() {
+            try {
+                const stored = localStorage.getItem('siderales_clients');
+                const storedNotes = localStorage.getItem('siderales_notes');
+                
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        clients = parsed;
+                        console.log('Loaded', clients.length, 'clients from localStorage');
+                        return;
+                    }
+                }
+                
+                // No saved data - use defaults
+                clients = JSON.parse(JSON.stringify(DEFAULT_CLIENTS));
+                saveToStorage();
+                console.log('First time - saved defaults');
+                
+            } catch(e) {
+                console.log('Storage load failed:', e);
+                clients = JSON.parse(JSON.stringify(DEFAULT_CLIENTS));
+            }
+            
+            if (storedNotes) {
+                clientNotes = JSON.parse(storedNotes);
+            }
+        }
+        
+        function resetToOriginal() {
+            localStorage.removeItem('siderales_clients');
+            localStorage.removeItem('siderales_notes');
+            location.reload();
+        }
+        
+        // Initialize - load saved data FIRST
+        loadFromStorage();
 
         // Real monthly entries data
         const monthlyEntries = {
