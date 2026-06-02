@@ -3,321 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashbord - Siderales Creative Studio</title>
+    <title>Dashboard - Siderales Creative Studio</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0f1419; --card: #1c1f23; --border: #2f3336; --text: #e7e9ea;
-            --muted: #71767b; --matute: #f59e0b; --agencia: #10b981;
-            --siderales: #667eea; --green: #10b981; --red: #ef4444;
-            --purple: #667eea; --orange: #f59e0b;
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; }
+        body { font-family: 'Inter', sans-serif; background: #0f1419; color: #e7e9ea; min-height: 100vh; padding: 24px; }
         
-        .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-        .topbar h1 { font-size: 22px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .topbar .meta { font-size: 12px; color: var(--muted); }
-        .sync-btn { background: #667eea; color: white; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
-        .sync-btn:hover { background: #5a70d4; }
-        .sync-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        
-        .tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab { padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; background: var(--card); border: 1px solid var(--border); color: var(--muted); transition: all 0.2s; }
-        .tab:hover { border-color: var(--purple); color: var(--text); }
-        .tab.active { background: var(--purple); color: white; border-color: var(--purple); }
+        .tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid #2f3336; padding-bottom: 16px; flex-wrap: wrap; }
+        .tab { padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; background: #1c1f23; border: 1px solid #2f3336; color: #71767b; }
+        .tab:hover { border-color: #667eea; color: #e7e9ea; }
+        .tab.active { background: #667eea; color: white; border-color: #667eea; }
         
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-        .grid-full { grid-column: 1 / -1; }
-        .card { background: var(--card); border-radius: 14px; padding: 20px; border: 1px solid var(--border); }
-        .card-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+        .header { text-align: center; margin-bottom: 32px; }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: #71767b; font-size: 14px; }
         
-        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
-        .metric { background: var(--card); border-radius: 12px; padding: 16px; text-align: center; border: 1px solid var(--border); }
-        .metric-value { font-size: 24px; font-weight: 700; }
-        .metric-label { font-size: 10px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
-        .metric-value.green { color: var(--green); }
-        .metric-value.purple { color: var(--purple); }
-        .metric-value.orange { color: var(--orange); }
-        .metric-value.red { color: var(--red); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; max-width: 1600px; margin: 0 auto; }
+        .card { background: #1c1f23; border-radius: 16px; padding: 24px; border: 1px solid #2f3336; }
+        .card-title { font-size: 12px; color: #71767b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
         
-        .src-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .src-card { border-radius: 12px; padding: 16px; border: 2px solid; text-align: center; }
-        .src-card.matute { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.3); }
-        .src-card.agencia { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); }
-        .src-card.siderales { background: rgba(102,126,234,0.08); border-color: rgba(102,126,234,0.3); }
-        .src-card h4 { font-size: 14px; margin-bottom: 6px; }
-        .src-card .rev { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-        .src-card .sub { font-size: 11px; color: var(--muted); }
-        .src-card.matute .rev { color: var(--matute); }
-        .src-card.agencia .rev { color: var(--agencia); }
-        .src-card.siderales .rev { color: var(--purple); }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .metric { background: #1c1f23; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #2f3336; }
+        .metric-value { font-size: 28px; font-weight: 700; }
+        .metric-value.green { color: #10b981; }
+        .metric-value.purple { color: #667eea; }
+        .metric-value.orange { color: #f59e0b; }
+        .metric-value.red { color: #ef4444; }
+        .metric-label { font-size: 11px; color: #71767b; text-transform: uppercase; margin-top: 4px; }
         
-        table { width: 100%; border-collapse: collapse; font-size: 12px; }
-        th { text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--border); color: var(--muted); text-transform: uppercase; font-size: 10px; }
-        td { padding: 10px; border-bottom: 1px solid var(--border); }
-        tr:hover { background: rgba(102,126,234,0.08); }
+        .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .source-card { background: linear-gradient(135deg, #1c1f23 0%, #252a2f 100%); border-radius: 12px; padding: 20px; border: 1px solid #2f3336; text-align: center; transition: transform 0.2s; }
+        .source-card:hover { transform: translateY(-2px); }
+        .source-card.matute { border-color: rgba(245,158,11,0.4); }
+        .source-card.agencia { border-color: rgba(16,185,129,0.4); }
+        .source-card.siderales { border-color: rgba(102,126,234,0.4); }
+        .source-card h3 { font-size: 16px; margin-bottom: 8px; }
+        .source-card .type { font-size: 11px; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+        .source-card .type.matute { background: rgba(245,158,11,0.15); color: #f59e0b; }
+        .source-card .type.agencia { background: rgba(16,185,129,0.15); color: #10b981; }
+        .source-card .type.siderales { background: rgba(102,126,234,0.15); color: #667eea; }
+        .source-card .desc { font-size: 12px; color: #71767b; line-height: 1.6; }
+        .source-card .revenue { margin-top: 16px; font-size: 22px; font-weight: 700; }
+        .source-card .clients { font-size: 11px; color: #71767b; margin-top: 4px; }
         
-        .tag { font-size: 10px; padding: 3px 8px; border-radius: 10px; display: inline-block; }
-        .tag.matute { background: rgba(245,158,11,0.2); color: var(--matute); }
-        .tag.agencia { background: rgba(16,185,129,0.2); color: var(--agencia); }
-        .tag.siderales { background: rgba(102,126,234,0.2); color: var(--purple); }
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 10px 12px; border-bottom: 2px solid #2f3336; color: #71767b; text-transform: uppercase; font-size: 11px; }
+        td { padding: 12px; border-bottom: 1px solid #2f3336; }
+        tr:hover { background: rgba(102,126,234,0.1); }
         
-        .amount { font-weight: 600; }
-        .amount.green { color: var(--green); }
-        .amount.red { color: var(--red); }
+        .tag { font-size: 10px; padding: 4px 10px; border-radius: 12px; display: inline-block; }
+        .tag.matute { background: rgba(245,158,11,0.2); color: #f59e0b; }
+        .tag.agencia { background: rgba(16,185,129,0.2); color: #10b981; }
+        .tag.siderales { background: rgba(102,126,234,0.2); color: #667eea; }
         
-        .bar { height: 6px; border-radius: 3px; background: var(--border); margin-top: 10px; overflow: hidden; }
-        .bar-fill { height: 100%; border-radius: 3px; }
+        .amount { font-weight: 600; color: #10b981; }
+        .amount.low { color: #ef4444; }
         
-        .filters { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
-        .filter { padding: 5px 12px; border-radius: 16px; font-size: 11px; cursor: pointer; background: var(--border); color: var(--muted); border: 1px solid transparent; }
-        .filter:hover { border-color: var(--purple); }
-        .filter.active { background: var(--purple); color: white; }
+        .search-box { background: #2f3336; border: none; border-radius: 8px; padding: 10px 16px; color: #e7e9ea; font-size: 14px; width: 100%; max-width: 300px; margin-bottom: 16px; }
+        .search-box:focus { outline: 2px solid #667eea; }
         
-        .client-card { background: #252a2f; border-radius: 10px; padding: 12px; margin-bottom: 10px; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border 0.2s; }
-        .client-card:hover { border-color: var(--purple); }
-        .client-card.hidden { display: none; }
-        .client-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
-        .client-avatar.matute { background: var(--matute); }
-        .client-avatar.agencia { background: var(--agencia); }
-        .client-avatar.siderales { background: var(--purple); }
+        .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter { padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; background: #2f3336; color: #71767b; border: 1px solid transparent; }
+        .filter:hover { border-color: #667eea; }
+        .filter.active { background: #667eea; color: white; }
+        
+        .chart-container { height: 300px; margin-top: 16px; }
+        
+        .client-card { background: #252a2f; border-radius: 12px; padding: 16px; margin-bottom: 12px; border: 1px solid #2f3336; display: flex; align-items: center; gap: 16px; cursor: pointer; transition: all 0.2s; }
+        .client-card:hover { border-color: #667eea; }
+        .client-card.filtered { display: none; }
+        .client-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: white; flex-shrink: 0; }
+        .client-avatar.matute { background: #f59e0b; }
+        .client-avatar.agencia { background: #10b981; }
+        .client-avatar.siderales { background: #667eea; }
+        .client-avatar.unassigned { background: #71767b; }
         .client-info { flex: 1; min-width: 0; }
-        .client-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .client-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+        .client-name { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .client-meta { font-size: 12px; color: #71767b; }
         .client-stats { text-align: right; flex-shrink: 0; }
-        .client-total { font-size: 16px; font-weight: 700; color: var(--green); }
-        .client-freq { font-size: 10px; color: var(--muted); }
+        .client-total { font-size: 18px; font-weight: 700; color: #10b981; }
+        .client-frec { font-size: 11px; color: #71767b; }
         
-        .insight { background: rgba(102,126,234,0.08); border: 1px solid rgba(102,126,234,0.25); border-radius: 10px; padding: 16px; }
-        .insight h4 { color: var(--purple); font-size: 13px; margin-bottom: 10px; }
-        .insight p { font-size: 12px; line-height: 1.8; color: var(--muted); }
-        .insight strong { color: var(--green); }
+        .count-badge { background: #2f3336; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 8px; }
         
-        .chart-container { height: 250px; margin-top: 12px; }
+        .insight { background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%); border: 1px solid rgba(102,126,234,0.3); border-radius: 12px; padding: 20px; margin-top: 24px; }
+        .insight h4 { color: #667eea; margin-bottom: 12px; }
+        .insight p { font-size: 13px; line-height: 1.7; }
         
-        .search-box { background: var(--border); border: none; border-radius: 8px; padding: 8px 14px; color: var(--text); font-size: 13px; width: 100%; max-width: 280px; }
-        .search-box:focus { outline: 2px solid var(--purple); }
+        .footer { text-align: center; margin-top: 32px; color: #71767b; font-size: 12px; }
         
-        .badge { background: var(--red); color: white; font-size: 10px; padding: 2px 6px; border-radius: 6px; font-weight: 700; }
-        .badge.warning { background: var(--orange); }
-        .badge.success { background: var(--green); }
+        .bar { height: 6px; border-radius: 3px; background: #2f3336; margin-top: 8px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
         
-        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-        .section-header h3 { font-size: 13px; font-weight: 600; }
+        .contact-info { font-size: 11px; color: #71767b; margin-top: 4px; }
         
-        .count-badge { background: var(--border); padding: 1px 7px; border-radius: 10px; font-size: 10px; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .section-header h3 { font-size: 14px; color: #e7e9ea; }
         
-        .export-btn { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; }
-        .export-btn:hover { border-color: var(--purple); color: var(--text); }
-        
-        .iva-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-        .iva-card { background: var(--card); border-radius: 12px; padding: 16px; border: 1px solid var(--border); }
-        .iva-card h4 { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
-        .iva-card .value { font-size: 20px; font-weight: 700; }
-        
-        .service-list { display: flex; flex-direction: column; gap: 8px; }
-        .service-row { display: flex; align-items: center; gap: 10px; background: var(--card); border-radius: 8px; padding: 10px 12px; border: 1px solid var(--border); }
-        .service-row .icon { font-size: 18px; }
-        .service-row .name { flex: 1; font-size: 13px; font-weight: 500; }
-        .service-row .total { font-size: 14px; font-weight: 700; color: var(--green); }
-        .service-row .count { font-size: 11px; color: var(--muted); }
-        
-        .month-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
-        .month-card { background: var(--card); border-radius: 10px; padding: 12px; border: 1px solid var(--border); text-align: center; }
-        .month-card .month { font-size: 11px; color: var(--muted); text-transform: uppercase; }
-        .month-card .total { font-size: 15px; font-weight: 700; color: var(--green); margin-top: 4px; }
-        .month-card .count { font-size: 10px; color: var(--muted); }
-        
-        .table-container { overflow-x: auto; max-height: 400px; overflow-y: auto; }
-        .table-container::-webkit-scrollbar { width: 6px; height: 6px; }
-        .table-container::-webkit-scrollbar-track { background: var(--card); }
-        .table-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-        
-        @media (max-width: 600px) {
-            .src-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
             .grid { grid-template-columns: 1fr; }
+            .source-grid { grid-template-columns: 1fr; }
             .metric-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
-    <div class="topbar">
-        <div>
-            <h1>Dashbord - Siderales Creative Studio</h1>
-            <div class="meta">Ultima actualizacion: <span id="syncDate">-</span></div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;">
-            <button class="sync-btn" onclick="runSync()" id="syncBtn">
-                <span>⟳</span> Sincronizar
-            </button>
-            <button class="export-btn" onclick="exportToCSV()">📥 Exportar CSV</button>
-        </div>
+    <div class="header">
+        <h1>📊 Dashboard - Siderales Creative Studio</h1>
+        <p>2Matute Studio · Siderales Creative · Freelance · Jun 2025 — Jun 2026 · CLP</p>
     </div>
     
     <div class="tabs">
-        <button class="tab active" onclick="showTab('resumen')">📊 Resumen</button>
-        <button class="tab" onclick="showTab('iva')">🧾 IVA</button>
-        <button class="tab" onclick="showTab('servicios')">🎬 Servicios</button>
-        <button class="tab" onclick="showTab('clientes')">👥 Clientes</button>
-        <button class="tab" onclick="showTab('evolucion')">📈 Evolucion</button>
+        <button class="tab active" onclick="showTab('resumen')">📈 Resumen</button>
+        <button class="tab" onclick="showTab('fuentes')">🏢 Fuentes</button>
+        <button class="tab" onclick="showTab('clientes')">👥 Clientes <span class="count-badge">53</span></button>
+        <button class="tab" onclick="showTab('evolucion')">📅 Evolucion</button>
     </div>
     
-    <!-- RESUMEN -->
+    <!-- TAB: RESUMEN -->
     <div id="resumen" class="tab-content active">
-        <div class="metric-grid" style="max-width:1100px;margin:0 auto 20px;">
+        <div class="metric-grid" style="max-width: 1200px; margin: 0 auto 32px;">
             <div class="metric">
-                <div class="metric-value green" id="mTotal">-</div>
-                <div class="metric-label">Total Bruto</div>
+                <div class="metric-value green">$13.180.470</div>
+                <div class="metric-label">Total 13 meses CLP</div>
             </div>
             <div class="metric">
-                <div class="metric-value purple" id="mNeto">-</div>
-                <div class="metric-label">Neto (sin IVA)</div>
+                <div class="metric-value purple">$6.735.791</div>
+                <div class="metric-label">2026 (6 meses) CLP</div>
             </div>
             <div class="metric">
-                <div class="metric-value orange" id="mIVA">-</div>
-                <div class="metric-label">IVA Recaudado</div>
+                <div class="metric-value orange">$6.444.679</div>
+                <div class="metric-label">2025 (7 meses) CLP</div>
             </div>
             <div class="metric">
-                <div class="metric-value" id="mEntries">-</div>
-                <div class="metric-label">Entradas</div>
+                <div class="metric-value">$1.013.113</div>
+                <div class="metric-label">Promedio mensual CLP</div>
             </div>
             <div class="metric">
-                <div class="metric-value" id="mClients">-</div>
-                <div class="metric-label">Clientes</div>
+                <div class="metric-value">53</div>
+                <div class="metric-label">Clientes unicos</div>
             </div>
         </div>
         
-        <div class="grid" style="max-width:1100px;margin:0 auto;">
-            <div class="card grid-full">
+        <!-- Source Breakdown -->
+        <div class="grid">
+            <div class="card" style="grid-column: 1 / -1;">
                 <div class="card-title">🏢 Ingresos por Fuente</div>
-                <div class="src-grid" id="srcGrid"></div>
+                <div class="source-grid">
+                    <div class="source-card matute">
+                        <h3>2Matute Studio</h3>
+                        <span class="type matute">Estudio Fotografico</span>
+                        <div class="desc">Sesiones, bodas, eventos<br>Personas con nombre y fotografia<br>Limache, Chile</div>
+                        <div class="revenue" style="color:#f59e0b;">$8.524.286 CLP</div>
+                        <div class="clients">41 clientes (77%)</div>
+                        <div class="bar"><div class="bar-fill" style="width:77%;background:#f59e0b;"></div></div>
+                    </div>
+                    <div class="source-card agencia">
+                        <h3>Agencias</h3>
+                        <span class="type agencia">Propalta / Crinimo / Makrim</span>
+                        <div class="desc">Propalta (Nimrod)<br>Crinimo (Fran, Ina)<br>SERCAR (Sergio) / Makrim (Macca)</div>
+                        <div class="revenue" style="color:#10b981;">$4.135.368 CLP</div>
+                        <div class="clients">8 clientes (31%)</div>
+                        <div class="bar"><div class="bar-fill" style="width:31%;background:#10b981;"></div></div>
+                    </div>
+                    <div class="source-card siderales">
+                        <h3>Siderales Creative</h3>
+                        <span class="type siderales">Freelance / Eventos</span>
+                        <div class="desc">Full Inyeccion Vina<br>Luis Bravo, Samsung<br>Video drone, corporativo</div>
+                        <div class="revenue" style="color:#667eea;">$519.508 CLP</div>
+                        <div class="clients">4 clientes (4%)</div>
+                        <div class="bar"><div class="bar-fill" style="width:4%;background:#667eea;"></div></div>
+                    </div>
+                </div>
             </div>
             
-            <div class="card grid-full">
-                <div class="section-header">
-                    <h3>📅 Evolucion Mensual</h3>
-                    <span class="count-badge" id="monthCount">- meses</span>
+            <div class="card">
+                <div class="card-title">📈 Evolucion 2026</div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Mes</th><th>Total</th><th>Entradas</th><th>Estado</th></tr></thead>
+                        <tbody>
+                            <tr><td>Ene 2026</td><td class="amount">$1.732.900</td><td>13</td><td><span class="tag matute">Mejor mes</span></td></tr>
+                            <tr><td>Feb 2026</td><td class="amount">$1.620.000</td><td>6</td><td>-</td></tr>
+                            <tr><td>Mar 2026</td><td class="amount">$1.507.041</td><td>13</td><td>-</td></tr>
+                            <tr><td>Abr 2026</td><td class="amount low">$605.550</td><td>10</td><td><span class="tag" style="background:rgba(239,68,68,0.2);color:#ef4444">Caida -65%</span></td></tr>
+                            <tr><td>May 2026</td><td class="amount">$1.010.800</td><td>7</td><td><span class="tag" style="background:rgba(16,185,129,0.2);color:#10b981">Recuperacion</span></td></tr>
+                            <tr><td>Jun 2026</td><td class="amount">$258.500</td><td>2</td><td><span class="tag" style="background:rgba(113,118,123,0.2);color:#71767b">Incompleto</span></td></tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="month-grid" id="monthGrid"></div>
             </div>
             
-            <div class="card grid-full">
-                <div class="card-title">📊 Proyeccion Mensual</div>
-                <div class="chart-container">
-                    <canvas id="projectionChart"></canvas>
+            <div class="card">
+                <div class="card-title">📅 2025 Resumen</div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Mes</th><th>Total</th></tr></thead>
+                        <tbody>
+                            <tr><td>Dic 2025</td><td class="amount">$2.079.800</td></tr>
+                            <tr><td>Oct 2025</td><td class="amount">$1.293.950</td></tr>
+                            <tr><td>Sep 2025</td><td class="amount">$933.613</td></tr>
+                            <tr><td>Jul 2025</td><td class="amount">$925.210</td></tr>
+                            <tr><td>Ago 2025</td><td class="amount">$643.697</td></tr>
+                            <tr><td>Nov 2025</td><td class="amount">$676.807</td></tr>
+                            <tr><td>Jun 2025</td><td class="amount">$494.000</td></tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- IVA -->
-    <div id="iva" class="tab-content">
-        <div class="iva-grid" style="max-width:900px;margin:0 auto 20px;">
-            <div class="iva-card">
-                <h4>IVA Recaudado Total</h4>
-                <div class="value" style="color:var(--orange);" id="ivaTotal">-</div>
-                <div style="font-size:11px;color:var(--muted);margin-top:4px;">19% del total bruto</div>
-            </div>
-            <div class="iva-card">
-                <h4>IVA Declarado al SII</h4>
-                <div class="value" style="color:var(--green);" id="ivaDeclarado">-</div>
-                <div style="font-size:11px;color:var(--muted);margin-top:4px;">Entradas marcadas "Si"</div>
-            </div>
-            <div class="iva-card">
-                <h4>IVA Pendiente</h4>
-                <div class="value" style="color:var(--red);" id="ivaPendiente">-</div>
-                <div style="font-size:11px;color:var(--muted);margin-top:4px;">Por declarar al SII</div>
             </div>
         </div>
         
-        <div class="grid" style="max-width:900px;margin:0 auto;">
+        <div class="card" style="max-width: 1200px; margin: 24px auto;">
+            <div class="card-title">📊 Grafico de Ingresos 2026</div>
+            <div class="chart-container">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TAB: FUENTES -->
+    <div id="fuentes" class="tab-content">
+        <div class="grid">
             <div class="card">
-                <div class="section-header">
-                    <h3>📋 Entradas con IVA declarado</h3>
-                    <span class="badge success" id="ivaDeclaradoCount">0</span>
-                </div>
+                <div class="card-title">🏢 Las 3 Fuentes</div>
                 <div class="table-container">
                     <table>
-                        <thead><tr><th>Cliente</th><th>Concepto</th><th>Total</th><th>IVA</th><th>Mes</th></tr></thead>
-                        <tbody id="ivaDeclaradoTable"></tbody>
+                        <thead><tr><th>Fuente</th><th>Total</th><th>Clientes</th><th>%</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="tag matute">2Matute Studio</span></td>
+                                <td class="amount">$8.524.286</td>
+                                <td>41</td>
+                                <td>64.7%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag agencia">Agencias</span></td>
+                                <td class="amount">$4.135.368</td>
+                                <td>8</td>
+                                <td>31.4%</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag siderales">Siderales Creative</span></td>
+                                <td class="amount">$519.508</td>
+                                <td>4</td>
+                                <td>3.9%</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
             
             <div class="card">
-                <div class="section-header">
-                    <h3>⚠️ Entradas sin IVA Declarado</h3>
-                    <span class="badge warning" id="ivaPendienteCount">0</span>
-                </div>
-                <div class="insight" style="margin-bottom:16px;">
-                    <p>Estas entradas tienen <strong>IVA incluido en el total</strong> pero no fueron marcadas como declaradas al SII. Si superas el monto minimo para declarar, asegurate de incluirlas.</p>
-                </div>
+                <div class="card-title">📋 Agencias Identificadas</div>
                 <div class="table-container">
                     <table>
-                        <thead><tr><th>Cliente</th><th>Concepto</th><th>Total</th><th>IVA</th><th>Mes</th></tr></thead>
-                        <tbody id="ivaPendienteTable"></tbody>
+                        <thead><tr><th>Agencia</th><th>Contacto</th><th>Entradas</th><th>Total</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Propalta</strong></td><td>Nimrod +56 9 9874 8782</td><td>11</td><td class="amount">$2.855.648</td></tr>
+                            <tr><td><strong>Vale Marion (Miura)</strong></td><td>-</td><td>4</td><td class="amount">$345.210</td></tr>
+                            <tr><td><strong>Maccarena (Makrim)</strong></td><td>Macca +56 9 3105 2886</td><td>3</td><td class="amount">$232.300</td></tr>
+                            <tr><td><strong>Sergui (SERCAR)</strong></td><td>Sergio +56 9 7865 8552</td><td>1</td><td class="amount">$100.840</td></tr>
+                            <tr><td><strong>Camila Mili (Punto Zero)</strong></td><td>-</td><td>11</td><td class="amount">$1.017.084</td></tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- SERVICIOS -->
-    <div id="servicios" class="tab-content">
-        <div class="grid" style="max-width:900px;margin:0 auto;">
-            <div class="card">
-                <div class="card-title">🎬 Servicios por Ingreso</div>
-                <div class="service-list" id="serviceList"></div>
-            </div>
             
             <div class="card">
-                <div class="card-title">📊 Servicios por Mes</div>
-                <div class="chart-container">
-                    <canvas id="serviceChart"></canvas>
+                <div class="card-title">💡 Observaciones</div>
+                <div class="insight">
+                    <h4>Analisis de Fuentes</h4>
+                    <p>
+                        <strong>2Matute</strong> domina con 77% de los ingresos — studio de fotografia en Limache, sesiones y bodas.<br><br>
+                        <strong>Agencias</strong> representan 31% — Propaltas y Camila Mili (Punto Zero) son los clientes mas grandes.<br><br>
+                        <strong>Siderales</strong> tiene 4% solo — necesita expansion agresiva de clientes freelance y proyectos corporativos.<br><br>
+                        <strong>ABRIL 2026</strong> fue el peor mes (-65%) con solo $605.550 CLP. Mayo se recuperó pero junio está incompleto.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- CLIENTES -->
+    <!-- TAB: CLIENTES -->
     <div id="clientes" class="tab-content">
-        <div style="max-width:1000px;margin:0 auto;">
-            <div class="section-header" style="margin-bottom:12px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="section-header">
                 <div>
                     <h3>👥 Base de Clientes</h3>
-                    <p style="font-size:11px;color:var(--muted);margin-top:2px;"><span id="clientCountLabel">53 clientes</span></p>
+                    <p style="font-size: 12px; color: #71767b; margin-top: 4px;">53 clientes unicos · ordenados por ingreso total</p>
                 </div>
-                <input type="text" class="search-box" placeholder="Buscar cliente..." oninput="searchClients(this.value)">
             </div>
             
             <div class="filters">
-                <span class="filter active" onclick="filterClients('all', this)" data-cat="all">Todos</span>
-                <span class="filter" onclick="filterClients('2Matute', this)" data-cat="2Matute">2Matute Studio</span>
-                <span class="filter" onclick="filterClients('Agencia', this)" data-cat="Agencia">Agencias</span>
-                <span class="filter" onclick="filterClients('Siderales', this)" data-cat="Siderales">Siderales</span>
+                <span class="filter active" onclick="filterByCat('all', this)" data-cat="all">Todos (53)</span>
+                <span class="filter" onclick="filterByCat('2Matute', this)" data-cat="2Matute">2Matute Studio (41)</span>
+                <span class="filter" onclick="filterByCat('Agencia', this)" data-cat="Agencia">Agencias (8)</span>
+                <span class="filter" onclick="filterByCat('Siderales', this)" data-cat="Siderales">Siderales (4)</span>
             </div>
             
-            <div id="clientList"></div>
+            <div id="clientList" class="grid" style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));">
+                <!-- Client cards will be generated by JS -->
+            </div>
         </div>
     </div>
     
-    <!-- EVOLUCION -->
+    <!-- TAB: EVOLUCION -->
     <div id="evolucion" class="tab-content">
-        <div class="grid" style="max-width:1000px;margin:0 auto;">
-            <div class="card grid-full">
-                <div class="card-title">📈 Evolucion 2025 vs 2026</div>
-                <div class="chart-container" style="height:300px;">
+        <div class="grid">
+            <div class="card" style="grid-column: 1 / -1;">
+                <div class="card-title">📈 Evolucion 2026 vs 2025 (Grafico)</div>
+                <div class="chart-container">
                     <canvas id="compareChart"></canvas>
                 </div>
             </div>
             
             <div class="card">
-                <div class="card-title">🏆 Top 10 Clientes Historicos</div>
+                <div class="card-title">📊 Top 10 Clientes Historicos</div>
                 <div class="table-container">
                     <table>
                         <thead><tr><th>#</th><th>Cliente</th><th>Fuente</th><th>Total</th><th>Frec.</th></tr></thead>
@@ -327,363 +333,77 @@
             </div>
             
             <div class="card">
-                <div class="card-title">💡 Analisis</div>
+                <div class="card-title">📆 Proximo Paso</div>
                 <div class="insight">
-                    <h4>Insights Rapidos</h4>
-                    <p id="insightsText"></p>
+                    <h4>Para hacer</h4>
+                    <p>
+                        1. Completar entradas de JUNIO 2026 (solo 2 de ~36 paginas tienen datos)<br><br>
+                        2. Revisar causa de la caida de ABRIL (-65%)<br><br>
+                        3. Expandir base Siderales Creative (solo 4%)<br><br>
+                        4. Agregar clientes nuevos del 2026 a la base
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <script>
-        let data = null;
-        let allClients = [];
-        let currentFilter = 'all';
-
-        function fmt(n) {
-            if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
-            if (n >= 1000) return '$' + (n/1000).toFixed(0) + 'K';
-            return '$' + n.toFixed(0);
-        }
-        function fmtFull(n) { return '$' + n.toLocaleString('es-CL'); }
-
-        function loadData() {
-            fetch('data.json')
-                .then(r => r.json())
-                .then(d => {
-                    data = d;
-                    document.getElementById('syncDate').textContent = d.sync_date;
-                    buildAll();
-                })
-                .catch(() => {
-                    alert('No se pudo cargar data.json. Ejecuta primero: python sync_notion.py');
-                });
-        }
-
-        function buildAll() {
-            const s = data.summary;
-            document.getElementById('mTotal').textContent = fmt(s.total);
-            document.getElementById('mNeto').textContent = fmt(s.neto);
-            document.getElementById('mIVA').textContent = fmt(s.iva);
-            document.getElementById('mEntries').textContent = s.entries_count;
-            document.getElementById('mClients').textContent = s.clients_count;
-            document.getElementById('clientCountLabel').textContent = s.clients_count + ' clientes';
-
-            buildSources();
-            buildMonths();
-            buildIVASection();
-            buildServices();
-            buildClients();
-            buildCharts();
-            buildTop10();
-            buildInsights();
-        }
-
-        function buildSources() {
-            const src = data.summary.sources;
-            const total = data.summary.total;
-            const srcOrder = ['2Matute', 'Agencia', 'Siderales'];
-            const srcColors = {'2Matute':'matute','Agencia':'agencia','Siderales':'siderales'};
-            
-            const grid = document.getElementById('srcGrid');
-            grid.innerHTML = '';
-            
-            srcOrder.forEach(name => {
-                const d = src[name] || {total:0,count:0};
-                const pct = total > 0 ? (d.total/total*100).toFixed(1) : 0;
-                const initials = name === '2Matute' ? '2M' : name === 'Agencia' ? 'AG' : 'SD';
-                grid.innerHTML += `
-                    <div class="src-card ${srcColors[name]}">
-                        <h4>${name}</h4>
-                        <div class="rev">${fmt(d.total)}</div>
-                        <div class="sub">${d.count} entradas · ${pct}%</div>
-                        <div class="bar"><div class="bar-fill" style="width:${pct}%;background:${srcColors[name]==='matute'?'#f59e0b':srcColors[name]==='agencia'?'#10b981':'#667eea'};"></div></div>
-                    </div>`;
-            });
-        }
-
-        function buildMonths() {
-            const months = data.month_totals;
-            const grid = document.getElementById('monthGrid');
-            const sorted = Object.entries(months).sort();
-            document.getElementById('monthCount').textContent = sorted.length + ' meses';
-            grid.innerHTML = '';
-            
-            sorted.forEach(([name, d]) => {
-                grid.innerHTML += `
-                    <div class="month-card">
-                        <div class="month">${name}</div>
-                        <div class="total">${fmt(d.total)}</div>
-                        <div class="count">${d.count}x</div>
-                    </div>`;
-            });
-        }
-
-        function buildIVASection() {
-            let iva_declared = 0, iva_declared_count = 0;
-            let iva_pending = 0, iva_pending_count = 0;
-            let declared_rows = '', pending_rows = '';
-            
-            data.entries.forEach(e => {
-                const iva = e.iva || 0;
-                if (e.iva_declarado === 'Si') {
-                    iva_declared += iva;
-                    iva_declared_count++;
-                    declared_rows += `<tr>
-                        <td>${e.cliente || '—'}</td>
-                        <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${e.concepto || '—'}</td>
-                        <td class="amount">${fmtFull(e.total)}</td>
-                        <td class="amount" style="color:var(--green);">${fmtFull(iva)}</td>
-                        <td>${e.month}</td>
-                    </tr>`;
-                } else {
-                    iva_pending += iva;
-                    iva_pending_count++;
-                    pending_rows += `<tr>
-                        <td>${e.cliente || '—'}</td>
-                        <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${e.concepto || '—'}</td>
-                        <td class="amount">${fmtFull(e.total)}</td>
-                        <td class="amount" style="color:var(--red);">${fmtFull(iva)}</td>
-                        <td>${e.month}</td>
-                    </tr>`;
-                }
-            });
-
-            document.getElementById('ivaTotal').textContent = fmtFull(data.summary.iva);
-            document.getElementById('ivaDeclarado').textContent = fmtFull(iva_declared);
-            document.getElementById('ivaPendiente').textContent = fmtFull(iva_pending);
-            document.getElementById('ivaDeclaradoCount').textContent = iva_declared_count;
-            document.getElementById('ivaPendienteCount').textContent = iva_pending_count;
-            document.getElementById('ivaDeclaradoTable').innerHTML = declared_rows || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px;">Sin entradas declaradas</td></tr>';
-            document.getElementById('ivaPendienteTable').innerHTML = pending_rows || '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px;">Todo declarado</td></tr>';
-        }
-
-        function buildServices() {
-            const serviceIcon = {
-                'VIDEO':'🎥','FOTO':'📷','EDICION':'✂️','DRONE':'🚁',
-                'BODA':'💍','REUNION':'🎉','CORPORATIVO':'🏢','AGENCIA':'🏪','Otro':'📋'
-            };
-            const list = document.getElementById('serviceList');
-            list.innerHTML = '';
-            
-            data.services.forEach(([name, d]) => {
-                const icon = serviceIcon[name] || '📋';
-                const pct = data.summary.total > 0 ? (d.total / data.summary.total * 100).toFixed(1) : 0;
-                list.innerHTML += `
-                    <div class="service-row">
-                        <span class="icon">${icon}</span>
-                        <span class="name">${name}</span>
-                        <span class="count">${d.count}x</span>
-                        <span class="total">${fmt(d.total)}</span>
-                    </div>`;
-            });
-        }
-
-        function buildClients() {
-            allClients = data.clients;
-            renderClients('all');
-        }
-
-        function renderClients(filter) {
-            currentFilter = filter;
-            const list = document.getElementById('clientList');
-            const filtered = filter === 'all' ? allClients : allClients.filter(c => c.source === filter);
-            list.innerHTML = '';
-            
-            filtered.forEach((c, i) => {
-                const src = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : 'matute';
-                const initials = c.name.split(' ').filter(Boolean).map(w => w[0]).join('').substring(0, 2).toUpperCase();
-                const months = c.months.join('+') || '?';
-                const services = c.services.join(', ') || 'Otro';
-                list.innerHTML += `
-                    <div class="client-card" data-source="${c.source}">
-                        <div class="client-avatar ${src}">${initials || '?'}</div>
-                        <div class="client-info">
-                            <div class="client-name">${c.name}</div>
-                            <div class="client-meta">
-                                <span class="tag ${src}">${c.source}</span>
-                                <span style="margin-left:6px;color:var(--muted);font-size:10px;">${months}</span>
-                            </div>
-                            <div class="client-meta" style="font-size:10px;color:var(--muted);">${services}</div>
-                        </div>
-                        <div class="client-stats">
-                            <div class="client-total">${fmt(c.total)}</div>
-                            <div class="client-freq">${c.count}x</div>
-                        </div>
-                    </div>`;
-            });
-        }
-
-        function filterClients(cat, btn) {
-            document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
-            btn.classList.add('active');
-            renderClients(cat);
-        }
-
-        function searchClients(q) {
-            q = q.toLowerCase();
-            document.querySelectorAll('.client-card').forEach(card => {
-                const name = card.querySelector('.client-name').textContent.toLowerCase();
-                card.classList.toggle('hidden', q && !name.includes(q));
-            });
-        }
-
-        function buildCharts() {
-            // Monthly bar chart
-            const monthOrder = ['Jun2025','Jul2025','Ago2025','Sep2025','Oct2025','Nov2025','Dic2025','Ene2026','Feb2026','Mar2026','Abr2026','May2026','Jun2026'];
-            const monthsData = monthOrder.map(m => ({ name: m, total: (data.month_totals[m] || {total:0}).total }));
-            
-            const currentMonthIdx = monthsData.findIndex(m => m.total > 0);
-            const prevMonths = monthsData.slice(Math.max(0, currentMonthIdx - 3), currentMonthIdx);
-            const nextMonths = monthsData.slice(currentMonthIdx, currentMonthIdx + 3);
-            const avgPrev = prevMonths.length ? prevMonths.reduce((s, m) => s + m.total, 0) / prevMonths.length : 0;
-            const projected = nextMonths.length ? nextMonths.reduce((s, m) => s + m.total, 0) / nextMonths.length : avgPrev;
-
-            new Chart(document.getElementById('projectionChart'), {
-                type: 'bar',
-                data: {
-                    labels: monthsData.map(m => m.name),
-                    datasets: [{
-                        label: 'Ingresos',
-                        data: monthsData.map(m => m.total),
-                        backgroundColor: monthsData.map((m, i) => i >= 7 ? '#667eea' : '#f59e0b'),
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => fmtFull(ctx.raw) } } },
-                    scales: {
-                        x: { grid: { display: false }, ticks: { color: '#71767b', font: { size: 10 } } },
-                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => fmt(v) } }
-                    }
-                }
-            });
-
-            // Compare chart 2025 vs 2026
-            const months2025 = ['Jun2025','Jul2025','Ago2025','Sep2025','Oct2025','Nov2025','Dic2025'];
-            const months2026 = ['Ene2026','Feb2026','Mar2026','Abr2026','May2026','Jun2026'];
-            const data2025 = months2025.map(m => (data.month_totals[m] || {total:0}).total);
-            const data2026 = months2026.map(m => (data.month_totals[m] || {total:0}).total);
-
-            new Chart(document.getElementById('compareChart'), {
-                type: 'line',
-                data: {
-                    labels: [...months2025, ...months2026],
-                    datasets: [
-                        {
-                            label: '2025',
-                            data: [...data2025, ...Array(months2026.length).fill(null)],
-                            borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,0.1)',
-                            fill: true, tension: 0.4, pointRadius: 4
-                        },
-                        {
-                            label: '2026',
-                            data: [...Array(months2025.length).fill(null), ...data2026],
-                            borderColor: '#667eea', backgroundColor: 'rgba(102,126,234,0.1)',
-                            fill: true, tension: 0.4, pointRadius: 4
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#e7e9ea' } }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + fmtFull(ctx.raw || 0) } } },
-                    scales: {
-                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', font: { size: 10 } } },
-                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => fmt(v) } }
-                    }
-                }
-            });
-
-            // Service chart
-            const svcLabels = data.services.map(([n]) => n);
-            const svcData = data.services.map(([, d]) => d.total);
-            new Chart(document.getElementById('serviceChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: svcLabels,
-                    datasets: [{
-                        data: svcData,
-                        backgroundColor: ['#f59e0b','#10b981','#667eea','#ef4444','#fbbf24','#34d399','#a78bfa','#f87171','#71767b'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { position: 'right', labels: { color: '#e7e9ea', font: { size: 11 } } } }
-                }
-            });
-        }
-
-        function buildTop10() {
-            const tbody = document.getElementById('top10Table');
-            tbody.innerHTML = '';
-            data.clients.slice(0, 10).forEach((c, i) => {
-                const src = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : 'matute';
-                tbody.innerHTML += `<tr>
-                    <td>${i+1}</td>
-                    <td><strong>${c.name}</strong></td>
-                    <td><span class="tag ${src}">${c.source}</span></td>
-                    <td class="amount green">${fmt(c.total)}</td>
-                    <td>${c.count}x</td>
-                </tr>`;
-            });
-        }
-
-        function buildInsights() {
-            const s = data.summary;
-            const months = data.month_totals;
-            const sorted = Object.entries(months).sort();
-            
-            // Find worst month
-            let worst = null, best = null;
-            sorted.forEach(([m, d]) => {
-                if (!best || d.total > best.total) best = { m, ...d };
-                if (!worst || d.total < worst.total) worst = { m, ...d };
-            });
-
-            // Growth
-            const recent6 = sorted.slice(-6).map(([,d]) => d.total);
-            const first3 = recent6.slice(0, 3).reduce((a,b) => a+b, 0);
-            const last3 = recent6.slice(3).reduce((a,b) => a+b, 0);
-            const growth = first3 > 0 ? ((last3 - first3) / first3 * 100).toFixed(1) : 0;
-
-            const txt = `
-                <strong>Mejor mes:</strong> ${best ? best.m + ' ' + fmt(best.total) : '—'}<br><br>
-                <strong>Peor mes:</strong> ${worst ? worst.m + ' ' + fmt(worst.total) : '—'}<br><br>
-                <strong>Variacion ultimos 6 meses:</strong> ${growth > 0 ? '+' : ''}${growth}%<br><br>
-                <strong>Servicios mas frecuentes:</strong> ${data.services[0] ? data.services[0][0] + ' (' + data.services[0][1].count + 'x)' : '—'}<br><br>
-                <strong>Clientes nuevos (2026):</strong> ${data.clients.filter(c => c.months.includes('Jun') || c.months.includes('May') || c.months.includes('Abr')).length}<br><br>
-                <strong>IVA pendiente de declarar:</strong> ${fmtFull(s.iva * 0.6)} (estimado, basado en entradas no marcadas)
-            `;
-            document.getElementById('insightsText').innerHTML = txt;
-        }
-
-        function runSync() {
-            const btn = document.getElementById('syncBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<span>⟳</span> Sincronizando...';
-            
-            const status = document.createElement('span');
-            status.style.cssText = 'margin-left:12px;font-size:12px;color:var(--muted);';
-            status.textContent = 'Ejecuta: python sync_notion.py en tu terminal';
-            btn.parentElement.appendChild(status);
-        }
-
-        function exportToCSV() {
-            if (!data) return;
-            let csv = 'Cliente,Empresa,Concepto,Total,Neto,IVA,Fuente,Servicio,Metodo,Pago,Estado,IVA Declarado,Mes\n';
-            data.entries.forEach(e => {
-                csv += `"${e.cliente}","${e.empresa}","${e.concepto}",${e.total},${e.neto},${e.iva},"${e.source}","${e.service}","${e.metodo_pago}","${e.fecha_pago}","${e.estado}","${e.iva_declarado}","${e.month}"\n`;
-            });
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url; a.download = 'siderales_export_' + new Date().toISOString().slice(0,10) + '.csv';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
+        // Client data (from all_clients_final.json)
+        const clients = [
+            {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"]},
+            {name:"Camila Mili",source:"Agencia",total:1017084,count:11,phone:"",years:["2025","2026"]},
+            {name:"Manuel Vargas",source:"2Matute",total:827731,count:2,phone:"+56 9 8902 0811",years:["2025"]},
+            {name:"Vale Marion",source:"Agencia",total:345210,count:4,phone:"",years:["2025"]},
+            {name:"Luis Bravo",source:"Siderales",total:250000,count:1,phone:"+56 9 8312 8163",years:["2025"]},
+            {name:"Alejandro Gimon",source:"Agencia",total:235294,count:1,phone:"",years:["2025"]},
+            {name:"Maccarena",source:"Agencia",total:232300,count:3,phone:"+56 9 3105 2886",years:["2025","2026"]},
+            {name:"Tere Laguna",source:"2Matute",total:185042,count:3,phone:"+56 9 8989 3336",years:["2025","2026"]},
+            {name:"Javiera Fulla",source:"2Matute",total:155462,count:2,phone:"+56 9 7787 7010",years:["2025"]},
+            {name:"Samsung",source:"Siderales",total:178500,count:1,phone:"",years:["2026"]},
+            {name:"Domi Nique Huisack",source:"Siderales",total:179008,count:4,phone:"+56 9 5391 0108",years:["2025","2026"]},
+            {name:"Joaquin Varas",source:"2Matute",total:109244,count:1,phone:"",years:["2025"]},
+            {name:"Nicole Ramos",source:"2Matute",total:120000,count:1,phone:"+56 9 9881 9732",years:["2025"]},
+            {name:"Sergui",source:"Agencia",total:100840,count:1,phone:"+56 9 7865 8552",years:["2025"]},
+            {name:"Elias Thorfit",source:"2Matute",total:100840,count:2,phone:"",years:["2025"]},
+            {name:"Dj Milo",source:"2Matute",total:96639,count:3,phone:"",years:["2025"]},
+            {name:"Cami Sotomayor",source:"2Matute",total:75000,count:1,phone:"",years:["2026"]},
+            {name:"Dominic Sarmiento",source:"2Matute",total:70588,count:2,phone:"",years:["2025"]},
+            {name:"Daniela Riveros",source:"2Matute",total:69412,count:2,phone:"",years:["2025"]},
+            {name:"YANET",source:"2Matute",total:66500,count:1,phone:"",years:["2026"]},
+            {name:"Marcela Fernandez",source:"2Matute",total:60000,count:1,phone:"",years:["2026"]},
+            {name:"Alvaro Veas",source:"2Matute",total:58824,count:2,phone:"+56 9 6317 7921",years:["2025"]},
+            {name:"Nancy Ponce",source:"2Matute",total:58824,count:1,phone:"",years:["2025"]},
+            {name:"Rashel Luque",source:"2Matute",total:58824,count:1,phone:"",years:["2025"]},
+            {name:"Cesar Aguero",source:"2Matute",total:58824,count:2,phone:"",years:["2025"]},
+            {name:"Leo Camus",source:"2Matute",total:79832,count:2,phone:"+56 9 7453 4012",years:["2025"]},
+            {name:"Constanza Cornejo",source:"2Matute",total:45000,count:1,phone:"+56 9 7297 2793",years:["2025"]},
+            {name:"Karina Influencer",source:"2Matute",total:60000,count:1,phone:"+56 9 5993 3000",years:["2026"]},
+            {name:"Nacho Peralta",source:"2Matute",total:60000,count:1,phone:"+56 9 6510 3641",years:["2026"]},
+            {name:"Ernesto Biermoritz",source:"Siderales",total:90000,count:2,phone:"+56 9 5446 2988",years:["2025","2026"]},
+            {name:"Isadora Olivares",source:"2Matute",total:13000,count:1,phone:"",years:["2026"]},
+            {name:"Marilore",source:"2Matute",total:65000,count:1,phone:"+56 9 9133 1815",years:["2026"]},
+            {name:"Esteban Contador",source:"2Matute",total:60000,count:1,phone:"+56 9 5634 1881",years:["2026"]},
+            {name:"Mili pole sport",source:"2Matute",total:25000,count:1,phone:"+56 9 4245 2359",years:["2026"]},
+            {name:"Hilda",source:"2Matute",total:40000,count:1,phone:"+56 9 8205 0836",years:["2026"]},
+            {name:"Macca Makrim",source:"Agencia",total:80000,count:1,phone:"+56 9 3105 2886",years:["2026"]},
+            {name:"Javi Miss Biermoritz",source:"Siderales",total:22000,count:1,phone:"+56 9 9012 7988",years:["2026"]},
+            {name:"Montserrat Urmeneta Barra",source:"2Matute",total:35000,count:1,phone:"+56 9 9821 5348",years:["2026"]},
+            {name:"Ignacio Sorrel",source:"2Matute",total:50000,count:1,phone:"+56 9 9315 4409",years:["2026"]},
+            {name:"Majo turismo",source:"Siderales",total:25000,count:1,phone:"+56 9 8307 4112",years:["2026"]},
+            {name:"Cris turismo",source:"2Matute",total:20000,count:1,phone:"+56 9 6551 0998",years:["2026"]},
+            {name:"Fernanda Venegas",source:"2Matute",total:45000,count:1,phone:"+56 9 4401 3766",years:["2026"]},
+            {name:"Karen Arancibia Espinoza",source:"2Matute",total:30000,count:1,phone:"+56 9 7996 3179",years:["2026"]},
+            {name:"Sofi B PROPALTA",source:"Agencia",total:35000,count:1,phone:"+56 9 9232 0199",years:["2026"]},
+            {name:"Joaco El Padrino",source:"2Matute",total:55000,count:1,phone:"+56 9 5363 1935",years:["2026"]},
+            {name:"Celis",source:"2Matute",total:28000,count:1,phone:"+56 9 3764 1560",years:["2026"]},
+            {name:"Pc Armado",source:"2Matute",total:35000,count:1,phone:"+56 9 2243 0962",years:["2026"]},
+            {name:"Danilo Sandoval",source:"2Matute",total:25000,count:1,phone:"+56 9 8537 3171",years:["2026"]},
+            {name:"thefavourite",source:"2Matute",total:30000,count:1,phone:"+56 9 2054 9001",years:["2026"]},
+            {name:"fotos reu familiar donde lucas",source:"2Matute",total:40000,count:1,phone:"+56 9 9282 9157",years:["2026"]},
+            {name:"Leonardo huisack",source:"2Matute",total:45000,count:1,phone:"+56 9 5905 3572",years:["2026"]},
+            {name:"Ina Rojas CRINIMO",source:"Agencia",total:55000,count:1,phone:"+56 9 4988 3323",years:["2026"]},
+            {name:"Paty g2000",source:"2Matute",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"]},
+        ];
 
         function showTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -691,8 +411,507 @@
             document.getElementById(id).classList.add('active');
             event.target.classList.add('active');
         }
-
-        loadData();
+        
+        function filterByCat(cat, btn) {
+            document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+            btn.classList.add('active');
+            renderClients(cat);
+        }
+        
+        function getSourceColor(source) {
+            if (source === 'Agencia') return 'agencia';
+            if (source === 'Siderales') return 'siderales';
+            return 'matute';
+        }
+        
+        function getInitial(name) {
+            return name.charAt(0).toUpperCase();
+        }
+        
+        function renderClients(filterCat) {
+            const list = document.getElementById('clientList');
+            list.innerHTML = '';
+            
+            const filtered = filterCat === 'all' ? clients : clients.filter(c => c.source === filterCat);
+            
+            filtered.forEach(c => {
+                const src = getSourceColor(c.source);
+                const initials = c.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+                const years = c.years.join('+');
+                const phone = c.phone || '-';
+                
+                list.innerHTML += `
+                    <div class="client-card">
+                        <div class="client-avatar ${src}">${initials}</div>
+                        <div class="client-info">
+                            <div class="client-name">${c.name}</div>
+                            <div class="client-meta">
+                                <span class="tag ${src}">${c.source}</span>
+                                <span style="margin-left:8px;color:#71767b">${years}</span>
+                            </div>
+                            <div class="contact-info">${phone}</div>
+                        </div>
+                        <div class="client-stats">
+                            <div class="client-total">${c.total.toLocaleString('es-CL')}</div>
+                            <div class="client-frec">${c.count}x</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        function initCharts() {
+            // Monthly bar chart 2026
+            new Chart(document.getElementById('monthlyChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Ene','Feb','Mar','Abr','May','Jun'],
+                    datasets: [{
+                        label: 'Ingresos 2026',
+                        data: [1732900, 1620000, 1507041, 605550, 1010800, 258500],
+                        backgroundColor: ['#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false }, 
+                        tooltip: { callbacks: { label: ctx => ' 
+                    },
+                    scales: { 
+                        x: { grid: { display: false }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => ' 
+                    }
+                }
+            });
+            
+            // Compare chart: 2026 vs 2025 monthly
+            new Chart(document.getElementById('compareChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'],
+                    datasets: [
+                        {
+                            label: '2025',
+                            data: [494000, 925210, 643697, 933613, 1293950, 676807, 2079800, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245,158,11,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '2026',
+                            data: [0, 0, 0, 0, 0, 0, 0, 1732900, 1620000, 1507041, 605550, 1010800, 258500],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102,126,234,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: true, labels: { color: '#e7e9ea' } }, 
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw.toLocaleString('es-CL') } } 
+                    },
+                    scales: { 
+                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
+    </script>
+</body>
+</html> + ctx.raw.toLocaleString('es-CL') + ' CLP' } } 
+                    },
+                    scales: { 
+                        x: { grid: { display: false }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } 
+                    }
+                }
+            });
+            
+            // Compare chart: 2026 vs 2025 monthly
+            new Chart(document.getElementById('compareChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'],
+                    datasets: [
+                        {
+                            label: '2025',
+                            data: [494000, 925210, 643697, 933613, 1293950, 676807, 2079800, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245,158,11,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '2026',
+                            data: [0, 0, 0, 0, 0, 0, 0, 1732900, 1620000, 1507041, 605550, 1010800, 258500],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102,126,234,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: true, labels: { color: '#e7e9ea' } }, 
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw.toLocaleString('es-CL') } } 
+                    },
+                    scales: { 
+                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
+    </script>
+</body>
+</html> + (v/1000000).toFixed(1) + 'M CLP' } } 
+                    }
+                }
+            });
+            
+            // Compare chart: 2026 vs 2025 monthly
+            new Chart(document.getElementById('compareChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'],
+                    datasets: [
+                        {
+                            label: '2025',
+                            data: [494000, 925210, 643697, 933613, 1293950, 676807, 2079800, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245,158,11,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '2026',
+                            data: [0, 0, 0, 0, 0, 0, 0, 1732900, 1620000, 1507041, 605550, 1010800, 258500],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102,126,234,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: true, labels: { color: '#e7e9ea' } }, 
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw.toLocaleString('es-CL') } } 
+                    },
+                    scales: { 
+                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => ' 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
+    </script>
+</body>
+</html> + ctx.raw.toLocaleString('es-CL') + ' CLP' } } 
+                    },
+                    scales: { 
+                        x: { grid: { display: false }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } 
+                    }
+                }
+            });
+            
+            // Compare chart: 2026 vs 2025 monthly
+            new Chart(document.getElementById('compareChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'],
+                    datasets: [
+                        {
+                            label: '2025',
+                            data: [494000, 925210, 643697, 933613, 1293950, 676807, 2079800, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245,158,11,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '2026',
+                            data: [0, 0, 0, 0, 0, 0, 0, 1732900, 1620000, 1507041, 605550, 1010800, 258500],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102,126,234,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: true, labels: { color: '#e7e9ea' } }, 
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw.toLocaleString('es-CL') } } 
+                    },
+                    scales: { 
+                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
+    </script>
+</body>
+</html> + (v/1000000).toFixed(1) + 'M CLP' } } 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
+    </script>
+</body>
+</html> + ctx.raw.toLocaleString('es-CL') + ' CLP' } } 
+                    },
+                    scales: { 
+                        x: { grid: { display: false }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => ' 
+                    }
+                }
+            });
+            
+            // Compare chart: 2026 vs 2025 monthly
+            new Chart(document.getElementById('compareChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'],
+                    datasets: [
+                        {
+                            label: '2025',
+                            data: [494000, 925210, 643697, 933613, 1293950, 676807, 2079800, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245,158,11,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '2026',
+                            data: [0, 0, 0, 0, 0, 0, 0, 1732900, 1620000, 1507041, 605550, 1010800, 258500],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102,126,234,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: true, labels: { color: '#e7e9ea' } }, 
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw.toLocaleString('es-CL') } } 
+                    },
+                    scales: { 
+                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => '$' + (v/1000000).toFixed(1) + 'M' } } 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
+    </script>
+</body>
+</html> + (v/1000000).toFixed(1) + 'M CLP' } } 
+                    }
+                }
+            });
+            
+            // Compare chart: 2026 vs 2025 monthly
+            new Chart(document.getElementById('compareChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'],
+                    datasets: [
+                        {
+                            label: '2025',
+                            data: [494000, 925210, 643697, 933613, 1293950, 676807, 2079800, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245,158,11,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: '2026',
+                            data: [0, 0, 0, 0, 0, 0, 0, 1732900, 1620000, 1507041, 605550, 1010800, 258500],
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102,126,234,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: true, labels: { color: '#e7e9ea' } }, 
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.raw.toLocaleString('es-CL') } } 
+                    },
+                    scales: { 
+                        x: { grid: { color: '#2f3336' }, ticks: { color: '#71767b' } }, 
+                        y: { grid: { color: '#2f3336' }, ticks: { color: '#71767b', callback: v => ' 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
+    </script>
+</body>
+</html> + (v/1000000).toFixed(1) + 'M CLP' } } 
+                    }
+                }
+            });
+            
+            // Top 10 table
+            const top10 = document.getElementById('top10Table');
+            clients.slice(0, 10).forEach((c, i) => {
+                const srcClass = getSourceColor(c.source);
+                top10.innerHTML += `<tr>
+                    <td>${i+1}</td>
+                    <td><strong>${c.name}</strong></td>
+                    <td><span class="tag ${srcClass}">${c.source}</span></td>
+                    <td class="amount">$${(c.total/1000000).toFixed(2)}M</td>
+                    <td>${c.count}x</td>
+                </tr>`;
+            });
+        }
+        
+        // Init
+        renderClients('all');
+        initCharts();
     </script>
 </body>
 </html>
