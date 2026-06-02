@@ -160,11 +160,42 @@
         
         .duplicate-alert { display: none; background: rgba(245,158,11,0.15); border: 1px solid #f59e0b; border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 12px; color: #f59e0b; }
         
+        .view-toggle { display: flex; gap: 8px; margin-bottom: 12px; }
+        .view-btn { padding: 8px 14px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; border: 1px solid #2f3336; background: #1c1f23; color: #71767b; transition: all 0.2s; }
+        .view-btn:hover { border-color: #667eea; }
+        .view-btn.active { background: #667eea; color: white; border-color: #667eea; }
+        
+        .client-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .client-table th { text-align: left; padding: 10px 8px; border-bottom: 1px solid #2f3336; color: #71767b; font-weight: 500; font-size: 10px; text-transform: uppercase; position: sticky; top: 0; background: #0f1419; }
+        .client-table td { padding: 10px 8px; border-bottom: 1px solid #2f3336; vertical-align: middle; }
+        .client-table tr:hover { background: #1c1f23; }
+        .client-table .client-row-checkbox { width: 30px; }
+        .client-table .client-row-name { font-weight: 600; min-width: 120px; }
+        .client-table .client-row-phone { min-width: 100px; }
+        .client-table .client-row-source { min-width: 100px; }
+        .client-table .client-row-total { text-align: right; color: #10b981; font-weight: 600; min-width: 80px; }
+        .client-table .client-row-actions { width: 60px; text-align: right; }
+        
+        .editable-cell { cursor: pointer; padding: 4px 6px; border-radius: 4px; transition: background 0.2s; }
+        .editable-cell:hover { background: #2f3336; }
+        .editable-cell:focus { outline: 2px solid #667eea; background: #252a2f; }
+        
+        .source-select-table { background: #252a2f; border: none; color: #e7e9ea; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+        
+        .merge-preview { background: #252a2f; border-radius: 8px; padding: 16px; margin: 16px 0; }
+        .merge-preview-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #10b981; }
+        .merge-clients { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+        .merge-client-item { display: flex; align-items: center; gap: 8px; padding: 8px; background: #1c1f23; border-radius: 6px; font-size: 12px; }
+        .merge-client-item .arrow { color: #667eea; font-weight: bold; }
+        .merge-client-item.merged { border: 1px solid #10b981; }
+        
         @media (max-width: 480px) {
             .kpi-grid { grid-template-columns: repeat(2, 1fr); }
             .pie-grid { grid-template-columns: 1fr; }
             .health-grid { grid-template-columns: repeat(2, 1fr); }
             .kpi-value { font-size: 16px; }
+            .client-table { font-size: 11px; }
+            .client-table th, .client-table td { padding: 8px 4px; }
         }
     </style>
 </head>
@@ -299,6 +330,11 @@
         <div class="batch-bar" id="batchBar">
             <span class="batch-count" id="batchCount">0 seleccionados</span>
             <div class="batch-actions">
+                <div class="view-toggle">
+                    <button class="view-btn active" id="viewCardsBtn" onclick="setViewMode('cards')">Tarjetas</button>
+                    <button class="view-btn" id="viewTableBtn" onclick="setViewMode('table')">Tabla</button>
+                </div>
+                <button class="batch-btn clear" id="mergeBtn" onclick="openMergeModal()" style="display:none;background:#ef4444;color:white;">Fusionar</button>
                 <select id="batchSourceSelect" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;font-size:11px;">
                     <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
@@ -327,6 +363,7 @@
         </div>
         
         <div id="clientList"></div>
+        <div id="clientTable" style="display:none;overflow-x:auto;"></div>
     </div>
     
     <div id="analisis" class="tab-content">
@@ -442,6 +479,27 @@
     <!-- FAB -->
     <button class="fab" onclick="openAddClientModal()">+</button>
     
+    <!-- Modal Fusionar -->
+    <div class="modal-overlay" id="mergeModal" onclick="if(event.target.id==='mergeModal')closeMergeModal()">
+        <div class="modal" style="max-width:450px;">
+            <button class="modal-close" onclick="closeMergeModal()">x</button>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;">Fusionar Clientes</h3>
+            <p style="font-size:11px;color:#71767b;margin-bottom:16px;">Selecciona qué datos mantener del cliente final</p>
+            
+            <div class="merge-preview" id="mergePreview"></div>
+            
+            <div class="modal-input-group">
+                <label>Nombre final</label>
+                <input type="text" id="mergeFinalName" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;">
+            </div>
+            
+            <div style="display:flex;gap:8px;margin-top:16px;">
+                <button class="modal-save-btn" onclick="confirmMerge()" style="flex:1;background:#ef4444;">Fusionar</button>
+                <button class="modal-save-btn" onclick="closeMergeModal()" style="flex:1;background:#2f3336;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="footer">Siderales Creative Studio · Limache, Chile · CLP</div>
     
     <script>
@@ -449,6 +507,46 @@
         let currentClient = null;
         let clientNotes = {};
         let currentDateFilter = 'month';
+        let viewMode = 'cards';
+        
+        // LocalStorage functions
+        function saveToStorage() {
+            try {
+                localStorage.setItem('siderales_clients', JSON.stringify(clients));
+                localStorage.setItem('siderales_notes', JSON.stringify(clientNotes));
+            } catch(e) {
+                console.log('Storage save failed:', e);
+            }
+        }
+        
+        function loadFromStorage() {
+            try {
+                const storedClients = localStorage.getItem('siderales_clients');
+                const storedNotes = localStorage.getItem('siderales_notes');
+                if (storedClients) {
+                    const parsed = JSON.parse(storedClients);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        clients.length = 0;
+                        clients.push(...parsed);
+                        console.log('Loaded', clients.length, 'clients from storage');
+                    }
+                }
+                if (storedNotes) {
+                    clientNotes = JSON.parse(storedNotes);
+                }
+            } catch(e) {
+                console.log('Storage load failed:', e);
+            }
+        }
+        
+        function resetToOriginal() {
+            localStorage.removeItem('siderales_clients');
+            localStorage.removeItem('siderales_notes');
+            location.reload();
+        }
+        
+        // Load from storage on init
+        loadFromStorage();
         
         const clients = [
             {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"],services:["Video","Foto","Edicion"]},
@@ -1050,8 +1148,22 @@
         function getInitials(name) {
             return name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
         }
-
+        
+        function setViewMode(mode) {
+            viewMode = mode;
+            document.getElementById('viewCardsBtn').classList.toggle('active', mode === 'cards');
+            document.getElementById('viewTableBtn').classList.toggle('active', mode === 'table');
+            document.getElementById('clientList').style.display = mode === 'cards' ? 'block' : 'none';
+            document.getElementById('clientTable').style.display = mode === 'table' ? 'block' : 'none';
+            renderClients(getCurrentFilter());
+        }
+        
         function renderClients(filterCat) {
+            if (viewMode === 'table') {
+                renderClientTable(filterCat);
+                return;
+            }
+            
             const list = document.getElementById('clientList');
             list.innerHTML = '';
             
@@ -1074,6 +1186,194 @@
             
             updateBatchBar();
         }
+        
+        function renderClientTable(filterCat) {
+            const table = document.getElementById('clientTable');
+            
+            let filtered = filterCat === 'all' ? clients : clients.filter(c => c.source === filterCat);
+            
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
+            if (searchTerm) {
+                filtered = filtered.filter(c => c.name.toLowerCase().includes(searchTerm));
+            }
+            
+            let html = '<table class="client-table"><thead><tr>' +
+                '<th class="client-row-checkbox"><input type="checkbox" id="selectAllTable" onchange="toggleSelectAll(this.checked)"></th>' +
+                '<th>Nombre</th><th>Telefono</th><th>Categoria</th><th style="text-align:right">Total</th><th>Servicios</th><th class="client-row-actions"></th></tr></thead><tbody>';
+            
+            filtered.forEach(c => {
+                const srcClass = getSourceColor(c.source);
+                const isSelected = selectedClients.has(c.name);
+                html += '<tr class="' + (isSelected ? 'selected' : '') + '" data-name="' + c.name + '">' +
+                    '<td class="client-row-checkbox"><input type="checkbox" class="client-checkbox" ' + (isSelected ? 'checked' : '') + ' onclick="toggleClientSelection(\'' + c.name.replace(/'/g, "\\'") + '\', event)" ' + (isSelected ? 'checked' : '') + '></td>' +
+                    '<td class="client-row-name"><span class="editable-cell" onclick="editCell(this, \'' + c.name + '\', \'name\')">' + c.name + '</span></td>' +
+                    '<td class="client-row-phone"><span class="editable-cell" onclick="editCell(this, \'' + c.name + '\', \'phone\')">' + (c.phone || '-') + '</span></td>' +
+                    '<td class="client-row-source"><select class="source-select-table" onchange="updateClientSource(\'' + c.name.replace(/'/g, "\\'") + '\', this.value)">' +
+                        '<option value="Matute Studio"' + (c.source === 'Matute Studio' ? ' selected' : '') + '>Matute Studio</option>' +
+                        '<option value="Agencia"' + (c.source === 'Agencia' ? ' selected' : '') + '>Agencia</option>' +
+                        '<option value="Siderales"' + (c.source === 'Siderales' ? ' selected' : '') + '>Siderales</option>' +
+                        '<option value="Estudio"' + (c.source === 'Estudio' ? ' selected' : '') + '>Estudio</option>' +
+                    '</select></td>' +
+                    '<td class="client-row-total">$' + c.total.toLocaleString('es-CL') + '</td>' +
+                    '<td style="font-size:10px;color:#71767b">' + c.services.join(', ') + '</td>' +
+                    '<td class="client-row-actions"><button onclick="showClientModal(' + JSON.stringify(c).replace(/"/g, '&quot;') + ')" style="background:none;border:none;color:#667eea;cursor:pointer;font-size:14px;">✎</button></td>' +
+                '</tr>';
+            });
+            
+            html += '</tbody></table>';
+            table.innerHTML = html;
+            updateBatchBar();
+        }
+        
+        function editCell(element, clientName, field) {
+            const currentValue = element.textContent.trim();
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = currentValue === '-' ? '' : currentValue;
+            input.style.cssText = 'background:#252a2f;border:1px solid #667eea;border-radius:4px;padding:4px 6px;color:#e7e9ea;font-size:12px;width:100%;';
+            input.onblur = function() { saveCellEdit(clientName, field, input.value, element); };
+            input.onkeydown = function(e) { if (e.key === 'Enter') input.blur(); };
+            element.innerHTML = '';
+            element.appendChild(input);
+            input.focus();
+        }
+        
+        function saveCellEdit(clientName, field, value, element) {
+            const client = clients.find(c => c.name === clientName);
+            if (!client) return;
+            
+            if (field === 'name') {
+                if (value.trim() && value !== client.name) {
+                    // Update references
+                    if (clientNotes[client.name]) {
+                        clientNotes[value] = clientNotes[client.name];
+                        delete clientNotes[client.name];
+                    }
+                    if (selectedClients.has(client.name)) {
+                        selectedClients.delete(client.name);
+                        selectedClients.add(value);
+                    }
+                    client.name = value.trim();
+                }
+            } else if (field === 'phone') {
+                client.phone = value.trim();
+            }
+            
+            element.textContent = value.trim() || '-';
+            saveToStorage();
+            updateFilterCounts();
+            initDashboard();
+        }
+        
+        function updateClientSource(clientName, newSource) {
+            const client = clients.find(c => c.name === clientName);
+            if (client) {
+                client.source = newSource;
+                saveToStorage();
+                updateFilterCounts();
+                initDashboard();
+            }
+        }
+        
+        function toggleSelectAll(checked) {
+            const filterCat = getCurrentFilter();
+            let filtered = filterCat === 'all' ? clients : clients.filter(c => c.source === filterCat);
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
+            if (searchTerm) {
+                filtered = filtered.filter(c => c.name.toLowerCase().includes(searchTerm));
+            }
+            
+            if (checked) {
+                filtered.forEach(c => selectedClients.add(c.name));
+            } else {
+                selectedClients.clear();
+            }
+            
+            renderClients(getCurrentFilter());
+        }
+        
+        function openMergeModal() {
+            if (selectedClients.size < 2) {
+                alert('Selecciona al menos 2 clientes para fusionar');
+                return;
+            }
+            
+            const selected = [...selectedClients].map(name => clients.find(c => c.name === name)).filter(c => c);
+            
+            // Auto-detect best name (longer/more descriptive)
+            let bestName = selected[0].name;
+            selected.forEach(c => {
+                if (c.name.length > bestName.length && !c.name.includes(selected[0].name) && !selected[0].name.includes(c.name)) {
+                    bestName = c.name;
+                }
+            });
+            
+            document.getElementById('mergeFinalName').value = bestName;
+            
+            // Build preview
+            let preview = '<div class="merge-preview-title">Clientes a fusionar:</div><div class="merge-clients">';
+            selected.forEach(c => {
+                preview += '<div class="merge-client-item merged"><span class="tag ' + getSourceColor(c.source) + '">' + c.source + '</span> ' + c.name + ' → <strong style="color:#10b981">$' + c.total.toLocaleString('es-CL') + '</strong></div>';
+            });
+            
+            const combinedTotal = selected.reduce((sum, c) => sum + c.total, 0);
+            const combinedCount = selected.reduce((sum, c) => sum + c.count, 0);
+            const allServices = [...new Set(selected.flatMap(c => c.services))];
+            const allYears = [...new Set(selected.flatMap(c => c.years))];
+            
+            preview += '</div><div style="font-size:12px;color:#71767b;margin-top:8px;">Resultado: <strong style="color:#10b981">$' + combinedTotal.toLocaleString('es-CL') + '</strong> · ' + combinedCount + ' servicios · ' + allServices.length + ' tipos</div>';
+            
+            document.getElementById('mergePreview').innerHTML = preview;
+            document.getElementById('mergeModal').classList.add('active');
+        }
+        
+        function closeMergeModal() {
+            document.getElementById('mergeModal').classList.remove('active');
+        }
+        
+        function confirmMerge() {
+            const selected = [...selectedClients].map(name => clients.find(c => c.name === name)).filter(c => c);
+            const finalName = document.getElementById('mergeFinalName').value.trim();
+            
+            if (!finalName) {
+                alert('Ingresa un nombre para el cliente fusionado');
+                return;
+            }
+            
+            // Use first client as base, update with combined data
+            const base = selected[0];
+            base.name = finalName;
+            base.total = selected.reduce((sum, c) => sum + c.total, 0);
+            base.count = selected.reduce((sum, c) => sum + c.count, 0);
+            base.services = [...new Set(selected.flatMap(c => c.services))];
+            base.years = [...new Set(selected.flatMap(c => c.years))];
+            if (!base.phone && selected.find(c => c.phone)) {
+                base.phone = selected.find(c => c.phone).phone;
+            }
+            
+            // Merge notes
+            selected.forEach(c => {
+                if (clientNotes[c.name]) {
+                    clientNotes[finalName] = (clientNotes[finalName] || '') + '\n---\n' + clientNotes[c.name];
+                    delete clientNotes[c.name];
+                }
+            });
+            
+            // Remove other clients
+            const toRemove = selected.slice(1).map(c => c.name);
+            clients = clients.filter(c => !toRemove.includes(c.name));
+            
+            // Update selection
+            selectedClients.clear();
+            selectedClients.add(finalName);
+            
+            saveToStorage();
+            closeMergeModal();
+            renderClients(getCurrentFilter());
+            updateFilterCounts();
+            initDashboard();
+            document.getElementById('clientCountBadge').textContent = clients.length;
+        }
 
         function toggleClientSelection(name, event) {
             event.stopPropagation();
@@ -1091,6 +1391,7 @@
             const count = selectedClients.size;
             document.getElementById('batchCount').textContent = count + ' seleccionado' + (count !== 1 ? 's' : '');
             document.getElementById('batchBar').classList.toggle('active', count > 0);
+            document.getElementById('mergeBtn').style.display = count >= 2 ? 'inline-block' : 'none';
         }
 
         function clearSelection() {
@@ -1106,6 +1407,7 @@
                 const client = clients.find(c => c.name === name);
                 if (client) client.source = newSource;
             });
+            saveToStorage();
             clearSelection();
             renderClients(getCurrentFilter());
             updateFilterCounts();
@@ -1180,6 +1482,7 @@
             btn.textContent = 'Guardado!';
             btn.classList.add('saved');
             
+            saveToStorage();
             renderClients(getCurrentFilter());
             updateFilterCounts();
             initDashboard();
@@ -1236,6 +1539,7 @@
                 existing.source = source;
                 existing.total += total;
                 existing.count += 1;
+                saveToStorage();
                 closeAddModal();
                 renderClients(getCurrentFilter());
                 updateFilterCounts();
@@ -1247,6 +1551,7 @@
             clients.push(newClient);
             clients.sort((a, b) => b.total - a.total);
             
+            saveToStorage();
             closeAddModal();
             document.getElementById('duplicateAlert').style.display = 'none';
             document.getElementById('clientCountBadge').textContent = clients.length;
@@ -1330,6 +1635,7 @@
                 }
                 
                 clients.sort((a, b) => b.total - a.total);
+                saveToStorage();
                 document.getElementById('clientCountBadge').textContent = clients.length;
                 updateFilterCounts();
                 renderClients(getCurrentFilter());
@@ -1340,7 +1646,44 @@
             };
             reader.readAsText(file);
         }
-
+        
+        // Export current data (for backup)
+        function exportCurrentData() {
+            const data = JSON.stringify({ clients, notes: clientNotes }, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'siderales_backup_' + new Date().toISOString().split('T')[0] + '.json';
+            link.click();
+        }
+        
+        // Import backup
+        function importBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.clients && Array.isArray(data.clients)) {
+                        clients.length = 0;
+                        clients.push(...data.clients);
+                        if (data.notes) clientNotes = data.notes;
+                        saveToStorage();
+                        renderClients(getCurrentFilter());
+                        updateFilterCounts();
+                        initDashboard();
+                        alert('Backup restaurado: ' + clients.length + ' clientes cargados');
+                    }
+                } catch(err) {
+                    alert('Error al importar backup: ' + err.message);
+                }
+                event.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+        
         // Initialize clients tab
         renderClients('all');
     </script>
