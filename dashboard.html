@@ -281,8 +281,13 @@
                 <button class="batch-btn source" onclick="batchChangeSource()">Cambiar categoria</button>
                 <button class="batch-btn clear" onclick="clearSelection()">Limpiar</button>
                 <button class="batch-btn clear" onclick="openAddClientModal()" style="background:#667eea;color:white;">+ Nuevo</button>
+                <button class="batch-btn clear" onclick="exportCSV()" style="background:#10b981;color:white;">Exportar CSV</button>
+                <input type="file" id="importCSVInput" accept=".csv" style="display:none;" onchange="importCSV(event)">
+                <button class="batch-btn clear" onclick="document.getElementById('importCSVInput').click()" style="background:#f59e0b;color:white;">Importar CSV</button>
             </div>
         </div>
+        
+        <div id="duplicateAlert" style="display:none;background:rgba(245,158,11,0.15);border:1px solid #f59e0b;border-radius:8px;padding:12px;margin-bottom:12px;font-size:12px;color:#f59e0b;"></div>
         
         <input type="text" class="search-box" id="searchBox" placeholder="Buscar cliente..." oninput="searchClients()">
         
@@ -383,7 +388,7 @@
             </div>
             <div class="modal-input-group" style="margin-bottom:12px;">
                 <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Nombre *</label>
-                <input type="text" id="newClientName" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="Nombre del cliente">
+                <input type="text" id="newClientName" style="width:100%;background:#252a2f;border:1px solid #2f3336;border-radius:8px;padding:10px;color:#e7e9ea;font-size:13px;" placeholder="Nombre del cliente" oninput="checkDuplicateOnType(this.value)">
             </div>
             <div class="modal-input-group" style="margin-bottom:12px;">
                 <label style="font-size:10px;color:#71767b;display:block;margin-bottom:4px;">Telefono</label>
@@ -608,8 +613,22 @@
             }
             
             // Check for duplicate
-            if (clients.find(c => c.name.toLowerCase() === name.toLowerCase())) {
-                alert('Ya existe un cliente con ese nombre');
+            const existing = clients.find(c => c.name.toLowerCase() === name.toLowerCase());
+            if (existing) {
+                if (!confirm('Ya existe "' + existing.name + '" con ' + existing.count + 'x servicios. Quieres actualizarlo en vez de crear uno nuevo?')) {
+                    return;
+                }
+                // Update existing
+                existing.phone = phone || existing.phone;
+                existing.source = source;
+                existing.total += total;
+                existing.count += 1;
+                if (total > 0 && !existing.services.includes(services[0])) {
+                    existing.services.push(...services);
+                }
+                closeAddModal();
+                updateFilterCounts();
+                renderClients(document.querySelector('.filter.active')?.getAttribute('data-cat') || 'all');
                 return;
             }
             
@@ -630,6 +649,7 @@
             document.querySelector('.count-badge').textContent = clients.length;
             
             closeAddModal();
+            document.getElementById('duplicateAlert').style.display = 'none';
             
             // Re-render
             const activeFilter = document.querySelector('.filter.active') ? document.querySelector('.filter.active').getAttribute('data-cat') : 'all';
@@ -649,6 +669,108 @@
             document.querySelector('[data-cat="2Matute"]').textContent = '2Matute (' + countMatute + ')';
             document.querySelector('[data-cat="Agencia"]').textContent = 'Agencias (' + countAgencia + ')';
             document.querySelector('[data-cat="Siderales"]').textContent = 'Siderales (' + countSiderales + ')';
+        }
+        
+        // CSV Export
+        function exportCSV() {
+            let csv = 'Nombre,Categoria,Total,Servicios,Telefono,Anos,Frecuencia\n';
+            clients.forEach(c => {
+                csv += '"' + c.name + '","' + c.source + '",' + c.total + ',"' + c.services.join(';') + '","' + (c.phone || '') + '","' + c.years.join(';') + '",' + c.count + '\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'clientes_siderales_' + new Date().toISOString().split('T')[0] + '.csv';
+            link.click();
+        }
+        
+        // CSV Import
+        function importCSV(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const lines = content.split('\n');
+                const headers = lines[0].split(',');
+                
+                // Detect duplicates warning
+                let duplicates = [];
+                const newClients = [];
+                
+                for (let i = 1; i < lines.length; i++) {
+                    if (!lines[i].trim()) continue;
+                    
+                    // Simple CSV parse
+                    const cols = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+                    if (cols.length < 3) continue;
+                    
+                    const name = cols[0].replace(/"/g, '').trim();
+                    const source = cols[1].replace(/"/g, '').trim() || '2Matute';
+                    const total = parseInt(cols[2].replace(/"/g, '').trim()) || 0;
+                    const services = cols.length > 3 ? cols[3].replace(/"/g, '').split(';').map(s => s.trim()).filter(s => s) : ['Otro'];
+                    const phone = cols.length > 4 ? cols[4].replace(/"/g, '').trim() : '';
+                    const years = cols.length > 5 ? cols[5].replace(/"/g, '').split(';').filter(y => y) : ['2026'];
+                    const count = cols.length > 6 ? parseInt(cols[6].replace(/"/g, '').trim()) || 1 : 1;
+                    
+                    // Check for existing client
+                    const exists = clients.find(c => c.name.toLowerCase() === name.toLowerCase());
+                    if (exists) {
+                        duplicates.push(name);
+                    } else {
+                        newClients.push({ name, source, total, services, phone, years, count });
+                    }
+                }
+                
+                // Show duplicates alert
+                if (duplicates.length > 0) {
+                    document.getElementById('duplicateAlert').innerHTML = '<strong>Duplicados detectados:</strong> ' + duplicates.join(', ') + ' — estos no se importaron.';
+                    document.getElementById('duplicateAlert').style.display = 'block';
+                } else {
+                    document.getElementById('duplicateAlert').style.display = 'none';
+                }
+                
+                // Add new clients
+                if (newClients.length > 0) {
+                    clients.push(...newClients);
+                    clients.sort((a, b) => b.total - a.total);
+                    updateFilterCounts();
+                    renderClients(document.querySelector('.filter.active')?.getAttribute('data-cat') || 'all');
+                    alert('Importados ' + newClients.length + ' clientes nuevos!');
+                }
+                
+                // Reset file input
+                event.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+        
+        // Check for duplicates when adding client
+        function checkDuplicates(name) {
+            const normalized = name.toLowerCase().trim();
+            const matches = clients.filter(c => 
+                c.name.toLowerCase() === normalized || 
+                (c.phone && c.phone.replace(/\s/g, '') === name.replace(/\s/g, ''))
+            );
+            
+            if (matches.length > 0) {
+                document.getElementById('duplicateAlert').innerHTML = '<strong>Posible duplicado:</strong> ' + matches.map(m => m.name).join(', ');
+                document.getElementById('duplicateAlert').style.display = 'block';
+                return matches;
+            } else {
+                document.getElementById('duplicateAlert').style.display = 'none';
+                return [];
+            }
+        }
+        
+        function checkDuplicateOnType(name) {
+            if (name.length < 3) {
+                document.getElementById('duplicateAlert').style.display = 'none';
+                return;
+            }
+            checkDuplicates(name);
         }
         
         function closeModal() {
