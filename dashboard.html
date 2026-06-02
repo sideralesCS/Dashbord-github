@@ -219,10 +219,11 @@
         
         <!-- KPIs -->
         <div class="kpi-grid">
-            <div class="kpi-card" id="revenueKpiCard" onclick="showRevenueHistory()" style="cursor:pointer;">
-                <div class="kpi-label">Ingresos del mes <span style="font-size:9px;color:#667eea;">(presiona)</span></div>
-                <div class="kpi-value green" id="kpiMonthRevenue">$1.010.800</div>
-                <div class="kpi-change up" id="kpiMonthChange">+18% vs mes anterior</div>
+            <div class="kpi-card" id="revenueKpiCard" onclick="showRevenueHistory()" style="cursor:pointer;position:relative;border:2px dashed #667eea;">
+                <div style="position:absolute;top:6px;right:8px;font-size:9px;color:#667eea;font-weight:600;">TOCA</div>
+                <div class="kpi-label">Ingresos del mes</div>
+                <div class="kpi-value green" id="kpiMonthRevenue">$217.000</div>
+                <div class="kpi-change" id="kpiMonthChange">vs mes anterior</div>
             </div>
             <div class="kpi-card">
                 <div class="kpi-label">Meta mensual</div>
