@@ -65,7 +65,6 @@
         .activity-amount { font-size: 14px; font-weight: 700; color: #10b981; }
         
         .tag { font-size: 9px; padding: 2px 8px; border-radius: 12px; display: inline-block; }
-        .tag.estudio { background: rgba(239,68,68,0.2); color: #ef4444; }
         .tag.matute { background: rgba(245,158,11,0.2); color: #f59e0b; }
         .tag.agencia { background: rgba(16,185,129,0.2); color: #10b981; }
         .tag.siderales { background: rgba(102,126,234,0.2); color: #667eea; }
@@ -86,7 +85,7 @@
         .client-card.selected { border-color: #10b981; background: rgba(16,185,129,0.1); }
         .client-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: #10b981; flex-shrink: 0; }
         .client-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
-        .client-avatar.estudio { background: #ef4444; }
+        .client-avatar.matute { background: #f59e0b; }
         .client-avatar.agencia { background: #10b981; }
         .client-avatar.siderales { background: #667eea; }
         .client-info { flex: 1; min-width: 0; }
@@ -117,7 +116,6 @@
         .modal-close { position: absolute; top: 12px; right: 12px; background: none; border: none; color: #71767b; font-size: 24px; cursor: pointer; width: 32px; height: 32px; }
         .modal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
         .modal-avatar { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: white; }
-        .modal-avatar.estudio { background: #ef4444; }
         .modal-avatar.matute { background: #f59e0b; }
         .modal-avatar.agencia { background: #10b981; }
         .modal-avatar.siderales { background: #667eea; }
@@ -150,7 +148,6 @@
         .top-rank { font-size: 12px; color: #71767b; width: 20px; text-align: center; }
         .top-bar { flex: 1; height: 24px; background: #2f3336; border-radius: 4px; overflow: hidden; }
         .top-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 10px; font-weight: 600; color: white; }
-        .top-bar-fill.estudio { background: #ef4444; }
         .top-bar-fill.matute { background: #f59e0b; }
         .top-bar-fill.agencia { background: #10b981; }
         .top-bar-fill.siderales { background: #667eea; }
@@ -214,10 +211,10 @@
     <div id="resumen" class="tab-content active">
         <!-- Date Filter -->
         <div class="date-filter">
-            <button class="date-btn active" onclick="setDateFilter('month', this)">Este mes</button>
-            <button class="date-btn" onclick="setDateFilter('lastMonth', this)">Mes anterior</button>
-            <button class="date-btn" onclick="setDateFilter('year', this)">Este año</button>
-            <button class="date-btn" onclick="setDateFilter('all', this)">Todo</button>
+            <button class="date-btn active" data-filter="month" onclick="setDateFilter('month', this)">Este mes</button>
+            <button class="date-btn" data-filter="lastMonth" onclick="setDateFilter('lastMonth', this)">Mes anterior</button>
+            <button class="date-btn" data-filter="year" onclick="setDateFilter('year', this)">Este año</button>
+            <button class="date-btn" data-filter="all" onclick="setDateFilter('all', this)">Todo</button>
         </div>
         
         <!-- KPIs -->
@@ -342,7 +339,6 @@
                     <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
                     <option value="Siderales">Siderales</option>
-                    <option value="Estudio">Estudio</option>
                 </select>
                 <button class="batch-btn source" onclick="batchChangeSource()">Cambiar</button>
                 <button class="batch-btn clear" onclick="clearSelection()">Limpiar</button>
@@ -362,7 +358,15 @@
             <span class="filter" onclick="filterByCat('Matute Studio', this)" data-cat="Matute Studio">Matute Studio (41)</span>
             <span class="filter" onclick="filterByCat('Agencia', this)" data-cat="Agencia">Agencias (8)</span>
             <span class="filter" onclick="filterByCat('Siderales', this)" data-cat="Siderales">Siderales (4)</span>
-            <span class="filter" onclick="filterByCat('Estudio', this)" data-cat="Estudio">Estudio (0)</span>
+        </div>
+        
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
+            <select id="sortSelect" onchange="setSortMode(this.value)" style="padding:8px 10px;background:#2f3336;color:#e7e9ea;border:1px solid #2f3336;border-radius:8px;font-size:11px;">
+                <option value="total">Total ↓</option>
+                <option value="count">Servicios ↓</option>
+                <option value="name">Nombre A-Z</option>
+                <option value="recent">Mas reciente</option>
+            </select>
         </div>
         
         <div id="clientList"></div>
@@ -370,6 +374,13 @@
     </div>
     
     <div id="analisis" class="tab-content">
+        <div class="date-filter">
+            <button class="date-btn active" data-analysis="month" onclick="setAnalysisFilter('month', this)">Este mes</button>
+            <button class="date-btn" data-analysis="lastMonth" onclick="setAnalysisFilter('lastMonth', this)">Mes anterior</button>
+            <button class="date-btn" data-analysis="year" onclick="setAnalysisFilter('year', this)">Este año</button>
+            <button class="date-btn" data-analysis="all" onclick="setAnalysisFilter('all', this)">Todo</button>
+        </div>
+        
         <div class="card">
             <div class="card-title">Analisis por fuente</div>
             <div class="chart-container"><canvas id="sourceBarChart"></canvas></div>
@@ -382,21 +393,21 @@
         
         <div class="card">
             <div class="card-title">Estadisticas clave</div>
-            <div class="health-grid">
+            <div class="health-grid" id="analysisStats">
                 <div class="health-item">
-                    <div class="health-value">$93.409</div>
+                    <div class="health-value" id="statAvgTicket">$93.409</div>
                     <div class="health-label">Ticket promedio entrada</div>
                 </div>
                 <div class="health-item">
-                    <div class="health-value">1.7</div>
+                    <div class="health-value" id="statAvgServices">1.7</div>
                     <div class="health-label">Promedio entradas/cliente</div>
                 </div>
                 <div class="health-item">
-                    <div class="health-value">$550.708</div>
+                    <div class="health-value" id="statAgencyAvg">$550.708</div>
                     <div class="health-label">Cliente agencia promedio</div>
                 </div>
                 <div class="health-item">
-                    <div class="health-value">$81.042</div>
+                    <div class="health-value" id="statMatuteAvg">$81.042</div>
                     <div class="health-label">Cliente Matute Studio promedio</div>
                 </div>
             </div>
@@ -431,8 +442,7 @@
                 <select id="editSource">
                     <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
-                    <option value="Siderales">Siderales Creative</option>
-                    <option value="Estudio">Estudio</option>
+                    <option value="Siderales">Siderales</option>
                 </select>
             </div>
             <button class="modal-save-btn" id="modalSaveBtn" onclick="saveClientData()">Guardar cambios</button>
@@ -463,8 +473,7 @@
                 <select id="newClientSource">
                     <option value="Matute Studio">Matute Studio</option>
                     <option value="Agencia">Agencia</option>
-                    <option value="Siderales">Siderales Creative</option>
-                    <option value="Estudio">Estudio</option>
+                    <option value="Siderales">Siderales</option>
                 </select>
             </div>
             <div class="modal-input-group">
@@ -506,13 +515,17 @@
     <div class="footer">Siderales Creative Studio · Limache, Chile · CLP</div>
     
     <script>
+        // Global state - single declaration
+        let clients = [];
+        let currentDateFilter = 'month';
+        let currentCategoryFilter = 'all';
+        let currentAnalysisFilter = 'month';
+        let sortMode = 'total';
+        let viewMode = 'cards';
         let selectedClients = new Set();
         let currentClient = null;
         let clientNotes = {};
-        let currentDateFilter = 'month';
-        let viewMode = 'cards';
         let SHEETS_URL = localStorage.getItem('siderales_sheets_url') || 'https://script.google.com/macros/s/AKfycbxGZ60wquL21mofX8Vh8WipbBRuPnEAYyVUV_vVVEk_LQPMHHsthOY0nMdkc1kfH7qx/exec';
-        let syncEnabled = true;
         
         // Google Sheets sync functions - manual backup/restore
         function showSyncStatus(msg, isError) {
@@ -592,37 +605,6 @@
             }
         }
         
-        // LocalStorage functions - Dashboard is the source of truth
-        function saveToStorage() {
-            try {
-                localStorage.setItem('siderales_clients', JSON.stringify(clients));
-                localStorage.setItem('siderales_notes', JSON.stringify(clientNotes));
-                // Data saved locally - use manual backup to Sheets when needed
-            } catch(e) {
-                console.log('Storage save failed:', e);
-            }
-        }
-        
-        function loadFromStorage() {
-            try {
-                const storedClients = localStorage.getItem('siderales_clients');
-                const storedNotes = localStorage.getItem('siderales_notes');
-                if (storedClients) {
-                    const parsed = JSON.parse(storedClients);
-                    if (Array.isArray(parsed) && parsed.length > 0) {
-                        clients.length = 0;
-                        clients.push(...parsed);
-                        console.log('Loaded', clients.length, 'clients from local storage');
-                    }
-                }
-                if (storedNotes) {
-                    clientNotes = JSON.parse(storedNotes);
-                }
-            } catch(e) {
-                console.log('Storage load failed:', e);
-            }
-        }
-        
         // Default clients - only used if localStorage is empty
         const DEFAULT_CLIENTS = [
             {name:"Nimrod",source:"Agencia",total:2855648,count:11,phone:"+56 9 9874 8782",years:["2025","2026"],services:["Video","Foto","Edicion"]},
@@ -680,21 +662,49 @@
             {name:"Paty g2000",source:"Matute Studio",total:22000,count:1,phone:"+56 9 3486 6365",years:["2026"],services:["Sesion"]}
         ];
         
-        // Clients array - MUST be defined before loadFromStorage
+        // Global state
         let clients = [];
+        let currentDateFilter = 'month';
+        let currentCategoryFilter = 'all';
+        let currentAnalysisFilter = 'month';
+        let sortMode = 'total';
+        let viewMode = 'cards';
+        let selectedClients = new Set();
+        let currentClient = null;
+        let clientNotes = {};
+        let SHEETS_URL = localStorage.getItem('siderales_sheets_url') || 'https://script.google.com/macros/s/AKfycbxGZ60wquL21mofX8Vh8WipbBRuPnEAYyVUV_vVVEk_LQPMHHsthOY0nMdkc1kfH7qx/exec';
         
-        // Save to localStorage - ALWAYS saves current state
+        // Month names
+        const MONTHS_ES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+        
+        function getCurrentPeriodLabel() {
+            const now = new Date();
+            const currYear = now.getFullYear();
+            const currMonth = now.getMonth();
+            const prevMonth = currMonth === 0 ? 11 : currMonth - 1;
+            const prevYear = currMonth === 0 ? currYear - 1 : currYear;
+            
+            if (currentDateFilter === 'month') {
+                return MONTHS_ES[currMonth] + ' ' + currYear;
+            } else if (currentDateFilter === 'lastMonth') {
+                return MONTHS_ES[prevMonth] + ' ' + currYear;
+            } else if (currentDateFilter === 'year') {
+                return String(currYear);
+            }
+            return 'Todo';
+        }
+        
+        // localStorage functions
         function saveToStorage() {
             try {
                 localStorage.setItem('siderales_clients', JSON.stringify(clients));
                 localStorage.setItem('siderales_notes', JSON.stringify(clientNotes));
-                console.log('Saved', clients.length, 'clients to localStorage');
+                console.log('Saved', clients.length, 'clients');
             } catch(e) {
                 console.log('Storage save failed:', e);
             }
         }
         
-        // Load from localStorage - NEVER overwrites saved data
         function loadFromStorage() {
             try {
                 const stored = localStorage.getItem('siderales_clients');
@@ -704,7 +714,8 @@
                     const parsed = JSON.parse(stored);
                     if (Array.isArray(parsed) && parsed.length > 0) {
                         clients = parsed;
-                        console.log('Loaded', clients.length, 'clients from localStorage');
+                        if (storedNotes) clientNotes = JSON.parse(storedNotes);
+                        console.log('Loaded', clients.length, 'from localStorage');
                         return;
                     }
                 }
@@ -715,12 +726,8 @@
                 console.log('First time - saved defaults');
                 
             } catch(e) {
-                console.log('Storage load failed:', e);
+                console.log('Load failed:', e);
                 clients = JSON.parse(JSON.stringify(DEFAULT_CLIENTS));
-            }
-            
-            if (storedNotes) {
-                clientNotes = JSON.parse(storedNotes);
             }
         }
         
@@ -730,8 +737,8 @@
             location.reload();
         }
         
-        // Initialize - load saved data FIRST
         loadFromStorage();
+        updateDateFilterLabels(); // Set dynamic month/year labels on load
 
         // Real monthly entries data
         const monthlyEntries = {
@@ -829,55 +836,64 @@
         const sourceData = [
             {label:'Matute Studio',value:8524286,color:'#f59e0b'},
             {label:'Agencias',value:4135368,color:'#10b981'},
-            {label:'Siderales',value:519508,color:'#667eea'},
-            {label:'Estudio',value:0,color:'#ef4444'}
+            {label:'Siderales',value:519508,color:'#667eea'}
         ];
 
         // Get filtered source data based on current date filter
         function getFilteredSourceData() {
-            let totals = { 'Matute Studio': 0, 'Agencia': 0, 'Siderales': 0, 'Estudio': 0 };
+            let totals = { 'Matute Studio': 0, 'Agencia': 0, 'Siderales': 0 };
             
+            // Get entries based on current date filter
+            let entries = [];
             if (currentDateFilter === 'month') {
-                // June 2026
-                monthlyEntries['2026']['Jun'].forEach(e => {
-                    const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
-                               e.source === 'Estudio' ? 'Estudio' :
-                               e.source === 'Siderales' ? 'Siderales' : 'Agencia';
-                    totals[src] = (totals[src] || 0) + e.total;
-                });
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][month];
+                if (monthlyEntries[year] && monthlyEntries[year][monthKey]) {
+                    entries = monthlyEntries[year][monthKey];
+                }
             } else if (currentDateFilter === 'lastMonth') {
-                // May 2026
-                monthlyEntries['2026']['May'].forEach(e => {
-                    const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
-                               e.source === 'Estudio' ? 'Estudio' :
-                               e.source === 'Siderales' ? 'Siderales' : 'Agencia';
-                    totals[src] = (totals[src] || 0) + e.total;
-                });
+                const now = new Date();
+                const month = now.getMonth();
+                const prevMonth = month === 0 ? 11 : month - 1;
+                const prevYear = month === 0 ? now.getFullYear() - 1 : now.getFullYear();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][prevMonth];
+                if (monthlyEntries[prevYear] && monthlyEntries[prevYear][monthKey]) {
+                    entries = monthlyEntries[prevYear][monthKey];
+                }
             } else if (currentDateFilter === 'year') {
-                // All 2026
-                Object.values(monthlyEntries['2026']).forEach(monthEntries => {
-                    monthEntries.forEach(e => {
-                        const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
-                                   e.source === 'Estudio' ? 'Estudio' :
-                                   e.source === 'Siderales' ? 'Siderales' : 'Agencia';
-                        totals[src] = (totals[src] || 0) + e.total;
+                const now = new Date();
+                const year = String(now.getFullYear());
+                if (monthlyEntries[year]) {
+                    Object.values(monthlyEntries[year]).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                }
+            } else {
+                // All time
+                Object.values(monthlyEntries).forEach(yearData => {
+                    Object.values(yearData).forEach(monthEntries => {
+                        entries.push(...monthEntries);
                     });
                 });
-            } else {
-                // All time - use static data
-                return [
-                    {label:'Matute Studio',value:8524286,color:'#f59e0b'},
-                    {label:'Agencias',value:4135368,color:'#10b981'},
-                    {label:'Siderales',value:519508,color:'#667eea'},
-                    {label:'Estudio',value:0,color:'#ef4444'}
-                ];
             }
+            
+            // Apply category filter
+            if (currentCategoryFilter !== 'all') {
+                entries = entries.filter(e => e.source === currentCategoryFilter);
+            }
+            
+            entries.forEach(e => {
+                const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
+                           e.source === 'Siderales' ? 'Siderales' : 'Agencia';
+                totals[src] = (totals[src] || 0) + e.total;
+            });
             
             return [
                 {label:'Matute Studio',value:totals['Matute Studio'],color:'#f59e0b'},
                 {label:'Agencias',value:totals['Agencia'],color:'#10b981'},
-                {label:'Siderales',value:totals['Siderales'],color:'#667eea'},
-                {label:'Estudio',value:totals['Estudio'],color:'#ef4444'}
+                {label:'Siderales',value:totals['Siderales'],color:'#667eea'}
             ];
         }
 
@@ -899,7 +915,40 @@
             currentDateFilter = filter;
             document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            updateDateFilterLabels();
             initDashboard();
+        }
+        
+        function updateDateFilterLabels() {
+            const now = new Date();
+            const currYear = now.getFullYear();
+            const currMonth = now.getMonth();
+            const prevMonth = currMonth === 0 ? 11 : currMonth - 1;
+            const prevYear = currMonth === 0 ? currYear - 1 : currYear;
+            
+            // Full month names in Spanish
+            const MONTHS_FULL = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+            
+            const monthBtn = document.querySelector('[data-filter="month"]');
+            const lastMonthBtn = document.querySelector('[data-filter="lastMonth"]');
+            const yearBtn = document.querySelector('[data-filter="year"]');
+            const allBtn = document.querySelector('[data-filter="all"]');
+            
+            if (monthBtn) monthBtn.textContent = MONTHS_FULL[currMonth] + ' ' + currYear;
+            if (lastMonthBtn) lastMonthBtn.textContent = MONTHS_FULL[prevMonth] + ' ' + prevYear;
+            if (yearBtn) yearBtn.textContent = currYear;
+            if (allBtn) allBtn.textContent = 'Todo';
+            
+            // Update analysis tab filters too
+            const analysisMonthBtn = document.querySelector('[data-analysis="month"]');
+            const analysisLastBtn = document.querySelector('[data-analysis="lastMonth"]');
+            const analysisYearBtn = document.querySelector('[data-analysis="year"]');
+            const analysisAllBtn = document.querySelector('[data-analysis="all"]');
+            
+            if (analysisMonthBtn) analysisMonthBtn.textContent = MONTHS_FULL[currMonth] + ' ' + currYear;
+            if (analysisLastBtn) analysisLastBtn.textContent = MONTHS_FULL[prevMonth] + ' ' + prevYear;
+            if (analysisYearBtn) analysisYearBtn.textContent = currYear;
+            if (analysisAllBtn) analysisAllBtn.textContent = 'Todo';
         }
 
         function getFilteredData() {
@@ -908,25 +957,75 @@
             let colors = [];
             
             if (currentDateFilter === 'month') {
-                // June 2026 only
-                labels = ['Jun 2026'];
-                values = [258500];
+                // Current month only
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][month];
+                const monthFull = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'][month];
+                
+                let monthTotal = 0;
+                if (monthlyEntries[year] && monthlyEntries[year][monthKey]) {
+                    monthlyEntries[year][monthKey].forEach(e => monthTotal += e.total);
+                }
+                
+                labels = [monthFull + ' ' + year];
+                values = [monthTotal];
                 colors = ['#667eea'];
             } else if (currentDateFilter === 'lastMonth') {
-                // May 2026
-                labels = ['May 2026'];
-                values = [1010800];
+                // Previous month only
+                const now = new Date();
+                const month = now.getMonth();
+                const prevMonth = month === 0 ? 11 : month - 1;
+                const prevYear = month === 0 ? now.getFullYear() - 1 : now.getFullYear();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][prevMonth];
+                const monthFull = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'][prevMonth];
+                
+                let monthTotal = 0;
+                if (monthlyEntries[prevYear] && monthlyEntries[prevYear][monthKey]) {
+                    monthlyEntries[prevYear][monthKey].forEach(e => monthTotal += e.total);
+                }
+                
+                labels = [monthFull + ' ' + prevYear];
+                values = [monthTotal];
                 colors = ['#10b981'];
             } else if (currentDateFilter === 'year') {
-                // All 2026
-                labels = ['Ene 26','Feb 26','Mar 26','Abr 26','May 26','Jun 26'];
-                values = [1732900, 1620000, 1507041, 605550, 1010800, 258500];
-                colors = ['#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b'];
+                // All months of current year
+                const now = new Date();
+                const year = String(now.getFullYear());
+                
+                if (monthlyEntries[year]) {
+                    const monthKeys = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+                    const monthFull = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+                    const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+                    
+                    monthKeys.forEach((key, i) => {
+                        if (monthlyEntries[year][key]) {
+                            let monthTotal = 0;
+                            monthlyEntries[year][key].forEach(e => monthTotal += e.total);
+                            labels.push(monthNames[i]);
+                            values.push(monthTotal);
+                            colors.push('#667eea');
+                        }
+                    });
+                }
             } else {
-                // All data
-                labels = ['Jul 25','Ago 25','Sep 25','Oct 25','Nov 25','Dic 25','Ene 26','Feb 26','Mar 26','Abr 26','May 26','Jun 26'];
-                values = [925210,643697,933613,1293950,676807,2079800,1732900,1620000,1507041,605550,1010800,258500];
-                colors = ['#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#f59e0b','#667eea','#667eea','#667eea','#ef4444','#10b981','#71767b'];
+                // All data - grouped by year with clear separation
+                const years = Object.keys(monthlyEntries).sort();
+                const monthNames = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+                
+                years.forEach((year, yi) => {
+                    const yearColor = yi === 0 ? '#f59e0b' : '#667eea';
+                    monthNames.forEach((key, mi) => {
+                        if (monthlyEntries[year][key]) {
+                            let monthTotal = 0;
+                            monthlyEntries[year][key].forEach(e => monthTotal += e.total);
+                            labels.push(monthNames[mi] + ' ' + year.slice(2));
+                            values.push(monthTotal);
+                            colors.push(yearColor);
+                        }
+                    });
+                });
             }
             
             return { labels, values, colors };
@@ -1024,8 +1123,10 @@
             initActivityList();
             initSourceBarChart();
             initServicesChart();
+            updateAnalysisStats();
             updateKPIs();
             updateFilterCounts();
+            updateDateFilterLabels();
         }
 
         function initTrendChart() {
@@ -1123,31 +1224,56 @@
             // Get clients based on current filter
             let filteredClients = [...clients];
             
+            // Apply category filter
+            if (currentCategoryFilter !== 'all') {
+                filteredClients = filteredClients.filter(c => c.source === currentCategoryFilter);
+            }
+            
             if (currentDateFilter === 'month') {
-                // Top from June 2026 entries
-                const junClients = {};
-                monthlyEntries['2026']['Jun'].forEach(e => {
-                    junClients[e.client] = (junClients[e.client] || 0) + e.total;
-                });
-                filteredClients = clients.filter(c => Object.keys(junClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
-                filteredClients.sort((a, b) => (junClients[b.name] || 0) - (junClients[a.name] || 0));
-            } else if (currentDateFilter === 'lastMonth') {
-                // Top from May 2026
-                const mayClients = {};
-                monthlyEntries['2026']['May'].forEach(e => {
-                    mayClients[e.client] = (mayClients[e.client] || 0) + e.total;
-                });
-                filteredClients = clients.filter(c => Object.keys(mayClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
-                filteredClients.sort((a, b) => (mayClients[b.name] || 0) - (mayClients[a.name] || 0));
-            } else if (currentDateFilter === 'year') {
-                // Top from 2026
-                const yearClients = {};
-                Object.values(monthlyEntries['2026']).forEach(monthEntries => {
-                    monthEntries.forEach(e => {
-                        yearClients[e.client] = (yearClients[e.client] || 0) + e.total;
+                // Top from current month entries
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][month];
+                
+                const monthClients = {};
+                if (monthlyEntries[year] && monthlyEntries[year][monthKey]) {
+                    monthlyEntries[year][monthKey].forEach(e => {
+                        monthClients[e.client] = (monthClients[e.client] || 0) + e.total;
                     });
-                });
-                filteredClients = clients.filter(c => Object.keys(yearClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
+                }
+                filteredClients = filteredClients.filter(c => Object.keys(monthClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
+                filteredClients.sort((a, b) => (monthClients[b.name] || 0) - (monthClients[a.name] || 0));
+            } else if (currentDateFilter === 'lastMonth') {
+                // Previous month
+                const now = new Date();
+                const month = now.getMonth();
+                const prevMonth = month === 0 ? 11 : month - 1;
+                const prevYear = month === 0 ? now.getFullYear() - 1 : now.getFullYear();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][prevMonth];
+                
+                const monthClients = {};
+                if (monthlyEntries[prevYear] && monthlyEntries[prevYear][monthKey]) {
+                    monthlyEntries[prevYear][monthKey].forEach(e => {
+                        monthClients[e.client] = (monthClients[e.client] || 0) + e.total;
+                    });
+                }
+                filteredClients = filteredClients.filter(c => Object.keys(monthClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
+                filteredClients.sort((a, b) => (monthClients[b.name] || 0) - (monthClients[a.name] || 0));
+            } else if (currentDateFilter === 'year') {
+                // Current year
+                const now = new Date();
+                const year = String(now.getFullYear());
+                
+                const yearClients = {};
+                if (monthlyEntries[year]) {
+                    Object.values(monthlyEntries[year]).forEach(monthEntries => {
+                        monthEntries.forEach(e => {
+                            yearClients[e.client] = (yearClients[e.client] || 0) + e.total;
+                        });
+                    });
+                }
+                filteredClients = filteredClients.filter(c => Object.keys(yearClients).some(k => c.name === k || k.includes('Varios ' + c.source)));
                 filteredClients.sort((a, b) => (yearClients[b.name] || 0) - (yearClients[a.name] || 0));
             } else {
                 // All time - use client totals
@@ -1160,7 +1286,7 @@
             let html = '';
             top5.forEach((c, i) => {
                 const pct = Math.round((c.total / maxTotal) * 100);
-                const srcClass = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : c.source === 'Estudio' ? 'estudio' : 'matute';
+                const srcClass = c.source === 'Agencia' ? 'agencia' : c.source === 'Siderales' ? 'siderales' : 'matute';
                 html += '<div class="top-client-item">' +
                     '<span class="top-rank">' + (i + 1) + '</span>' +
                     '<div class="top-bar"><div class="top-bar-fill ' + srcClass + '" style="width:' + pct + '%">' + c.name.substring(0, 15) + '</div></div>' +
@@ -1213,7 +1339,55 @@
         }
 
         function initSourceBarChart() {
-            const filteredData = getFilteredSourceData();
+            // Use currentAnalysisFilter for the Analysis tab
+            let totals = { 'Matute Studio': 0, 'Agencia': 0, 'Siderales': 0 };
+            
+            let entries = [];
+            if (currentAnalysisFilter === 'month') {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][month];
+                if (monthlyEntries[year] && monthlyEntries[year][monthKey]) {
+                    entries = monthlyEntries[year][monthKey];
+                }
+            } else if (currentAnalysisFilter === 'lastMonth') {
+                const now = new Date();
+                const month = now.getMonth();
+                const prevMonth = month === 0 ? 11 : month - 1;
+                const prevYear = month === 0 ? now.getFullYear() - 1 : now.getFullYear();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][prevMonth];
+                if (monthlyEntries[prevYear] && monthlyEntries[prevYear][monthKey]) {
+                    entries = monthlyEntries[prevYear][monthKey];
+                }
+            } else if (currentAnalysisFilter === 'year') {
+                const now = new Date();
+                const year = String(now.getFullYear());
+                if (monthlyEntries[year]) {
+                    Object.values(monthlyEntries[year]).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                }
+            } else {
+                Object.values(monthlyEntries).forEach(yearData => {
+                    Object.values(yearData).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                });
+            }
+            
+            entries.forEach(e => {
+                const src = e.source === 'Matute Studio' ? 'Matute Studio' : 
+                           e.source === 'Siderales' ? 'Siderales' : 'Agencia';
+                totals[src] = (totals[src] || 0) + e.total;
+            });
+            
+            const filteredData = [
+                {label:'Matute Studio',value:totals['Matute Studio'],color:'#f59e0b'},
+                {label:'Agencias',value:totals['Agencia'],color:'#10b981'},
+                {label:'Siderales',value:totals['Siderales'],color:'#667eea'}
+            ];
+            
             const barChart = Chart.getChart('sourceBarChart');
             if (barChart) barChart.destroy();
             
@@ -1267,11 +1441,103 @@
         function filterByCat(cat, btn) {
             document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
             btn.classList.add('active');
+            currentCategoryFilter = cat;
             renderClients(cat);
+            updateChartsForCategory(cat);
+        }
+        
+        function updateChartsForCategory(cat) {
+            // Update Top 5 chart based on category filter
+            initTop5Chart();
+            
+            // Update source pie chart for category
+            initSourcePieChart();
+        }
+        
+        function setAnalysisFilter(filter, btn) {
+            currentAnalysisFilter = filter;
+            document.querySelectorAll('[data-analysis]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            initSourceBarChart();
+            updateAnalysisStats();
+            initServicesChart();
+        }
+        
+        function updateAnalysisStats() {
+            // Calculate stats based on currentAnalysisFilter
+            let entries = [];
+            
+            if (currentAnalysisFilter === 'month') {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][month];
+                if (monthlyEntries[year] && monthlyEntries[year][monthKey]) {
+                    entries = monthlyEntries[year][monthKey];
+                }
+            } else if (currentAnalysisFilter === 'lastMonth') {
+                const now = new Date();
+                const month = now.getMonth();
+                const prevMonth = month === 0 ? 11 : month - 1;
+                const prevYear = month === 0 ? now.getFullYear() - 1 : now.getFullYear();
+                const monthKey = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][prevMonth];
+                if (monthlyEntries[prevYear] && monthlyEntries[prevYear][monthKey]) {
+                    entries = monthlyEntries[prevYear][monthKey];
+                }
+            } else if (currentAnalysisFilter === 'year') {
+                const now = new Date();
+                const year = String(now.getFullYear());
+                if (monthlyEntries[year]) {
+                    Object.values(monthlyEntries[year]).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                }
+            } else {
+                Object.values(monthlyEntries).forEach(yearData => {
+                    Object.values(yearData).forEach(monthEntries => {
+                        entries.push(...monthEntries);
+                    });
+                });
+            }
+            
+            // Calculate stats
+            const totalRevenue = entries.reduce((sum, e) => sum + e.total, 0);
+            const avgTicket = entries.length > 0 ? Math.round(totalRevenue / entries.length) : 0;
+            
+            // Get clients with services for this period
+            const clientTotals = {};
+            entries.forEach(e => {
+                if (!clientTotals[e.client]) {
+                    clientTotals[e.client] = { total: 0, count: 0 };
+                }
+                clientTotals[e.client].total += e.total;
+                clientTotals[e.client].count += 1;
+            });
+            
+            const avgServices = Object.keys(clientTotals).length > 0 
+                ? (Object.values(clientTotals).reduce((sum, c) => sum + c.count, 0) / Object.keys(clientTotals).length).toFixed(1)
+                : 0;
+            
+            // Filter by source
+            const agencyEntries = entries.filter(e => e.source === 'Agencia');
+            const matuteEntries = entries.filter(e => e.source === 'Matute Studio');
+            
+            const agencyAvg = agencyEntries.length > 0 
+                ? Math.round(agencyEntries.reduce((sum, e) => sum + e.total, 0) / agencyEntries.length) 
+                : 0;
+            const matuteAvg = matuteEntries.length > 0 
+                ? Math.round(matuteEntries.reduce((sum, e) => sum + e.total, 0) / matuteEntries.length) 
+                : 0;
+            
+            // Update DOM
+            document.getElementById('statAvgTicket').textContent = '$' + avgTicket.toLocaleString('es-CL');
+            document.getElementById('statAvgServices').textContent = avgServices;
+            document.getElementById('statAgencyAvg').textContent = '$' + agencyAvg.toLocaleString('es-CL');
+            document.getElementById('statMatuteAvg').textContent = '$' + matuteAvg.toLocaleString('es-CL');
         }
 
         function getSourceColor(source) {
-            return source === 'Agencia' ? 'agencia' : source === 'Siderales' ? 'siderales' : source === 'Estudio' ? 'estudio' : 'matute';
+            return source === 'Agencia' ? 'agencia' : source === 'Siderales' ? 'siderales' : 'matute';
         }
 
         function getInitials(name) {
@@ -1303,6 +1569,9 @@
                 filtered = filtered.filter(c => c.name.toLowerCase().includes(searchTerm));
             }
             
+            // Apply sorting
+            filtered = applySorting(filtered);
+            
             filtered.forEach(c => {
                 const src = getSourceColor(c.source);
                 const isSelected = selectedClients.has(c.name);
@@ -1316,6 +1585,35 @@
             updateBatchBar();
         }
         
+        function applySorting(arr) {
+            const sorted = [...arr];
+            switch(sortMode) {
+                case 'total':
+                    sorted.sort((a, b) => b.total - a.total);
+                    break;
+                case 'count':
+                    sorted.sort((a, b) => b.count - a.count);
+                    break;
+                case 'name':
+                    sorted.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+                    break;
+                case 'recent':
+                    sorted.sort((a, b) => {
+                        const aHas2026 = a.years.includes('2026') ? 1 : 0;
+                        const bHas2026 = b.years.includes('2026') ? 1 : 0;
+                        if (aHas2026 !== bHas2026) return bHas2026 - aHas2026;
+                        return b.count - a.count;
+                    });
+                    break;
+            }
+            return sorted;
+        }
+        
+        function setSortMode(mode) {
+            sortMode = mode;
+            renderClients(getCurrentFilter());
+        }
+        
         function renderClientTable(filterCat) {
             const table = document.getElementById('clientTable');
             
@@ -1325,6 +1623,9 @@
             if (searchTerm) {
                 filtered = filtered.filter(c => c.name.toLowerCase().includes(searchTerm));
             }
+            
+            // Apply sorting
+            filtered = applySorting(filtered);
             
             let html = '<table class="client-table"><thead><tr>' +
                 '<th class="client-row-checkbox"><input type="checkbox" id="selectAllTable" onchange="toggleSelectAll(this.checked)"></th>' +
@@ -1341,7 +1642,6 @@
                         '<option value="Matute Studio"' + (c.source === 'Matute Studio' ? ' selected' : '') + '>Matute Studio</option>' +
                         '<option value="Agencia"' + (c.source === 'Agencia' ? ' selected' : '') + '>Agencia</option>' +
                         '<option value="Siderales"' + (c.source === 'Siderales' ? ' selected' : '') + '>Siderales</option>' +
-                        '<option value="Estudio"' + (c.source === 'Estudio' ? ' selected' : '') + '>Estudio</option>' +
                     '</select></td>' +
                     '<td class="client-row-total">$' + c.total.toLocaleString('es-CL') + '</td>' +
                     '<td style="font-size:10px;color:#71767b">' + c.services.join(', ') + '</td>' +
@@ -1532,15 +1832,22 @@
 
         function batchChangeSource() {
             const newSource = document.getElementById('batchSourceSelect').value;
+            let changedCount = 0;
             selectedClients.forEach(name => {
                 const client = clients.find(c => c.name === name);
-                if (client) client.source = newSource;
+                if (client) {
+                    client.source = newSource;
+                    changedCount++;
+                }
             });
-            saveToStorage();
-            clearSelection();
-            renderClients(getCurrentFilter());
-            updateFilterCounts();
-            initDashboard();
+            if (changedCount > 0) {
+                saveToStorage(); // Immediate persistence
+                clearSelection();
+                renderClients(getCurrentFilter());
+                updateFilterCounts();
+                initDashboard();
+                showSyncStatus('✓ ' + changedCount + ' clientes actualizados', false);
+            }
         }
 
         function showClientModal(client) {
@@ -1558,17 +1865,46 @@
             document.getElementById('editSource').value = client.source;
             document.getElementById('clientNotes').value = clientNotes[client.name] || '';
             
+            // Build details with payment history
             let details = '';
             if (client.phone) details += '<div class="modal-detail"><span class="modal-detail-label">Telefono</span><span class="modal-detail-value">' + client.phone + '</span></div>';
             details += '<div class="modal-detail"><span class="modal-detail-label">Servicios</span><span class="modal-detail-value">' + client.services.join(', ') + '</span></div>';
             details += '<div class="modal-detail"><span class="modal-detail-label">Anos activos</span><span class="modal-detail-value">' + client.years.join(', ') + '</span></div>';
             details += '<div class="modal-detail"><span class="modal-detail-label">Ticket promedio</span><span class="modal-detail-value">$' + Math.round(client.total / client.count).toLocaleString('es-CL') + '</span></div>';
+            
+            // Payment history
+            const paymentHistory = getClientPaymentHistory(client.name);
+            if (paymentHistory.length > 0) {
+                details += '<div style="margin-top:12px;padding-top:12px;border-top:1px solid #2f3336;"><div style="font-size:10px;color:#71767b;margin-bottom:8px;text-transform:uppercase;">Historial de pagos</div>';
+                paymentHistory.slice(0, 5).forEach(p => {
+                    details += '<div class="modal-detail"><span class="modal-detail-label">' + p.date + '</span><span class="modal-detail-value">$' + p.total.toLocaleString('es-CL') + '</span></div>';
+                });
+                if (paymentHistory.length > 5) {
+                    details += '<div style="text-align:center;font-size:10px;color:#71767b;padding-top:4px;">+' + (paymentHistory.length - 5) + ' pagos mas</div>';
+                }
+                details += '</div>';
+            }
+            
             document.getElementById('modalDetails').innerHTML = details;
             
             document.getElementById('modalSaveBtn').textContent = 'Guardar cambios';
             document.getElementById('modalSaveBtn').classList.remove('saved');
             
             document.getElementById('clientModal').classList.add('active');
+        }
+        
+        function getClientPaymentHistory(clientName) {
+            const history = [];
+            Object.entries(monthlyEntries).forEach(([year, months]) => {
+                Object.entries(months).forEach(([month, entries]) => {
+                    entries.forEach(e => {
+                        if (e.client === clientName || e.client.includes('Varios ' + clientName)) {
+                            history.push({ date: month + ' ' + year, total: e.total, source: e.source });
+                        }
+                    });
+                });
+            });
+            return history.sort((a, b) => a.date.localeCompare(b.date));
         }
 
         function closeModal() {
@@ -1639,22 +1975,10 @@
         function addNewClient() {
             const name = document.getElementById('newClientName').value.trim();
             const phone = document.getElementById('newClientPhone').value.trim();
-            let source = document.getElementById('newClientSource').value;
+            const source = document.getElementById('newClientSource').value;
             const total = parseInt(document.getElementById('newClientTotal').value) || 0;
             const servicesStr = document.getElementById('newClientServices').value.trim();
             const services = servicesStr ? servicesStr.split(',').map(s => s.trim()) : ['Otro'];
-            
-            // Smart default category logic for Matute Studio:
-            // - Photo session clients (App 40.000 plan) → Estudio
-            // - Other Matute clients → Siderales
-            if (source === 'Matute Studio') {
-                const isSession = services.some(s => 
-                    s.toLowerCase().includes('sesion') || 
-                    s.toLowerCase().includes('app') ||
-                    name.toLowerCase().includes('app')
-                );
-                source = isSession ? 'Estudio' : 'Siderales';
-            }
             
             if (!name) {
                 alert('El nombre es obligatorio');
