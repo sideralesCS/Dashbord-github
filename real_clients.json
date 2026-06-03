@@ -1,0 +1,555 @@
+﻿[
+    {
+        "name":  "Nimrod",
+        "source":  "",
+        "total":  2925648,
+        "count":  12,
+        "services":  [
+                         "OTRO",
+                         "DRONE"
+                     ],
+        "years":  [
+                      "2026",
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Camila Mili",
+        "source":  "",
+        "total":  1106584,
+        "count":  13,
+        "services":  [
+                         "EDICION",
+                         "VIDEO",
+                         "AGENCIA",
+                         "OTRO"
+                     ],
+        "years":  [
+                      "2026",
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Manuel Vargas",
+        "source":  "",
+        "total":  827731,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Vale Marion",
+        "source":  "",
+        "total":  458260,
+        "count":  5,
+        "services":  [
+                         "FOTO",
+                         "VIDEO",
+                         "OTRO"
+                     ],
+        "years":  [
+                      "2026",
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Luis Bravo",
+        "source":  "",
+        "total":  250000,
+        "count":  1,
+        "services":  "BODA",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Tere Laguna",
+        "source":  "",
+        "total":  245042,
+        "count":  4,
+        "services":  [
+                         "OTRO",
+                         "VIDEO"
+                     ],
+        "years":  [
+                      "2026",
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Alejandro Gimon",
+        "source":  "",
+        "total":  235294,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Maccarena",
+        "source":  "",
+        "total":  232300,
+        "count":  3,
+        "services":  "OTRO",
+        "years":  [
+                      "2026",
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Samsung",
+        "source":  "",
+        "total":  178500,
+        "count":  1,
+        "services":  "CORPORATIVO",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Javiera Fulla",
+        "source":  "",
+        "total":  155462,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Nicole Rmos",
+        "source":  "",
+        "total":  120000,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Joaquin Varas",
+        "source":  "",
+        "total":  109244,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Sergui",
+        "source":  "",
+        "total":  100840,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Elias Thorfit",
+        "source":  "",
+        "total":  100840,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Dia Mujer",
+        "source":  "",
+        "total":  98000,
+        "count":  1,
+        "services":  "FOTO",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Dj Milo",
+        "source":  "",
+        "total":  96639,
+        "count":  3,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Macca Makrim",
+        "source":  "",
+        "total":  80000,
+        "count":  1,
+        "services":  "FOTO",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Leo",
+        "source":  "",
+        "total":  79832,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Cami Sotomayor",
+        "source":  "",
+        "total":  75000,
+        "count":  1,
+        "services":  "BODA",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Dominic Sarmiento",
+        "source":  "",
+        "total":  70588,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "DDP",
+        "source":  "",
+        "total":  70000,
+        "count":  1,
+        "services":  "VIDEO",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "AyC",
+        "source":  "",
+        "total":  70000,
+        "count":  1,
+        "services":  "DRONE",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Daniela Riveros",
+        "source":  "",
+        "total":  69412,
+        "count":  2,
+        "services":  [
+                         "FOTO",
+                         "OTRO"
+                     ],
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "YANET",
+        "source":  "",
+        "total":  66500,
+        "count":  1,
+        "services":  "FOTO",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Marcela Fernandez",
+        "source":  "",
+        "total":  60000,
+        "count":  1,
+        "services":  "BODA",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Alvaro Veas",
+        "source":  "",
+        "total":  58824,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Cesar Aguero",
+        "source":  "",
+        "total":  58824,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Rashel Luque",
+        "source":  "",
+        "total":  58824,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Nancy Ponce",
+        "source":  "",
+        "total":  58824,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "MariLore",
+        "source":  "",
+        "total":  55000,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Tito Biermoritz",
+        "source":  "",
+        "total":  54622,
+        "count":  3,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Mary",
+        "source":  "",
+        "total":  47899,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Esteban Contador",
+        "source":  "",
+        "total":  47782,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Dj Dexter|Dj Milo",
+        "source":  "",
+        "total":  42017,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Danilo Sandoval",
+        "source":  "",
+        "total":  37815,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Coni del Mar",
+        "source":  "",
+        "total":  33613,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Alex",
+        "source":  "",
+        "total":  33613,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Agustina Schumman",
+        "source":  "",
+        "total":  33613,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Miguel Cerda",
+        "source":  "",
+        "total":  33613,
+        "count":  2,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Daniela Pilar Riquelme",
+        "source":  "",
+        "total":  30252,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Dj Dexter",
+        "source":  "",
+        "total":  29412,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Gets Barber",
+        "source":  "",
+        "total":  29412,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Bautizo",
+        "source":  "",
+        "total":  25000,
+        "count":  1,
+        "services":  "REUNION",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Vale Yoga",
+        "source":  "",
+        "total":  23529,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Filosofia",
+        "source":  "",
+        "total":  23529,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Javi Caceres",
+        "source":  "",
+        "total":  21008,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Yarenka",
+        "source":  "",
+        "total":  21008,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Tito Navarro",
+        "source":  "",
+        "total":  13445,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "x",
+        "source":  "",
+        "total":  13000,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "ISADORA OLIVARES",
+        "source":  "",
+        "total":  13000,
+        "count":  1,
+        "services":  "FOTO",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Foto Visa",
+        "source":  "",
+        "total":  10000,
+        "count":  1,
+        "services":  "FOTO",
+        "years":  [
+                      "2026"
+                  ]
+    },
+    {
+        "name":  "Mc CaÃ±ete",
+        "source":  "",
+        "total":  8403,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    },
+    {
+        "name":  "Vaiti",
+        "source":  "",
+        "total":  6723,
+        "count":  1,
+        "services":  "OTRO",
+        "years":  [
+                      "2025"
+                  ]
+    }
+]
