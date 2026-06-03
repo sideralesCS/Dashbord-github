@@ -1,15 +1,3 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Temporary files
-*.tmp
-*.log
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Large raw JSON (re-generate with sync script)
-# Keep all JSON for now so dashboard works without re-sync
+.gitcredentials
+gitcreds_backup.txt
+*.lnk
